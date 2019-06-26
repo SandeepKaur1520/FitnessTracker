@@ -105,8 +105,9 @@
         android:padding="15dp"
         android:textSize="20sp"
         android:singleLine="true"
+
         android:inputType="textPassword"
-        android:imeOptions="actionDone"/>/>
+        android:imeOptions="actionDone"/>
 
     <EditText
         android:id="@+id/etconfirm_password"
