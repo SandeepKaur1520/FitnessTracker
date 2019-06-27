@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login_account"
+    android:orientation="vertical">
+
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:padding="10dp"
+    android:src="@drawable/ic_launcher_background"
+    />
+    <EditText
+        android:id="@+id/etUser_Id"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/signupbutton"
+        android:hint="Username"
+        android:imeOptions="actionNext"
+        android:inputType="textEmailAddress"
+        android:padding="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp" />
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:background="@drawable/signupbutton"
+        android:padding="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        android:imeOptions="actionDone"/>
+    <Button
+        android:id="@+id/bLogin"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="Login"
+        android:background="@drawable/loginbtn"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:textSize="25dp"
+        android:textColor="#041429"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/google_back">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@mipmap/google_image"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Sign In with google"
+            android:layout_weight="1"
+            android:textSize="25dp"
+            android:textColor="#F1F3FC"
+            android:gravity="center"
+            android:background="#4357A5"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+</LinearLayout>
+
