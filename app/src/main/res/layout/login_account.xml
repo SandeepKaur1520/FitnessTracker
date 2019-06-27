@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,11 +14,11 @@
     android:src="@drawable/ic_launcher_background"
     />
     <EditText
-        android:id="@+id/etUser_Id"
+        android:id="@+id/etUserId"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
-        android:background="@drawable/signupbutton"
+        android:background="@drawable/loginbuttons"
         android:hint="Username"
         android:imeOptions="actionNext"
         android:inputType="textEmailAddress"
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="Password"
-        android:background="@drawable/signupbutton"
+        android:background="@drawable/loginbuttons"
         android:padding="15dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"

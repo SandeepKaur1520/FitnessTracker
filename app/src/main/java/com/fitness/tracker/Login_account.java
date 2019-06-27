@@ -9,6 +9,6 @@ public class Login_account extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Login_account);
+        setContentView(R.layout.login_account);
     }
 }

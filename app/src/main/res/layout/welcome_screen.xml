@@ -8,11 +8,17 @@
     android:orientation="vertical"
     android:background="#F8417F">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_fitness_center_black_24dp" />
+    <FrameLayout
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_fitness_center_black_24dp"/>
+    </FrameLayout>
 
     <TextView
         android:layout_width="match_parent"
