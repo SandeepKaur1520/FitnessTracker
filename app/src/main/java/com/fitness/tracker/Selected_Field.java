@@ -7,19 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Health_Info extends AppCompatActivity {
+public class Selected_Field extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.health__info);
+        setContentView(R.layout.selected__field);
 
-        Button Profilenext;
-        Profilenext = findViewById(R.id.bProfileNext);
-        Profilenext.setOnClickListener(new View.OnClickListener() {
+
+        Button SelectedFieldNext;
+        SelectedFieldNext = findViewById(R.id.bselectedNext);
+        SelectedFieldNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Health_Info.this,Selected_Field.class);
+                Intent intent =new Intent(Selected_Field.this,Period_info.class);
                 startActivity(intent);
             }
         });

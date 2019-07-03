@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Period_info"
+    android:orientation="vertical"
+    android:background="@mipmap/background02">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  Period Details"
+        android:textColor="#F7FAFA"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:drawableLeft="@drawable/ic_local_florist_black_24dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="When did your last period start ?"
+        android:textSize="25sp"
+        android:textColor="#F8FAFC"
+        android:layout_marginTop="110dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/loginbuttons"
+        android:padding="10dp"
+        android:text="Choose Date"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#050505"
+        android:textSize="16dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How long is your period ?"
+        android:textSize="25sp"
+        android:textColor="#F8FAFC"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/loginbuttons"
+        android:padding="10dp"
+        android:text="Period length"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#050505"
+        android:textSize="16dp" />
+    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="How long is your cycle ?"
+    android:textSize="25sp"
+    android:textColor="#F8FAFC"
+    android:layout_marginTop="30dp"
+    android:textAlignment="center"/>
+
+    <Button
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="Cycle length"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/loginbuttons"
+        android:textColor="#050505"/>
+
+    <Button
+        android:id="@+id/bPeriodinfoNext"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/signupbutton"
+        android:text="Next"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="#EFF1F3"/>
+
+
+
+</LinearLayout>

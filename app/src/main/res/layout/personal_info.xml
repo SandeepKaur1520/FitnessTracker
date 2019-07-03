@@ -7,16 +7,17 @@
     tools:context=".Personal_info"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#F8417F">
+    android:background="@mipmap/background">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/sandy2"
+        android:src="@mipmap/sandy"
         android:background="@drawable/profilepic"
         android:textAlignment="center"
+        android:layout_marginTop="18sp"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -24,9 +25,10 @@
         android:text="Create an account"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        android:textColor="#F5F7F8"
+        android:textColor="#F2F5F1"
         android:textStyle="bold"
-        android:textSize="25dp"
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +43,7 @@
             android:hint="First name"
             android:drawableRight="@drawable/ic_account_box_black_24dp"
             android:drawableEnd="@drawable/ic_account_box_black_24dp"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textSize="15sp"
             android:layout_marginHorizontal="0dp"
             android:layout_marginTop="30dp"
@@ -58,26 +60,27 @@
             android:drawableEnd="@drawable/ic_account_box_black_24dp"
             android:hint="Last name"
             android:background="@drawable/loginbuttons"
-            android:padding="15dp"
+            android:padding="10dp"
             android:textSize="15sp"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="30dp"
             android:singleLine="true"/>
     </LinearLayout>
+
     <EditText
         android:id="@+id/etlocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:drawableRight="@drawable/ic_person_black_24dp"
-        android:drawableEnd="@drawable/ic_person_black_24dp"
         android:layout_marginTop="10dp"
-        android:hint="Gender"
         android:background="@drawable/loginbuttons"
-        android:padding="15dp"
-        android:textSize="20sp"
-        android:singleLine="true"/>
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:drawableEnd="@drawable/ic_person_black_24dp"
+        android:drawableRight="@drawable/ic_person_black_24dp"
+        android:hint="Gender"
+        android:padding="7dp"
+        android:singleLine="true"
+        android:textSize="15sp" />
     <EditText
         android:id="@+id/etemail"
         android:layout_width="match_parent"
@@ -89,9 +92,10 @@
         android:drawableRight="@drawable/ic_email_black_24dp"
         android:hint="E-mail"
         android:inputType="textEmailAddress"
-        android:padding="15dp"
-        android:singleLine="true"
-        android:textSize="20sp" />
+        android:imeOptions="actionDone"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:singleLine="true"/>
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
@@ -102,8 +106,8 @@
         android:layout_marginTop="10dp"
         android:hint="Password"
         android:background="@drawable/loginbuttons"
-        android:padding="15dp"
-        android:textSize="20sp"
+        android:padding="10dp"
+        android:textSize="15sp"
         android:singleLine="true"
 
         android:inputType="textPassword"
@@ -119,24 +123,23 @@
         android:layout_marginTop="10dp"
         android:hint="Confirm Password"
         android:background="@drawable/loginbuttons"
-        android:padding="15dp"
-        android:textSize="20sp"
+        android:padding="10dp"
+        android:textSize="15sp"
         android:singleLine="true"
         android:inputType="textPassword"
         android:imeOptions="actionDone"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/bNext"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:textColor="#E92F6E"
-        android:textStyle="bold"
-        android:textAllCaps="false"
-        android:layout_marginTop="65sp"
         android:layout_gravity="center"
+        android:layout_marginTop="120dp"
         android:background="@drawable/loginbuttons"
-        android:textSize="25sp"
-        />
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="#090707"
+        android:textSize="20sp" />
 
 
 </LinearLayout>
