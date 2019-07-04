@@ -19,6 +19,15 @@ public class Login_account extends AppCompatActivity {
         loginToHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //data (details about the profile of user ) fetched from  database
+
+                // service is a a string whose values id fetched from dtabases atribute
+                //if(service.equals('Gym'))
+                //{Intent intent =new Intent(Login_account.this,Gym_dashboard.class);
+               /*
+                else if(service.equals("Period Tracker"))
+
+                */
                 Intent intent =new Intent(Login_account.this,Health_Info.class);
                 startActivity(intent);
             }

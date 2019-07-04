@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class Tracking_info extends AppCompatActivity implements CalenderFragment.onFragmentListener{
+public class Tracking_info extends AppCompatActivity {
     private TextView mTextMessage;
     private LinearLayout llCalender;
     private Fragment fragment;
@@ -28,7 +28,7 @@ public class Tracking_info extends AppCompatActivity implements CalenderFragment
         setContentView(R.layout.tracking_info);
         mTextMessage = findViewById(R.id.message);
         llCalender = findViewById(R.id.llCalender);
-        ivCalender=findViewById(R.id.ivCalender);
+       /* ivCalender=findViewById(R.id.ivCalender);*/
 
 
         llCalender.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +53,4 @@ public class Tracking_info extends AppCompatActivity implements CalenderFragment
 
     }
 
-    @Override
-    public void onFragment(Uri uri) {
-
-    }
 }
