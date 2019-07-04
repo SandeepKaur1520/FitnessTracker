@@ -1,43 +1,60 @@
 package com.fitness.tracker;
 
+import android.net.Uri;
 import android.os.Bundle;
 
+import com.fitness.tracker.fragment.CalenderFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class Tracking_info extends AppCompatActivity {
+public class Tracking_info extends AppCompatActivity implements CalenderFragment.onFragmentListener{
     private TextView mTextMessage;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
+    private LinearLayout llCalender;
+    private Fragment fragment;
+    private ImageView ivCalender;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tracking_info);
         mTextMessage = findViewById(R.id.message);
+        llCalender = findViewById(R.id.llCalender);
+        ivCalender=findViewById(R.id.ivCalender);
+
+
+        llCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(savedInstanceState==null){
+                   onClickCalender();
+               }
+            }
+        });
+
     }
 
+    private void onClickCalender() {
+       /* ivCalender.setImageResource(R.mipmap.facebook);*/
+        fragment = new CalenderFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack("")
+                .commit();
+
+    }
+
+    @Override
+    public void onFragment(Uri uri) {
+
+    }
 }

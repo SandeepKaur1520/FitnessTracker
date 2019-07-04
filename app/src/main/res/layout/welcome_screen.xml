@@ -4,48 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Welcome_screen"
+    tools:context=".Welcome_screenActivity"
     android:orientation="vertical"
     android:background="@mipmap/splashscreenwithlogo">
 
- <!--  <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_marginTop="16sp">
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text=" Period"
-          android:textSize="20sp"
-          android:textColor="#000000"
-          android:layout_marginLeft="20sp"
-          android:textAlignment="center"
-          android:padding="10dp"
-          android:drawableLeft="@drawable/ic_brightness_1_black_24dp"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text=" Fertile"
-          android:textSize="20sp"
-          android:textColor="#000000"
-          android:layout_marginLeft="20sp"
-          android:textAlignment="center"
-          android:padding="10dp"
-          android:drawableLeft="@drawable/ic_brightness2_1_black_24dp"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Ovulation"
-          android:textSize="20sp"
-          android:textColor="#000000"
-          android:layout_marginLeft="20sp"
-          android:textAlignment="center"
-          android:drawableLeft="@drawable/ic_brightness3_1_black_24dp"
-          android:padding="10dp"/>
-
-   </LinearLayout>
--->
 </LinearLayout>
 

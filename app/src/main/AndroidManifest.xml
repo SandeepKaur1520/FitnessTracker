@@ -18,7 +18,7 @@
         <activity android:name=".Health_Info" />
         <activity android:name=".Personal_info" />
         <activity android:name=".Login_Screen" />
-        <activity android:name=".Welcome_screen">
+        <activity android:name=".Welcome_screenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
