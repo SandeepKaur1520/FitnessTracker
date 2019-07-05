@@ -6,6 +6,16 @@
     tools:context=".fragment.MeFragment"
     android:orientation="vertical">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="411dp"
+        android:layout_height="190dp"
+        android:layout_gravity="center"
+        android:background="#F72E73"
+        android:src="@mipmap/profilepic"
+        android:textAlignment="center" />
+
+
 
 
 

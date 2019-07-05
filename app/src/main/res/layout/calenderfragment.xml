@@ -3,19 +3,20 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1C8D7">
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Your period Information is here."
-       android:textAlignment="center"
-       android:textSize="17sp"
-       android:textColor="#FAF7F8"
-       android:layout_gravity="center"
-       android:layout_marginTop="60dp"
-       android:padding="10dp"
-       android:background="#D82662"
-       android:drawableLeft="@drawable/ic_local_florist_black_24dp"
-       />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#D82662"
+        android:drawableLeft="@drawable/ic_local_florist_black_24dp"
+        android:padding="10dp"
+        android:text="Your period Information is here."
+        android:textAlignment="center"
+        android:textColor="#FAF7F8"
+        android:textSize="17sp"
+        android:gravity="center"/>
 
    <CalendarView
        android:layout_width="match_parent"

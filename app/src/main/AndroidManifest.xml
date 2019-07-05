@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Body_Info"></activity>
         <activity
             android:name=".Tracking_info"
             android:label="@string/title_activity_tracking_info"></activity>
@@ -16,8 +17,13 @@
         <activity android:name=".Selected_Field" />
         <activity android:name=".Login_account" />
         <activity android:name=".Health_Info" />
-        <activity android:name=".Personal_info" />
-        <activity android:name=".Login_Screen" />
+        <activity
+            android:name=".Personal_info"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".Login_Screen"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity android:name=".Welcome_screenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

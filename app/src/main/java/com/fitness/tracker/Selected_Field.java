@@ -24,5 +24,14 @@ public class Selected_Field extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button SelectedFieldNext1;
+        SelectedFieldNext1 = findViewById(R.id.bselectedNext1);
+        SelectedFieldNext1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(Selected_Field.this,Body_Info.class);
+                startActivity(intent);
+            }
+        });
     }
 }

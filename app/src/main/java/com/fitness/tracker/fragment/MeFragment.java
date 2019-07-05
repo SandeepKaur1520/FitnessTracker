@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,16 +14,14 @@ import android.view.ViewGroup;
 
 import com.fitness.tracker.R;
 
-
 public class MeFragment extends Fragment {
-    public View onCreateView(LayoutInflater inflator,ViewGroup container,Bundle SavedInstanceState){
-        View view =inflator.inflate(R.layout.mefragment,container,false);
+    @NonNull
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view =inflater.inflate(R.layout.mefragment,container,false);
+
         return view;
     }
 
-    public interface  onFragmentListener
-    {
-        void onFragment(Uri uri);
-    }
 }
-
