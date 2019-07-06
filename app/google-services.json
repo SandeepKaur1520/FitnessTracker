@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1074938790136",
+    "firebase_url": "https://fitness-tracker-e7939.firebaseio.com",
+    "project_id": "fitness-tracker-e7939",
+    "storage_bucket": "fitness-tracker-e7939.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074938790136:android:308a1920ea012f4c",
+        "android_client_info": {
+          "package_name": "com.fitness.tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074938790136-ldagdl879q833bh179ergbnnr8umuv4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fitness.tracker",
+            "certificate_hash": "a4c4937b7cfc287b20fb8890659ec12c4c8175cc"
+          }
+        },
+        {
+          "client_id": "1074938790136-8qn04v5ia2g1pclj5qlt77ff4dgm8v6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtyUV-9L4J1kxX7qGJB-AUuZ-aig3aO0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074938790136-8qn04v5ia2g1pclj5qlt77ff4dgm8v6p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,17 +30,13 @@ public class Login_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
         Button bsignup = findViewById(R.id.bSignup);
-
-
-        TextView textView;
-        textView = findViewById(R.id.btnlogin);
+        TextView textView = findViewById(R.id.btnlogin);
         textView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent intent = new Intent(Login_Screen.this, Login_account.class);
                 startActivity(intent);
             }
         });
-
         bsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +45,7 @@ public class Login_Screen extends AppCompatActivity {
             }
         });
 
-        mdots_layout = (LinearLayout) findViewById(R.id.dots);
+        mdots_layout = findViewById(R.id.dots);
         mViewPager = findViewById(R.id.viewPage);
          adapterView = new ImageAdapter(this);
         mViewPager.setAdapter(adapterView);
@@ -57,7 +53,8 @@ public class Login_Screen extends AppCompatActivity {
         setTimerTask();
         add_dotindicator(0);
     }
-     public void add_dotindicator(int position){
+
+    public void add_dotindicator(int position){
 
         dots = new TextView[4];
         mdots_layout.removeAllViews();
@@ -71,8 +68,9 @@ public class Login_Screen extends AppCompatActivity {
         if(dots.length>0){
             dots[position].setTextColor(getResources().getColor(R.color.colorPrimary));
         }
-     }
-     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener(){
+    }
+
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener(){
 
          @Override
          public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -89,7 +87,7 @@ public class Login_Screen extends AppCompatActivity {
          public void onPageScrollStateChanged(int state) {
 
          }
-     };
+    };
 
     private void setTimerTask() {
         /*After setting the adapter use the timer */
