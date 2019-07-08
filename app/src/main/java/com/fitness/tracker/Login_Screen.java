@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.fitness.tracker.userDataInput.Personal_info;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -111,7 +110,7 @@ public class Login_Screen extends AppCompatActivity implements
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+     //   FirebaseUser currentUser = mAuth.getCurrentUser();
         //Toast.makeText(Login_Screen.this," Email = "+currentUser.getEmail()+ "  Display Name = "+currentUser.getDisplayName(),Toast.LENGTH_LONG);
     }
 

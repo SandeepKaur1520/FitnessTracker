@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.fitness.tracker.userDataInput.Health_Info;
-import com.fitness.tracker.userDataInput.Personal_info;
-
 public class Login_account extends AppCompatActivity {
 
     @Override

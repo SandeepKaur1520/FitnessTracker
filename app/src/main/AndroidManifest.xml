@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".stepsChart"></activity>
+        <activity android:name=".BodyActivity" />
+        <activity android:name=".BodyInfo" />
         <activity
             android:name=".Tracking_info"
-            android:label="@string/title_activity_tracking_info"></activity>
+            android:label="@string/title_activity_tracking_info" />
         <activity android:name=".Period_info" />
         <activity android:name=".Selected_Field" />
         <activity android:name=".Login_account" />

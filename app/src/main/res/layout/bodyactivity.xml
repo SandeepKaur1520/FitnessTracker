@@ -4,10 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activeness"
+    tools:context=".BodyActivity"
     android:orientation="vertical"
     android:background="@mipmap/background02">
-
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Next"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,30 +85,31 @@
         android:layout_marginRight="30dp"
         android:background="@drawable/signupbutton"
         android:padding="10dp"/>
-  <!--<CheckBox
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="Workout Hero"
-      android:textSize="25dp"
-      android:textColor="#F7F9FA"
-      android:layout_marginTop="130dp"
-      android:layout_marginLeft="80dp"/>
-    <CheckBox
+
+    <!--<CheckBox
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Workout Hero"
         android:textSize="25dp"
         android:textColor="#F7F9FA"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="130dp"
         android:layout_marginLeft="80dp"/>
-    <CheckBox
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="25dp"
-        android:textColor="#F7F9FA"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="80dp"/>-->
+      <CheckBox
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Workout Hero"
+          android:textSize="25dp"
+          android:textColor="#F7F9FA"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="80dp"/>
+      <CheckBox
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text=""
+          android:textSize="25dp"
+          android:textColor="#F7F9FA"
+          android:layout_marginTop="30dp"
+          android:layout_marginLeft="80dp"/>-->
 
 
 </LinearLayout>
