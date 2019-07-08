@@ -20,7 +20,7 @@ public class Selected_Field extends AppCompatActivity {
         SelectedFieldNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Selected_Field.this,Period_info.class);
+                Intent intent =new Intent(Selected_Field.this,BodyInfoActivity.class);
                 startActivity(intent);
             }
         });
@@ -29,7 +29,7 @@ public class Selected_Field extends AppCompatActivity {
         SelectedFieldNext1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Selected_Field.this,Body_Info.class);
+                Intent intent =new Intent(Selected_Field.this, Period_info.class);
                 startActivity(intent);
             }
         });

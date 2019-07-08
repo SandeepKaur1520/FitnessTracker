@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activeness"
+    android:orientation="vertical"
+    android:background="@mipmap/background02">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How much Physically active you are ?"
+        android:textColor="#F5F8FA"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="40dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please select your activity "
+        android:textColor="#F5F8FA"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="120dp"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0"
+            android:padding="10dp"
+            android:text="Workout Hero"
+            android:textColor="#F6F7F8"
+            android:textSize="25sp" />
+
+        <RadioButton
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0"
+            android:padding="10dp"
+            android:text="Light Mode"
+            android:textColor="#F6F7F8"
+            android:textSize="25dp" />
+        <RadioButton
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0"
+            android:padding="10dp"
+            android:text="Just Starting"
+            android:textColor="#F6F7F8"
+            android:textSize="25dp" />
+    </RadioGroup>
+    <Button
+        android:id="@+id/bNextActiveness"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="#F7F9FA"
+        android:layout_marginTop="20dp"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/signupbutton"
+        android:padding="10dp"/>
+  <!--<CheckBox
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Workout Hero"
+      android:textSize="25dp"
+      android:textColor="#F7F9FA"
+      android:layout_marginTop="130dp"
+      android:layout_marginLeft="80dp"/>
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Workout Hero"
+        android:textSize="25dp"
+        android:textColor="#F7F9FA"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"/>
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25dp"
+        android:textColor="#F7F9FA"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="80dp"/>-->
+
+
+</LinearLayout>
