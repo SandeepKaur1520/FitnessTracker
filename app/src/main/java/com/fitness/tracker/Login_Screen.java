@@ -46,8 +46,6 @@ public class Login_Screen extends AppCompatActivity implements
     // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
@@ -68,18 +66,12 @@ public class Login_Screen extends AppCompatActivity implements
         mViewPager.addOnPageChangeListener(viewListener);
 
 
-        // Button listeners
         findViewById(R.id.GoogleSignInBtn).setOnClickListener(this);
-
-        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
         mAuth = FirebaseAuth.getInstance();
         textView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -94,8 +86,6 @@ public class Login_Screen extends AppCompatActivity implements
                 startActivity(intent);
             }
         });
-
-
         setTimerTask();
         add_dotindicator(0);
     }
