@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.fitness.tracker.userDataInput.Health_Info;
+import com.fitness.tracker.userDataInput.Personal_info;
+
 public class Login_account extends AppCompatActivity {
 
     @Override
@@ -28,7 +31,7 @@ public class Login_account extends AppCompatActivity {
                 else if(service.equals("Period Tracker"))
 
                 */
-                Intent intent =new Intent(Login_account.this,Health_Info.class);
+                Intent intent =new Intent(Login_account.this, Health_Info.class);
                 startActivity(intent);
             }
         });
@@ -37,7 +40,7 @@ public class Login_account extends AppCompatActivity {
         SignUpPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Login_account.this,Personal_info.class);
+                Intent intent =new Intent(Login_account.this, Personal_info.class);
                 startActivity(intent);
             }
         });
