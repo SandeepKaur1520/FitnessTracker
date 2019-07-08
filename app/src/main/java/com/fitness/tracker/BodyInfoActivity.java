@@ -16,14 +16,14 @@ public class BodyInfoActivity extends AppCompatActivity {
         setContentView(R.layout.body_info);
 
         Button nextBody;
-        nextBody = findViewById(R.id.bNextBody);
-        nextBody.setOnClickListener(new View.OnClickListener() {
+       // nextBody = findViewById(R.id.bNextBody);
+       /* nextBody.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(BodyInfoActivity.this, Activeness.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }
 
