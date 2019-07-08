@@ -15,16 +15,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.fitness.tracker.userDataInput.Personal_info;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.SignInAccount;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,7 +40,7 @@ public class Login_Screen extends AppCompatActivity implements
     ImageAdapter adapterView;
     int currentPage = 0;
     Timer timer;
-
+    FirebaseUser user;
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -92,7 +90,7 @@ public class Login_Screen extends AppCompatActivity implements
         bsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Login_Screen.this,Personal_info.class);
+                Intent intent=new Intent(Login_Screen.this, Personal_info.class);
                 startActivity(intent);
             }
         });
@@ -124,7 +122,7 @@ public class Login_Screen extends AppCompatActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
+        //Toast.makeText(Login_Screen.this," Email = "+currentUser.getEmail()+ "  Display Name = "+currentUser.getDisplayName(),Toast.LENGTH_LONG);
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -138,8 +136,8 @@ public class Login_Screen extends AppCompatActivity implements
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Login_Screen.this,"User = "+user+" " ,Toast.LENGTH_LONG);
+                            user = mAuth.getCurrentUser();
+                            Toast.makeText(Login_Screen.this," Email = "+user.getEmail()+ "  Display Name = "+user.getDisplayName(),Toast.LENGTH_LONG);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());

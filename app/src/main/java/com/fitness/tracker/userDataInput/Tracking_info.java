@@ -1,8 +1,9 @@
-package com.fitness.tracker;
+package com.fitness.tracker.userDataInput;
 
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.fitness.tracker.R;
 import com.fitness.tracker.fragment.CalenderFragment;
 import com.fitness.tracker.fragment.ChartFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

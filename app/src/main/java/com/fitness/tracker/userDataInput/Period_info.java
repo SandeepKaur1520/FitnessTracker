@@ -1,4 +1,4 @@
-package com.fitness.tracker;
+package com.fitness.tracker.userDataInput;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,19 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Personal_info extends AppCompatActivity {
+import com.fitness.tracker.R;
+
+public class Period_info extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.personal_info);
+        setContentView(R.layout.period_info);
 
-        Button next;
-        next = findViewById(R.id.bNext);
-        next.setOnClickListener(new View.OnClickListener() {
+        Button PeriodInfoNext;
+        PeriodInfoNext = findViewById(R.id.bPeriodinfoNext);
+        PeriodInfoNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Personal_info.this,Health_Info.class);
+                Intent intent =new Intent(Period_info.this, Tracking_info.class);
                 startActivity(intent);
             }
         });

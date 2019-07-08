@@ -9,16 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Body_Info"></activity>
+        <activity android:name=".userDataInput.Body_Info"></activity>
         <activity
-            android:name=".Tracking_info"
+            android:name=".userDataInput.Tracking_info"
             android:label="@string/title_activity_tracking_info"></activity>
-        <activity android:name=".Period_info" />
-        <activity android:name=".Selected_Field" />
+        <activity android:name=".userDataInput.Period_info" />
+        <activity android:name=".userDataInput.Selected_Field" />
         <activity android:name=".Login_account" />
-        <activity android:name=".Health_Info" />
+        <activity android:name=".userDataInput.Health_Info" />
         <activity
-            android:name=".Personal_info"
+            android:name=".userDataInput.Personal_info"
             android:launchMode="singleTask" />
         <activity
             android:name=".Login_Screen"

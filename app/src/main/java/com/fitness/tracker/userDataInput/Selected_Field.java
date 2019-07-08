@@ -1,4 +1,4 @@
-package com.fitness.tracker;
+package com.fitness.tracker.userDataInput;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.fitness.tracker.R;
 
 public class Selected_Field extends AppCompatActivity {
 
@@ -20,7 +22,7 @@ public class Selected_Field extends AppCompatActivity {
         SelectedFieldNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Selected_Field.this,Period_info.class);
+                Intent intent =new Intent(Selected_Field.this, Period_info.class);
                 startActivity(intent);
             }
         });
@@ -29,7 +31,7 @@ public class Selected_Field extends AppCompatActivity {
         SelectedFieldNext1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Selected_Field.this,Body_Info.class);
+                Intent intent =new Intent(Selected_Field.this, Body_Info.class);
                 startActivity(intent);
             }
         });
