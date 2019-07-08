@@ -3,63 +3,32 @@ package com.fitness.tracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class stepsChart extends AppCompatActivity {
-    private int calsBurned = 0;
 
-    private int calsConsumed = 0;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.steps_chart);
+        int completed = 500;
+        int target = 2000;
+
+        updateChart(completed,target);
     }
 
-    public void addBurned(View v) {
-
-// Get the new value from a user input:
-
-        EditText burnedEditText = findViewById(R.id.burned);
-
-// Update the old value:
-
-        calsBurned = Integer.parseInt(burnedEditText.getText().toString());
-        updateChart();
-    }
-
-    public void addConsumed(View v) {
-
-// Get the new value from a user input:
-
-        EditText consumedEditText = findViewById(R.id.consumed);
-
-// Update the old value:
-
-        calsConsumed = Integer.parseInt(consumedEditText.getText().toString());
-        updateChart();
-    }
-
-    private void updateChart(){
-
-// Update the text in a center of the chart:
-
+    private int updateChart(int completed , int target){
+        int percentage = 0;
+        percentage = (completed * 100)/target;
         TextView numberOfCals = findViewById(R.id.number_of_calories);
-        numberOfCals.setText(String.valueOf(calsBurned) + " / " + calsConsumed);
-
-// Calculate the slice size and update the pie chart:
+        numberOfCals.setText(String.valueOf(percentage)+"% Completed");
 
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
-
-        double d = (double) calsBurned / (double) calsConsumed;
-
-        int progress = (int) (d * 100);
+        int progress = (int) percentage;
         pieChart.setProgress(progress);
+        return progress;
     }
-
-
 }

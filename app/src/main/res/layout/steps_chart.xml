@@ -28,13 +28,16 @@
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/input"
+        android:layout_marginTop="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <!-- ProgressBar that represents a total of 100% -->
+
+
+        <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
 
         <ProgressBar
             android:id="@+id/background_progressbar"
@@ -44,29 +47,26 @@
             android:indeterminate="false"
             android:max="100"
             android:progress="100"
-            android:progressDrawable="@drawable/stats_full"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- ProgressBar that represents a chart slice, where "android:progress" is the % value of the slice -->
-
-        <ProgressBar
-            android:id="@+id/stats_progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="@dimen/chart_width"
-            android:layout_height="@dimen/chart_width"
-            android:indeterminate="false"
-            android:max="100"
-            android:progress="75"
             android:progressDrawable="@drawable/stats_progress"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+             <ProgressBar
+                    android:id="@+id/stats_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="@dimen/chart_width"
+                    android:layout_height="@dimen/chart_width"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="6"
+                    android:progressDrawable="@drawable/stats_full"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
         <!-- The text that goes in a center of the chart -->
 
@@ -86,46 +86,4 @@
 
     <!-- Doughnut chart ends here -->
 
-    <LinearLayout
-        android:id="@+id/input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/input_linear_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        >
-        <EditText
-            android:id="@+id/burned"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/burn"
-            android:inputType="number"
-            />
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="addBurned"
-            android:text="@string/add"
-            />
-        <EditText
-            android:id="@+id/consumed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/cons"
-            android:inputType="number"
-            />
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="addConsumed"
-            android:text="@string/add"
-            />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
