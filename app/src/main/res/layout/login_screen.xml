@@ -10,9 +10,9 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginRight="20sp">
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="15sp"
+        android:layout_marginRight="15sp">
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPage"
             android:layout_width="match_parent"
@@ -67,29 +67,30 @@
     <com.google.android.gms.common.SignInButton
         android:id="@+id/GoogleSignInBtn"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="40dp"
         android:drawableLeft="@mipmap/google"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="18dp" />
+        android:textSize="20sp" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/bfacebook"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="5dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginRight="40dp"
         android:drawableLeft="@mipmap/facebook"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textSize="18dp"
-        android:visibility="visible" />
+        android:textSize="16sp"
+        android:padding="15dp"
+        android:textStyle="normal"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -100,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="140dp"
             android:layout_weight="1"
             android:text="Already have an account?"
             android:textColor="#9198A0"
@@ -112,9 +113,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="15sp"
-            android:layout_marginTop="53dp"
+            android:layout_marginTop="70dp"
             android:text="Login"
-            android:textColor="#F2F5F8"
+            android:textColor="#f5f6f7"
             android:textSize="20sp"
             android:textStyle="bold"/>
     </LinearLayout>

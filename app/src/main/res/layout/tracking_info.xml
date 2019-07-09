@@ -37,12 +37,11 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.8"
                 android:padding="4dp"
                 android:src="@mipmap/calendericon" />
-            <!-- android:id="@+id/ivCalender"-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -91,7 +90,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:padding="4dp"
-                android:src="@mipmap/flowericon"
+                android:src="@mipmap/meprofilegirl"
                 android:layout_weight="0.8"/>
 
 
