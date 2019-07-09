@@ -16,6 +16,7 @@ public class Welcome_screenActivity extends AppCompatActivity {
             @Override
             public void run () {
                 startActivity(new Intent(Welcome_screenActivity.this,Login_Screen.class));
+                finish();
             }
         }, 3000);
     }

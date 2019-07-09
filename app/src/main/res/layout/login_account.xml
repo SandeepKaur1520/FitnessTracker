@@ -49,20 +49,20 @@
 
     <Button
         android:id="@+id/bLoginToHealth"
-        android:layout_width="154dp"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/signupbutton"
+        android:padding="10dp"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="#F9FAFC"
-        android:textSize="20dp"
-        android:padding="10dp"/>
+        android:textSize="20dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Not a remember yet ?"
+        android:text="Don't remember yet ?"
         android:textColor="#9198A0"
         android:textSize="18sp"
         android:textAlignment="center"
@@ -70,7 +70,7 @@
 
     <Button
         android:id="@+id/bSignupAgain"
-        android:layout_width="301dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
@@ -79,6 +79,8 @@
         android:text="Sign Up "
         android:textAllCaps="false"
         android:textColor="#F5FAFA"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"/>
 </LinearLayout>
 
