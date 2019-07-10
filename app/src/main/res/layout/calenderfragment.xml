@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="0dp"
         android:background="#D82662"
         android:drawableLeft="@drawable/ic_local_florist_black_24dp"
         android:padding="10dp"

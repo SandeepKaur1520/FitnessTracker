@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Tracking_info"
+    tools:context=".GymTrainer_Dashboard"
     android:gravity="bottom"
-    >
+    android:background="@mipmap/background">
 
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="685dp">
-
+        android:layout_height="match_parent">
     </FrameLayout>
 
     <LinearLayout
@@ -23,12 +22,12 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:background="#D82662">
+        android:background="#C0BCBC">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:id="@+id/llCalender"
+            android:id="@+id/llHome"
             android:layout_height="match_parent"
             android:gravity="center"
             android:weightSum="2"
@@ -40,20 +39,20 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.8"
                 android:padding="4dp"
-                android:src="@mipmap/calendericonwhite" />
+                android:src="@mipmap/calendericon" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:text="Calender"
+                android:text="Home"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="#FDF7F7"
+                android:textColor="#363333"
                 android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llChart"
+            android:id="@+id/llExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -65,47 +64,48 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:padding="4dp"
-                android:src="@mipmap/charticonwhite"
+                android:src="@mipmap/charticon"
                 android:layout_weight="0.8"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:text="Chart"
+                android:text="Exercise"
                 android:textAlignment="center"
-                android:textColor="#FDF7F7"
+                android:textColor="#363333"
                 android:textSize="15sp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llMe"
+            android:id="@+id/llProfile"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="2">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="0.8"
                 android:padding="4dp"
-                android:src="@mipmap/meiconwhite"
-                android:layout_weight="0.8"/>
+                android:src="@mipmap/meprofilegirl" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:text="Me"
+                android:text="Profile"
                 android:textAlignment="center"
-                android:textColor="#FDF7F7"
+                android:textColor="#363333"
                 android:textSize="15sp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"/>
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>
+
