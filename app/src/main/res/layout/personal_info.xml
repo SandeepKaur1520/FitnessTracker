@@ -12,11 +12,10 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
         android:layout_width="216dp"
-        android:layout_height="172dp"
+        android:layout_height="173dp"
         android:layout_gravity="center"
         android:layout_marginTop="18sp"
-        android:src="@mipmap/profilepic"
-        android:textAlignment="center" />
+        android:src="@mipmap/profilepic"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,13 +39,14 @@
             android:hint="First name"
             android:drawableRight="@drawable/ic_account_box_black_24dp"
             android:drawableEnd="@drawable/ic_account_box_black_24dp"
-            android:padding="10dp"
+            android:padding="11dp"
             android:textSize="15sp"
             android:textColor="#F7F9FD"
             android:layout_marginHorizontal="0dp"
             android:layout_marginTop="30dp"
             android:id="@+id/etfirst_name"
             android:singleLine="true"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/loginbuttons"/>
         <EditText
             android:id="@+id/etlast_name"
@@ -57,12 +57,13 @@
             android:drawableEnd="@drawable/ic_account_box_black_24dp"
             android:hint="Last name"
             android:background="@drawable/loginbuttons"
-            android:padding="10dp"
+            android:padding="11dp"
             android:textSize="15sp"
             android:textColor="#F7F9FD"
             android:layout_weight="1"
-            android:layout_marginHorizontal="5dp"
             android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="4dp"
             android:singleLine="true"/>
     </LinearLayout>
 
@@ -133,14 +134,16 @@
 
     <Button
         android:id="@+id/bNext"
-        android:layout_width="212dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
-        android:background="@drawable/loginbuttons"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/signupbutton"
         android:text="Next"
         android:textAllCaps="false"
-        android:textColor="#090707"
+        android:textColor="#fff"
         android:textSize="20sp" />
 
 

@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Tracking_info"
-    android:gravity="bottom"
-    >
+    android:gravity="bottom">
 
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="685dp">
+        android:layout_height="match_parent">
 
     </FrameLayout>
 

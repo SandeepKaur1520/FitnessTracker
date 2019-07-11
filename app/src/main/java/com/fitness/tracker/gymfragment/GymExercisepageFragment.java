@@ -1,6 +1,5 @@
 package com.fitness.tracker.gymfragment;
 
-
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,12 +13,12 @@ import android.view.ViewGroup;
 
 import com.fitness.tracker.R;
 
-
-public class GymHomepageFragment extends Fragment {
+public class GymExercisepageFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.gym_homepage_fragment,container,false);
+        View view =inflater.inflate(R.layout.gym_exercisepage_fragment,container,false);
         return view;
     }
+
 }
