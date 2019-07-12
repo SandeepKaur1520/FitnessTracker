@@ -3,6 +3,7 @@ package com.fitness.tracker;
 import android.os.Bundle;
 
 import com.fitness.tracker.fragment.CalenderFragment;
+import com.fitness.tracker.gymfragment.GymExercisepageFragment;
 import com.fitness.tracker.gymfragment.GymHomepageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,8 +30,16 @@ public class GymTrainer_Dashboard extends AppCompatActivity {
         llHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(savedInstanceState==null){
+                if (savedInstanceState == null) {
                     onClickHome();
+                }
+            }
+        });
+        llExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(savedInstanceState == null){
+                  onClickExercise();
                 }
             }
         });
@@ -43,6 +52,17 @@ public class GymTrainer_Dashboard extends AppCompatActivity {
                 .replace(R.id.container, gymfragment)
                 .addToBackStack("")
                 .commit();
+    }
+
+    private void onClickExercise() {
+        gymfragment = new GymExercisepageFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, gymfragment)
+                .addToBackStack("")
+                .commit();
+
+
     }
 }
 

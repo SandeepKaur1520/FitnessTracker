@@ -65,6 +65,29 @@
         android:layout_marginRight="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="15sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In with Google"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableLeft="@mipmap/google"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:padding="13dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In with facebook"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableLeft="@mipmap/facebook"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15dp"/>
+
 
     <!--
         <ImageView
@@ -74,7 +97,7 @@
             android:src="@mipmap/google_image" />
     -->
 
-    <com.google.android.gms.common.SignInButton
+   <!-- <com.google.android.gms.common.SignInButton
         android:id="@+id/GoogleSignInBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +124,7 @@
         android:textSize="16sp"
         android:padding="15dp"
         android:textStyle="normal"/>
-
+-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
