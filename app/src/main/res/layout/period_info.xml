@@ -37,7 +37,7 @@
         android:text="Choose Date"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#050505"
+        android:textColor="#000"
         android:textSize="16dp" />
     <TextView
         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
         android:text="Period length"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#050505"
+        android:textColor="#000"
         android:textSize="16dp" />
     <TextView
     android:layout_width="match_parent"
@@ -80,7 +80,7 @@
         android:textSize="16dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/loginbuttons"
-        android:textColor="#050505"/>
+        android:textColor="#000"/>
 
     <Button
         android:id="@+id/bPeriodinfoNext"

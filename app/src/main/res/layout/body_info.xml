@@ -61,11 +61,11 @@
 
     <ToggleButton
         android:id="@+id/toggleSkinnyArms"
-        android:layout_width="130dp"
-        android:layout_height="56dp"
+        android:layout_width="137dp"
+        android:layout_height="47dp"
         android:layout_gravity="right"
-        android:layout_marginTop="227dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginRight="12dp"
         android:background="@drawable/skinnyarms"
         android:focusable="false"
         android:focusableInTouchMode="false"

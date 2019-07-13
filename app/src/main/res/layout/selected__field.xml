@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="@mipmap/background02">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,64 +20,109 @@
         android:layout_marginBottom="40dp"
         android:layout_marginTop="40dp"/>
 
-      <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="   Gym Trainer       "
-        android:textSize="25sp"
-        android:textColor="#F7F8FA"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="0dp"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-          android:padding="10dp"
-        android:drawableLeft="@drawable/ic_fitness_center_black02_24dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="40sp"
+        android:background="@mipmap/whitebackground"
+        android:gravity="center"
+        android:text="Please select your app field"
+        android:textColor="#065B4F"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@mipmap/whitebackground"
+        android:orientation="horizontal">
 
-    <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Stay Fit "
-            android:textColor="#F0F2F5"
-            android:textSize="20sp"
-            android:buttonTint="@drawable/radiobtncolor"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weight Loss"
-            android:textSize="20sp"
-            android:textColor="#F0F2F5"
-            android:layout_marginTop="5sp"
+            android:layout_marginLeft="20dp"
             android:buttonTint="@drawable/radiobtncolor"
-            />
+            android:text="Gym Trainer"
+            android:textColor="#065B4F"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Weight Gain "
-            android:textSize="20sp"
-            android:textColor="#F0F2F5"
-            android:layout_marginTop="5sp"
+            android:layout_marginLeft="30dp"
             android:buttonTint="@drawable/radiobtncolor"
-            />
+            android:text="Period Tracker"
+            android:textColor="#065B4F"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </RadioGroup>
-   <TextView
-        android:id="@+id/switch2Btn"
+
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/whitebackground"
+        android:padding="10dp"
+        android:text="   Gym Trainer       "
+        android:textAlignment="center"
+        android:textColor="#065B4F"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="   Period Tracker     "
-        android:textSize="25sp"
-        android:textColor="#F7F8FA"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:textAlignment="center"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <RadioButton
+            android:layout_width="231dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/whitebackground"
+            android:buttonTint="@drawable/radiobtncolor"
+            android:padding="5dp"
+            android:text="  Stay Fit "
+            android:textColor="#065B4F"
+            android:textSize="20sp"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@mipmap/whitebackground"
+            android:buttonTint="@drawable/radiobtncolor"
+            android:text="  Weight Loss"
+            android:textColor="#065B4F"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@mipmap/whitebackground"
+            android:buttonTint="@drawable/radiobtncolor"
+            android:padding="5dp"
+            android:text="  Weight Gain "
+            android:textColor="#065B4F"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/switch2Btn"
+        android:layout_width="233dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
-       android:padding="10dp"
-        android:drawableLeft="@drawable/ic_local_florist_black_24dp"/>
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/whitebackground"
+        android:padding="5dp"
+        android:text="   Period Tracker     "
+        android:textAlignment="center"
+        android:textColor="#D10A4E"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
@@ -85,22 +131,23 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-    <RadioButton
-            android:layout_width="215dp"
-            android:layout_height="wrap_content"
-            android:text="Trying to Conceive "
-            android:textColor="#F0F2F5"
-            android:textSize="20sp"
-        android:buttonTint="@drawable/radiobtncolor"/>
+        <RadioButton
+            android:layout_width="233dp"
+            android:layout_height="38dp"
+            android:background="@mipmap/whitebackground"
+            android:buttonTint="@drawable/radiobtn2color"
+            android:text="  Trying to Conceive "
+            android:textColor="#D10A4E"
+            android:textSize="20sp" />
 
         <RadioButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5sp"
-            android:text="Regular Tracker"
-            android:textColor="#F0F2F5"
-            android:textSize="20sp"
-            android:buttonTint="@drawable/radiobtncolor"/>
+            android:layout_height="37dp"
+            android:background="@mipmap/whitebackground"
+            android:buttonTint="@drawable/radiobtn2color"
+            android:text="  Regular Tracker"
+            android:textColor="#D10A4E"
+            android:textSize="20sp" />
     </RadioGroup>
 
     <LinearLayout

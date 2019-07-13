@@ -17,13 +17,13 @@
         android:text="  Profile Details  "
         android:textAlignment="center"
         android:textColor="#EEECEC"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="   Enter the details to get personalized plan "
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textColor="#EEECE9"
         android:textAlignment="center"
         android:layout_marginTop="30dp"/>
@@ -39,7 +39,8 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="18dp"
-        android:drawableRight="@mipmap/plusicon"/>
+        android:textColor="#CFC6C6"
+        android:drawableRight="@drawable/ic_add_box_black_24dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,8 +50,9 @@
         android:background="@drawable/loginbuttons"
         android:layout_marginTop="20dp"
         android:padding="15dp"
+        android:textColor="#CFC6C6"
         android:drawableLeft="@mipmap/weighticon"
-        android:drawableRight="@mipmap/plusicon"/>
+        android:drawableRight="@drawable/ic_add_box_black_24dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,25 +62,26 @@
         android:background="@drawable/loginbuttons"
         android:layout_marginTop="20dp"
         android:padding="12dp"
+        android:textColor="#fff"
         android:textAlignment="center"
         android:drawableLeft="@drawable/ic_date_range_black_24dp"
-        android:drawableRight="@mipmap/plusicon"/>
+        android:drawableRight="@drawable/ic_add_box_black_24dp"/>
 
     <Button
         android:id="@+id/bProfileNext"
-        android:layout_width="251dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/signupbutton"
         android:padding="10dp"
         android:text="Next"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FDFEFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"/>
 
 
 

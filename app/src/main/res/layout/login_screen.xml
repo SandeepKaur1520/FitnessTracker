@@ -46,16 +46,49 @@
 
     <Button
         android:id="@+id/bSignup"
-        android:layout_width="184dp"
-        android:layout_height="44dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/signupbutton"
+        android:layout_marginLeft="40sp"
+        android:layout_marginRight="40sp"
         android:padding="10dp"
         android:text="Sign Up "
         android:textAllCaps="false"
         android:textColor="#F3F3F7"
-        android:textSize="18dp" />
+        android:textSize="18dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="12sp"
+        android:background="@mipmap/orimage"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15sp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In with Google"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableLeft="@mipmap/google"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15dp"
+        android:padding="13dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In with facebook"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:drawableLeft="@mipmap/facebook"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="15dp"/>
+
+
     <!--
         <ImageView
             android:layout_width="50dp"
@@ -64,13 +97,13 @@
             android:src="@mipmap/google_image" />
     -->
 
-    <com.google.android.gms.common.SignInButton
+   <!-- <com.google.android.gms.common.SignInButton
         android:id="@+id/GoogleSignInBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="40dp"
         android:drawableLeft="@mipmap/google"
         android:textAlignment="center"
@@ -91,7 +124,7 @@
         android:textSize="16sp"
         android:padding="15dp"
         android:textStyle="normal"/>
-
+-->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
