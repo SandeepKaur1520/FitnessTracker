@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#000</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#065B4F"</color>
+    <color name="whiteText">"#FDFEFF"</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
