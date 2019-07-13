@@ -1,5 +1,6 @@
 package com.fitness.tracker.gymfragment;
 
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,14 @@ import com.google.android.material.tabs.TabLayout;
 public class GymExercisepageFragment extends Fragment {
     private ViewPager viewpager;
     private TabLayout tablayout;
+    private SensorManager sensorManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_exercisepage_fragment);
 
+//        sensorManager = getSystem
 
     }
 
@@ -40,6 +43,10 @@ public class GymExercisepageFragment extends Fragment {
         tablayout.addTab(tablayout.newTab().setText("Walk"));
         tablayout.addTab(tablayout.newTab().setText("Cycle"));
         tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+
+
+        //SensorManager sensorManager = SensorManager.
 
         final MyAdapter adapter = new MyAdapter(getActivity(),getChildFragmentManager(), tablayout.getTabCount());
         viewpager.setAdapter(adapter);

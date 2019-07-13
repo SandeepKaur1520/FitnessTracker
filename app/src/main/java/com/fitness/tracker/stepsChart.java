@@ -24,8 +24,7 @@ public class stepsChart extends AppCompatActivity {
         int percentage = 0;
         percentage = (completed * 100)/target;
         TextView numberOfCals = findViewById(R.id.number_of_calories);
-        numberOfCals.setText(String.valueOf(percentage)+"% Completed");
-
+        numberOfCals.setText(percentage+"% Completed");
         ProgressBar pieChart = findViewById(R.id.stats_progressbar);
         int progress = (int) percentage;
         pieChart.setProgress(progress);

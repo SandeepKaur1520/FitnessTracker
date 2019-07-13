@@ -18,7 +18,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:weightSum="3"
+        android:weightSum="4"
         android:gravity="center"
         android:layout_gravity="center"
         android:orientation="horizontal"
@@ -76,7 +76,31 @@
                 android:textColor="#363333"
                 android:textSize="15sp"/>
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="2">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:src="@mipmap/plusicon"
+                android:layout_weight="0.8"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:text="Activity"
+                android:textAlignment="center"
+                android:textColor="#363333"
+                android:textSize="15sp"/>
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/llProfile"
             android:layout_width="match_parent"
@@ -101,9 +125,7 @@
                 android:text="Profile"
                 android:textAlignment="center"
                 android:textColor="#363333"
-                android:textSize="15sp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"/>
+                android:textSize="15sp"/>
         </LinearLayout>
 
     </LinearLayout>
