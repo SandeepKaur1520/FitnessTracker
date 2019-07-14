@@ -5,25 +5,27 @@
         android:id="@+id/llHome"
         android:icon="@mipmap/calendericon"
         android:title="Home"
+
         android:enabled="true"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/llExercise"
         android:icon="@mipmap/charticon"
         android:title="Exercise"
         android:enabled="true"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/llActivity"
         android:icon="@mipmap/plusicon"
         android:title="Activity"
-        android:enabled="true"/>
+        android:enabled="true"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/llProfile"
         android:icon="@mipmap/meprofilegirl"
         android:title="Profile"
         android:enabled="true"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 </menu>
 <!--<LinearLayout-->
 <!--android:layout_width="match_parent"-->

@@ -7,6 +7,15 @@
     tools:context=".Period_info"
     android:orientation="vertical"
     android:background="@mipmap/background02">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,20 +90,28 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/loginbuttons"
         android:textColor="#000"/>
+        </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/bPeriodinfoNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/signupbutton"
+            android:text="Next"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textColor="#EFF1F3"/>
 
-    <Button
-        android:id="@+id/bPeriodinfoNext"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="96dp"
-        android:background="@drawable/signupbutton"
-        android:text="Next"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:textColor="#EFF1F3"/>
 
-
-
+    </RelativeLayout>
 </LinearLayout>

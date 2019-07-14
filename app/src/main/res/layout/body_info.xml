@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="@mipmap/manbodyimage">
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +72,7 @@
         android:focusableInTouchMode="false"
         android:textOff=""
         android:textOn="" />
+
     <Button
         android:id="@+id/btnNext"
         android:layout_width="match_parent"

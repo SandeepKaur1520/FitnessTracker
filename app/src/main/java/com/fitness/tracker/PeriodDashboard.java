@@ -12,19 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PeriodDashboard extends AppCompatActivity {
     private TextView mTextMessage;
     private Fragment fragment;
     private ImageView ivCalender;
-
+    boolean doubleBackToExitPressedOnce =false;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -90,5 +93,34 @@ public class PeriodDashboard extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        int i = getSupportFragmentManager().getBackStackEntryCount();
+        if (i==0) {
+            super.onBackPressed();
+        }
+        else {
+            getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE );
+        }
+        onClickCalender();
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+            return;
+        }
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        CountDownTimer timer = new CountDownTimer(2000,1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
+            }
+
+            @Override
+            public void onFinish() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }.start();
+    }
 }

@@ -185,7 +185,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="15dp"
 
                 android:background="@drawable/signupbutton"
                 android:padding="10dp"

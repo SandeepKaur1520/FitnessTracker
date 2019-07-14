@@ -8,110 +8,126 @@
     android:orientation="vertical"
     android:background="@mipmap/background02">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How much Physically active you are ?"
-        android:textColor="#F5F8FA"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="70dp"/>
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please select your activity "
-        android:textColor="#F5F8FA"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="140dp"/>
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:layout_width="270dp"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0"
-            android:paddingLeft="16dp"
-            android:paddingRight="6dp"
-            android:text="Workout Hero"
-            android:textColor="#F6F7F8"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:buttonTint="@drawable/radiobtn3color"/>
+            android:orientation="vertical">
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(3-5 Workouts/week)"
-            android:paddingLeft="18dp"
-            android:layout_marginLeft="120dp"
-            android:textColor="#f5f6f7"
-            android:textSize="15sp"/>
-
-        <RadioButton
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="10sp"
-            android:layout_weight="0"
-            android:paddingLeft="16dp"
-            android:text="Light Mode"
-            android:textColor="#F6F7F8"
+            android:text="How much Physically active you are ?"
+            android:textColor="#F5F8FA"
+            android:textAlignment="center"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:buttonTint="@drawable/radiobtn3color"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="70dp"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="  (1-2 Workouts/week)"
-            android:layout_marginLeft="120dp"
-            android:textColor="#f5f6f7"
-            android:textSize="15sp"
-            android:paddingLeft="11dp"/>
-        <RadioButton
-            android:layout_width="270dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:layout_marginTop="10sp"
-            android:layout_weight="0"
-            android:paddingLeft="16dp"
-            android:text="A New one"
-            android:textColor="#F6F7F8"
+            android:text="Please select your activity "
+            android:textColor="#F5F8FA"
+            android:textAlignment="center"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:buttonTint="@drawable/radiobtn3color"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="140dp"/>
+        <RadioGroup
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="(Just starting)"
-            android:layout_marginLeft="120dp"
-            android:textColor="#f5f6f7"
-            android:paddingLeft="18dp"
-            android:textSize="15sp"/>
-    </RadioGroup>
-    <Button
-        android:id="@+id/bNextBodyActivity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        android:layout_marginTop="180dp"
-        android:textAllCaps="false"
-        android:textColor="#F7F9FA"
-        android:textSize="20dp"
-        android:textAlignment="center"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/signupbutton"
-        android:padding="10dp"/>
+            android:orientation="vertical">
 
+            <RadioButton
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:paddingLeft="16dp"
+                android:paddingRight="6dp"
+                android:text="Workout Hero"
+                android:textColor="#F6F7F8"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:buttonTint="@drawable/radiobtn3color"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(3-5 Workouts/week)"
+                android:paddingLeft="18dp"
+                android:layout_marginLeft="120dp"
+                android:textColor="#f5f6f7"
+                android:textSize="15sp"/>
 
+            <RadioButton
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="10sp"
+                android:layout_weight="0"
+                android:paddingLeft="16dp"
+                android:text="Light Mode"
+                android:textColor="#F6F7F8"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:buttonTint="@drawable/radiobtn3color"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  (1-2 Workouts/week)"
+                android:layout_marginLeft="120dp"
+                android:textColor="#f5f6f7"
+                android:textSize="15sp"
+                android:paddingLeft="11dp"/>
+            <RadioButton
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="10sp"
+                android:layout_weight="0"
+                android:paddingLeft="16dp"
+                android:text="A New one"
+                android:textColor="#F6F7F8"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:buttonTint="@drawable/radiobtn3color"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Just starting)"
+                android:layout_marginLeft="120dp"
+                android:textColor="#f5f6f7"
+                android:paddingLeft="18dp"
+                android:textSize="15sp"/>
+        </RadioGroup>
+        </LinearLayout>n
+    </ScrollView>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <Button
+            android:id="@+id/bNextBodyActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_alignParentBottom="true"
+            android:textAllCaps="false"
+            android:textColor="#F7F9FA"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/signupbutton"
+            android:padding="10dp"/>
+
+    </RelativeLayout>
 </LinearLayout>
 
     <!--<CheckBox

@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.fitness.tracker.gymfragment.GymExercisepageFragment;
@@ -14,10 +15,14 @@ import com.fitness.tracker.gymfragment.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -37,6 +42,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
     //private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Number of Steps: ";
     private int numSteps;
+    private boolean doubleBackToExitPressedOnce =false;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -169,17 +175,39 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
+
     @Override
     public void onBackPressed() {
-        int i = getSupportFragmentManager().getBackStackEntryCount();
 
+        int i = getSupportFragmentManager().getBackStackEntryCount();
         if (i==0) {
             super.onBackPressed();
         }
         else {
             getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE );
-
         }
+        onClickHome();
+        if (doubleBackToExitPressedOnce) {
+
+            finishAffinity();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+            return;
+        }
+
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        CountDownTimer timer = new CountDownTimer(2000,1) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }.start();
 
     }
 }
