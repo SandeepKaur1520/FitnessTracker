@@ -62,8 +62,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         boolean status =false;
         SQLiteDatabase db = this.getReadableDatabase();
 //       SQLiteQueryBuilder
+
+            String x = '"'+email+'"';
+            String y = '"'+password+'"';
             String[] selection = {email,password};
-            String query ="Select * from UserInfo where email = "+email+" and password = "+password+";";
+            String query ="Select * from UserInfo where email = "+x+" and password = "+y+";";
             Log.e("Query out : ",query);
             Cursor resultSet = db.rawQuery(query,null);
             Log.e("Cursor : ",resultSet.toString());
@@ -109,8 +112,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             {
                 status=true;
             }
-
-
         db.close();
         return status;
     }
