@@ -1,6 +1,7 @@
 package com.fitness.tracker;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
@@ -26,17 +27,18 @@ public class Login_Screen extends AppCompatActivity{
     ImageAdapter adapterView;
     int currentPage = 0;
     Timer timer;
-
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
     final long PERIOD_MS = 2000; // time in milliseconds between successive task executions.
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.login_screen);
+
+
 
         Button bsignup = findViewById(R.id.bSignup);
         TextView textView = findViewById(R.id.btnlogin);

@@ -43,6 +43,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/etfirst_name"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,7 +55,6 @@
             android:textColor="#F7F9FD"
             android:layout_marginHorizontal="0dp"
             android:layout_marginTop="30dp"
-            android:id="@+id/etfirst_name"
             android:singleLine="true"
             android:layout_marginLeft="10dp"
             android:background="@drawable/loginbuttons"/>
@@ -77,8 +77,8 @@
             android:singleLine="true"/>
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etlocation"
+    <Spinner
+        android:id="@+id/sGender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -87,10 +87,10 @@
         android:drawableLeft="@drawable/ic_person_black_24dp"
         android:drawableEnd="@drawable/ic_person_black_24dp"
         android:drawableRight="@drawable/ic_person_black_24dp"
-        android:hint="Gender"
         android:padding="7dp"
         android:singleLine="true"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:entries="@array/Gender"/>
     <EditText
         android:id="@+id/etemail"
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
         android:textSize="15sp"
         android:singleLine="true"/>
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#F7F9FD"

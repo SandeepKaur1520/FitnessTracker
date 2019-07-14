@@ -1,35 +1,52 @@
 package com.fitness.tracker;
 
+import com.fitness.tracker.database.*;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteCursorDriver;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQuery;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import static android.database.sqlite.SQLiteDatabase.CREATE_IF_NECESSARY;
+import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 public class Login_account extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_account);
 
-        Button loginToHealth;
-        loginToHealth = findViewById(R.id.bLoginToHealth);
+        final EditText etEmail=findViewById(R.id.etEmailId);
+        final EditText etPass=findViewById(R.id.etPassword);
+
+
+        final DatabaseHelper db = new DatabaseHelper(this);
+        Button loginToHealth = findViewById(R.id.bLoginToHealth);
         loginToHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //data (details about the profile of user ) fetched from  database
+                String email = etEmail.getText().toString();
+                String password = etPass.getText().toString();
 
-                // service is a a string whose values id fetched from dtabases atribute
-                //if(service.equals('Gym'))
-                //{Intent intent =new Intent(Login_account.this,Gym_dashboard.class);
-               /*
-                else if(service.equals("Period Tracker"))
+                boolean status = db.verifyUser(email,password);
+                    if(status) {
+                        Intent intent = new Intent(Login_account.this, Health_Info.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(Login_account.this,"You need to work hard ",Toast.LENGTH_LONG).show();
+                    }
 
-                */
-                Intent intent =new Intent(Login_account.this, Health_Info.class);
-                startActivity(intent);
+
             }
         });
         Button SignUpPage;
