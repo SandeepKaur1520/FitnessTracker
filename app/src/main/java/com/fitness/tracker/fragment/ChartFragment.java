@@ -46,15 +46,27 @@ public class ChartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         chart = view.findViewById(R.id.LineChart);;
 
-        ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(0, 10));
-        entries.add(new Entry(30,20));
-        entries.add(new Entry(60, 30));
-        entries.add(new Entry(90, 40));
-        entries.add(new Entry(120, 50));
-        entries.add(new Entry(150, 60));
+        ArrayList<Entry> cycleLength = new ArrayList<>();
+        cycleLength.add(new Entry(0, 30));
+        cycleLength.add(new Entry(30,28));
+        cycleLength.add(new Entry(60, 34));
+        cycleLength.add(new Entry(90, 32));
+        cycleLength.add(new Entry(120, 33));
+        cycleLength.add(new Entry(150, 29));
 
-        LineDataSet dataSet = new LineDataSet(entries, "Customized values");
+        ArrayList<Entry> periodLength = new ArrayList<>();
+        periodLength.add(new Entry(0, 4));
+        periodLength.add(new Entry(30,5));
+        periodLength.add(new Entry(60, 3));
+        periodLength.add(new Entry(90, 4));
+        periodLength.add(new Entry(120, 5));
+        periodLength.add(new Entry(150, 3));
+
+
+        LineDataSet periodDataSet = new LineDataSet(periodLength, "Period Length");
+        LineDataSet cycleDataSet = new LineDataSet(cycleLength, "Cycle Length");
+        periodDataSet.setColor(getResources().getColor(R.color.LightBlue));
+        cycleDataSet.setColor(getResources().getColor(R.color.Pink));
        /* dataSet.setColor(ContextCompat.getColor(this, R.color.colorPrimary));
         dataSet.setValueTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 */
@@ -86,9 +98,13 @@ public class ChartFragment extends Fragment {
         yAxisLeft.setGranularity(1f);
 
         // Setting Data
-        LineData data = new LineData(dataSet);
+        LineData data = new LineData();
+        data.addDataSet(periodDataSet);
+        data.addDataSet(cycleDataSet);
+
         chart.setData(data);
-        chart.animateX(2000);
+        chart.animateX(1000);
+
         //refresh
         chart.invalidate();
 

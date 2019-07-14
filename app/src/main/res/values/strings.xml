@@ -7,7 +7,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="pie_chart_title">Calories Burned vs. Calories Consumed</string>
+    <string name="pie_chart_title">Steps</string>
     <string name="inside_title">Input the \n numbers below!</string>
     <string name="burn">Burn.</string>
     <string name="cons">Cons.</string>

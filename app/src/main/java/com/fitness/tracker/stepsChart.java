@@ -2,20 +2,23 @@ package com.fitness.tracker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class stepsChart extends AppCompatActivity {
-
+    int completed = 0;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.steps_chart);
-        int completed = 500;
-        int target = 2000;
+        Intent intent = getIntent();
+        completed = intent.getIntExtra("stepValue",0);
+
+        int target = 1000;
 
         updateChart(completed,target);
     }

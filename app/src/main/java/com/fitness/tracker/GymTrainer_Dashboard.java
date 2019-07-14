@@ -167,6 +167,13 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         if (running) {
             int steps = (int)(sensorEvent.values[0]);
             stepsValue = "" + steps;
+            int i = getSupportFragmentManager().getBackStackEntryCount();
+            if (i==0) {
+                super.onBackPressed();
+            }
+            else {
+                getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE );
+            }
             onClickHome();
 
         }
@@ -200,9 +207,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         CountDownTimer timer = new CountDownTimer(2000,1) {
             @Override
             public void onTick(long millisUntilFinished) {
-
             }
-
             @Override
             public void onFinish() {
                 doubleBackToExitPressedOnce = false;
