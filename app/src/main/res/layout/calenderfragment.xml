@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1C8D7">
+    android:background="@color/lightPink">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
         android:background="#D82662"
         android:drawableLeft="@drawable/ic_local_florist_black_24dp"
         android:padding="10dp"
@@ -68,7 +68,7 @@
    </LinearLayout>
    <TextView
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
+       android:layout_height="wrap_content"
        android:text="Make sure you get plenty of water everyday. Get into the habit of recording info daily. Daily Exercise is the good habit for health."
        android:textColor="#D82662"
        android:textSize="16sp"

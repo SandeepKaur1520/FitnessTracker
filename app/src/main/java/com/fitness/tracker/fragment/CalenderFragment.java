@@ -20,8 +20,5 @@ public class CalenderFragment extends Fragment {
         return view;
     }
 
-    public interface  onFragmentListener
-    {
-            void onFragment(Uri uri);
-    }
+
 }

@@ -10,14 +10,19 @@ import android.os.Bundle;
 
 import com.fitness.tracker.gymfragment.GymExercisepageFragment;
 import com.fitness.tracker.gymfragment.GymHomepageFragment;
+import com.fitness.tracker.gymfragment.ProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.lang.reflect.Field;
 
 public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEventListener{
     private LinearLayout llHome, llExercise, llProfile;
@@ -38,31 +43,73 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_trainer__dashboard);
-        llHome = findViewById(R.id.llHome);
-        llExercise = findViewById(R.id.llExercise);
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        stepsSensor =   sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
+        BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
 
-        llHome.setOnClickListener(new View.OnClickListener() {
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                if (savedInstanceState == null) {
-                    onClickHome();
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
+                switch (menuItem.getItemId()) {
+                    case R.id.llHome:
+                        onClickHome();
+                        return true;
+                    case R.id.llExercise:
+                        onClickExercise();
+                        return true;
+                    case R.id.llActivity:
+                        //onMeClicked();
+                        return true;
+                    case R.id.llProfile:
+                        onProfileclick();
+                        return true;
                 }
+                return false;
             }
         });
-        llExercise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(savedInstanceState == null){
-                  onClickExercise();
-                }
-            }
-        });
-
+//        llHome = findViewById(R.id.llHome);
+//        llExercise = findViewById(R.id.llExercise);
+       sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+       stepsSensor =   sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+//        llProfile = findViewById(R.id.llProfile);
+//
+//        llHome.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (savedInstanceState == null) {
+//                    onClickHome();
+//                }
+//            }
+//        });
+//        llExercise.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(savedInstanceState == null){
+//                  onClickExercise();
+//                }
+//            }
+//        });
+//        llProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(savedInstanceState==null)
+//                {
+//                  onProfileclick();
+//                }
+//            }
+//        });
+//
 
         onClickHome();
+    }
+
+    private void onProfileclick() {
+        gymfragment = new ProfileFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container, gymfragment)
+                .addToBackStack("")
+                .commit();
     }
 
     @Override
@@ -86,15 +133,6 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
 
 
     private void onClickHome() {
-        int i = getSupportFragmentManager().getBackStackEntryCount();
-        i++;
-
-        if (i==0) {
-            super.onBackPressed();
-        }
-        else {
-            getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
         gymfragment = new GymHomepageFragment();
         Bundle bundle = new Bundle();
         bundle.putString("Steps", stepsValue);
@@ -139,7 +177,8 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
             super.onBackPressed();
         }
         else {
-            getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE );
+
         }
 
     }

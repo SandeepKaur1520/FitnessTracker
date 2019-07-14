@@ -19,7 +19,7 @@ public class Period_info extends AppCompatActivity {
         PeriodInfoNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(Period_info.this, Tracking_info.class);
+                Intent intent =new Intent(Period_info.this, PeriodDashboard.class);
                 startActivity(intent);
             }
         });

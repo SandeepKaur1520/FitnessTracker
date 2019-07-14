@@ -19,7 +19,7 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Login_Screen extends AppCompatActivity {
+public class Login_Screen extends AppCompatActivity{
     private LinearLayout mdots_layout;
     private TextView[] dots;
     ViewPager mViewPager;
@@ -45,6 +45,7 @@ public class Login_Screen extends AppCompatActivity {
         adapterView = new ImageAdapter(this);
         mViewPager.setAdapter(adapterView);
         mViewPager.addOnPageChangeListener(viewListener);
+
 
 
         textView.setOnClickListener(new View.OnClickListener(){

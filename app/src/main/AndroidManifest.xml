@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fitness.tracker">
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -27,7 +28,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tracking_info"
+            android:name=".PeriodDashboard"
             android:label="@string/title_activity_tracking_info"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

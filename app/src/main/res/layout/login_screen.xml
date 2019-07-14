@@ -7,150 +7,166 @@
     tools:context=".Login_Screen"
     android:orientation="vertical"
     android:background="@mipmap/background">
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginRight="15sp">
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPage"
-            android:layout_width="match_parent"
-            android:layout_height="250sp"
-            />
-
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:fillViewport="true">
         <LinearLayout
-            android:id="@+id/dots"
             android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="7dp"
-            android:layout_gravity="bottom"
-            android:gravity="center|top"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="7dp">
 
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="250dp" />
+
+                <LinearLayout
+                    android:id="@+id/dots"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="7dp"
+                    android:layout_gravity="bottom"
+                    android:gravity="center|top"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You need a fitness tracker account to continue"
+                android:textAlignment="center"
+                android:textColor="#F4F7FA"
+                android:textSize="20sp"
+                android:padding="15dp"/>
+
+            <Button
+                android:id="@+id/bSignup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/signupbutton"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:padding="10dp"
+                android:text="Sign Up "
+                android:textAllCaps="false"
+                android:textColor="#F3F3F7"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="12sp"
+                android:background="@mipmap/orimage"
+                android:layout_marginRight="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15sp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In with Google"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:drawableLeft="@mipmap/google"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="15dp"
+                android:padding="13dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In with facebook"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:drawableLeft="@mipmap/facebook"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="15dp"/>
+
+
+            <!--
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@mipmap/google_image" />
+            -->
+
+           <!-- <com.google.android.gms.common.SignInButton
+                android:id="@+id/GoogleSignInBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="40dp"
+                android:drawableLeft="@mipmap/google"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="20sp" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/bfacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="40dp"
+                android:drawableLeft="@mipmap/facebook"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:padding="15dp"
+                android:textStyle="normal"/>
+        -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="bottom"
+                android:gravity="bottom">
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_alignParentBottom="true"
+                   android:layout_centerHorizontal="true"
+                   android:layout_marginBottom="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Already have an account?"
+                    android:textColor="#9198A0"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/btnlogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Login"
+                    android:textColor="#f5f6f7"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+               </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-
-    </FrameLayout>
-
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="     You need a fitness tracker account to continue"
-        android:textAlignment="center"
-        android:textColor="#F4F7FA"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/bSignup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/signupbutton"
-        android:layout_marginLeft="40sp"
-        android:layout_marginRight="40sp"
-        android:padding="10dp"
-        android:text="Sign Up "
-        android:textAllCaps="false"
-        android:textColor="#F3F3F7"
-        android:textSize="18dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="12sp"
-        android:background="@mipmap/orimage"
-        android:layout_marginRight="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="15sp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign In with Google"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@mipmap/google"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="15dp"
-        android:padding="13dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign In with facebook"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@mipmap/facebook"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="15dp"/>
-
-
-    <!--
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@mipmap/google_image" />
-    -->
-
-   <!-- <com.google.android.gms.common.SignInButton
-        android:id="@+id/GoogleSignInBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@mipmap/google"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="20sp" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/bfacebook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="40dp"
-        android:drawableLeft="@mipmap/facebook"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        android:padding="15dp"
-        android:textStyle="normal"/>
--->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="140dp"
-            android:layout_weight="1"
-            android:text="Already have an account?"
-            android:textColor="#9198A0"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/btnlogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="15sp"
-            android:layout_marginTop="70dp"
-            android:text="Login"
-            android:textColor="#f5f6f7"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-    </LinearLayout>
+   </ScrollView>
 </LinearLayout>
 
