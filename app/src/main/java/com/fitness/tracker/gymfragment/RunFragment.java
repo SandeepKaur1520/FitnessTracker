@@ -20,14 +20,14 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.run_fragment);
-           // MapFragment mapFragment = (MapFragment) getFragmentManager() .findFragmentById(R.id.gym_exercise_id);
-          //  mapFragment.getMapAsync(this);
+            /*MapFragment mapFragment = (MapFragment) getFragmentManager() .findFragmentById(R.id.gym_exercise_id);
+            mapFragment.getMapAsync(this);*/
         }
 
     private void setContentView(int run_fragment) {
     }
 
-    /*  @Override
+     /* @Override
       public void onMapReady(GoogleMap googleMap) {
 
 
@@ -35,8 +35,8 @@ public class RunFragment extends Fragment implements OnMapReadyCallback {
           LatLng sydney = new LatLng(-34, 151);
           mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
           mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-      }
-*/
+      }*/
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
 

@@ -61,7 +61,7 @@ public class Personal_info extends AppCompatActivity {
                 else if(x.equals("Female")){
                     Gender = "Female";
                 }
-                else if(gender.getSelectedItem().toString().equals("Other")){
+                else if(x.equals("Other")){   /*gender.getSelectedItem().toString()*/
                     Gender = "Other";
                 }
             }
