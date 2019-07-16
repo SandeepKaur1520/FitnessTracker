@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background02"
+    android:orientation="vertical"
+    tools:context=".Health_Info"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/ic_person_black02_24dp"
+            android:text="  Profile Details  "
+            android:textAlignment="center"
+            android:textColor="#EEECEC"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="   Enter the details to get personalized plan "
+            android:textAlignment="center"
+            android:textColor="#EEECE9"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/HeightDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/loginbuttons"
+            android:drawableLeft="@mipmap/heighticon"
+            android:drawableRight="@drawable/ic_add_box_black_24dp"
+            android:padding="15dp"
+            android:text="   Height"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#CFC6C6"
+            android:textSize="18dp"/>
+<!--
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </NumberPicker>
+-->
+
+        <Button
+            android:id="@+id/weightDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/loginbuttons"
+            android:drawableLeft="@mipmap/weighticon"
+            android:drawableRight="@drawable/ic_add_box_black_24dp"
+            android:padding="15dp"
+            android:text="   Weight"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#CFC6C6"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/DateOfBirthDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/loginbuttons"
+            android:drawableLeft="@drawable/ic_date_range_black_24dp"
+            android:drawableRight="@drawable/ic_add_box_black_24dp"
+            android:padding="12dp"
+            android:text="   Date of Birth"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <Button
+                android:id="@+id/bHelathInfoNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/signupbutton"
+                android:padding="10dp"
+                android:text="Next"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="#FDFEFF"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

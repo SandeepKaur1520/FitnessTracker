@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightPink"
+    android:orientation="vertical"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/Pink"
+            android:drawableLeft="@drawable/ic_local_florist_black_24dp"
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="Your period Information is here."
+            android:textAlignment="center"
+            android:textColor="#FAF7F8"
+            android:textSize="17sp" />
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@color/whiteText"
+            android:textAlignment="center">
+
+        </CalendarView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35sp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:drawableLeft="@drawable/ic_brightness_1_black_24dp"
+                android:padding="10dp"
+                android:text="  Period"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:drawableLeft="@drawable/ic_brightness2_1_black_24dp"
+                android:padding="10dp"
+                android:text="  Fertile"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:drawableLeft="@drawable/ic_brightness3_1_black_24dp"
+                android:padding="10dp"
+                android:text="  Ovulation"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35sp"
+            android:text="Make sure you get plenty of water everyday. Get into the habit of recording info daily. Daily Exercise is the good habit for health."
+            android:textAlignment="center"
+            android:textColor="@color/Pink"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BodyInfo"
+    android:orientation="vertical"
+    android:background="@mipmap/manbodyimage">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please select your problem areas"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#FDF9F9"
+        android:padding="20sp"
+        android:background="#065B4F"/>
+
+    <ToggleButton
+        android:id="@+id/toggleThinLegs"
+        android:layout_width="172dp"
+        android:layout_height="125dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="270dp"
+        android:background="@drawable/check"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn="" />
+
+    <ToggleButton
+        android:id="@+id/toggleWeakChest"
+        android:layout_width="186dp"
+        android:layout_height="49dp"
+        android:layout_gravity=""
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginBottom="270dp"
+        android:background="@drawable/weakchest"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn="" />
+
+    <ToggleButton
+        android:id="@+id/toggleBeerBelly"
+        android:layout_width="196dp"
+        android:layout_height="51dp"
+        android:layout_gravity=""
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginBottom="270dp"
+        android:background="@drawable/beerbelly"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn="" />
+
+    <ToggleButton
+        android:id="@+id/toggleSkinnyArms"
+        android:layout_width="137dp"
+        android:layout_height="47dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="240dp"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/skinnyarms"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textOff=""
+        android:textOn="" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="35sp"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:background="@drawable/signupbutton"
+        android:textColor="#F7FAFC"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+
+</FrameLayout>

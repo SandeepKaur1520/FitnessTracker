@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ChartFragment"
+    android:orientation="vertical"
+    android:background="@color/lightPink">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:text=" Chart "
+        android:textColor="#F3F3F3"
+        android:textSize="20dp"
+        android:background="#D82662"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" My Period "
+        android:textColor="#030507"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="25dp"
+        android:textSize="16dp"/>
+
+       <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/LineChart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:minHeight="250dp"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"
+        android:layout_marginRight="10dp">
+
+    </com.github.mikephil.charting.charts.LineChart>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/LineChart">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Average Period Length 3 Days"
+            android:textColor="#030507"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/ic_brightness_1_black_24dp"
+            android:textSize="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  Average Cycle Length 32 Days"
+            android:textColor="#030507"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/ic_brightness2_1_black_24dp"
+            android:textSize="12dp"/>
+
+
+
+    </LinearLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>
