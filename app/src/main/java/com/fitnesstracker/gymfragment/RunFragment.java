@@ -1,11 +1,15 @@
 package com.fitnesstracker.gymfragment;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class RunFragment extends Fragment implements OnMapReadyCallback, LocationUtils.MyLocation {
-
+    private final int REQUEST_LOCATION_PERMISSION = 1;
     LocationUtils locationUtils;
     Marker marker;
     GoogleMap gmap;
@@ -47,8 +51,16 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
         View view =inflater.inflate(R.layout.run_fragment,container,false);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
        /* initializeMap();*/
+        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION_PERMISSION);
+        }else{
+            mapFragment.getMapAsync(this);
+
+        }
         return view;
 
 
@@ -91,7 +103,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                     .target(latLng)
                     .zoom(25)
                     .bearing(0)
-                    .tilt(45)
+                    .tilt(0)
                     .build();
             this.gmap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex));
         }
@@ -100,4 +112,5 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
             marker.setPosition(latLng);
         }
     }
+
 }

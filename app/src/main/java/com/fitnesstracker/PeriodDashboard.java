@@ -24,14 +24,15 @@ public class PeriodDashboard extends AppCompatActivity {
     private Fragment fragment;
     private ImageView ivCalender;
     boolean doubleBackToExitPressedOnce =false;
-
+    String profile[]=new String[11];//={"","","","","","","","","","",""};
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perioddashboard);
         Intent inten =getIntent();
-        String profile[]=inten.getStringArrayExtra("profile");
+        profile = inten.getStringArrayExtra("profile");
+
         for (int k=0 ;k<11;k++){
             String msg = "profile  :"+k;
             Log.e(msg, profile[k]);
@@ -65,6 +66,9 @@ public class PeriodDashboard extends AppCompatActivity {
 
     private void onMeClicked() {
         fragment = new MeFragment();
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("profile",profile);
+        fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, fragment)

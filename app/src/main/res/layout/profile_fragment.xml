@@ -17,7 +17,9 @@ android:orientation="vertical">
 
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/whiteText"
+    android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +40,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/etNameGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -60,7 +63,8 @@ android:orientation="vertical">
                 android:padding="10dp"
                 android:textColor="#000"
                 android:textStyle="bold"/>
-            <Spinner
+            <EditText
+                android:id="@+id/genderETGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -85,6 +89,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/etDOBGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -109,6 +114,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/etEMailGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -132,6 +138,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/etHeightGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -155,6 +162,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/etWeigthGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -178,6 +186,7 @@ android:orientation="vertical">
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <EditText
+                android:id="@+id/passwordETGym"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"

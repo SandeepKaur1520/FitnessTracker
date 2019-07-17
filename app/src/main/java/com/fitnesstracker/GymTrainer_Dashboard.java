@@ -1,7 +1,10 @@
 package com.fitnesstracker;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,8 +13,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -36,13 +41,14 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
     private static final String TEXT_NUM_STEPS = "Number of Steps: ";
     private int numSteps;
     private boolean doubleBackToExitPressedOnce =false;
-
+    String profile[]=new String[11];
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_trainer__dashboard);
-
+        Intent inten =getIntent();
+        profile = inten.getStringArrayExtra("profile");
         BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -107,6 +113,9 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
 
     private void onProfileclick() {
         gymfragment = new GymProfileFragment();
+        Bundle bundle = new Bundle();
+        bundle.putStringArray("profile",profile);
+        gymfragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, gymfragment)
@@ -218,5 +227,22 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         }.start();
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Permission not granted!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
 }
 
