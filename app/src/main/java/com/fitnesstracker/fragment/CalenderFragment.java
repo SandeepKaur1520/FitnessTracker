@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.fitnesstracker.R;
 
 
+
+
 public class CalenderFragment extends Fragment {
     @Nullable
     @Override
@@ -18,6 +20,23 @@ public class CalenderFragment extends Fragment {
         View view =inflater.inflate(R.layout.calenderfragment,container,false);
         return view;
     }
+    /*int currentMonth = YearMonth.now()
+    int firstMonth = currentMonth.minusMonths(10)
+    val lastMonth = currentMonth.plusMonths(10)
+    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
+            calendarView.scrollToMonth(currentMonth)
+*/
 
 
 }
+
+    /*val currentMonth = YearMonth.now()
+    val firstMonth = currentMonth.minusMonths(10)
+    val lastMonth = currentMonth.plusMonths(10)
+    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
+            calendarView.scrollToMonth(currentMonth)
+*/
+
+
