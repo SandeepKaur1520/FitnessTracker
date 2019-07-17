@@ -9,7 +9,7 @@
     tools:context=".PeriodDashboard"
     android:background="@mipmap/background">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <android.support.design.widget.BottomNavigationView
           android:id="@+id/periodNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,10 +19,7 @@
         app:itemTextColor="@android:color/white"
         app:menu="@menu/periodnavbar"
         android:foreground="?attr/selectableItemBackground"
-        app:labelVisibilityMode="selected">
-
-
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:labelVisibilityMode="selected"/>
     <ScrollView
 
         android:layout_width="match_parent"

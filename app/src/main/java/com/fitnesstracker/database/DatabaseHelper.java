@@ -8,11 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-public class DatabaseOfUser extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String DB_NAME = "Fitness";
     private static final int DB_VERSION = 1;
-        public DatabaseOfUser(Context context){
+        public DatabaseHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
 
 
@@ -55,44 +55,51 @@ public class DatabaseOfUser extends SQLiteOpenHelper{
 //        long i = myDb.insert("UserInfo",null,Values);
 
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS 'UserInfo'");
         onCreate(db);
     }
-   public  boolean verifyUser(String email, String password) {
+    public SQLiteDatabase getWDatabase(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db;
+    }
+    public SQLiteDatabase getRDatabase(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db;
+    }
+    public  boolean verifyUser(String email, String password) {
 
         boolean status =false;
         SQLiteDatabase db = this.getReadableDatabase();
 //       SQLiteQueryBuilder
 
-            String x = '"'+email+'"';
-            String y = '"'+password+'"';
-            String[] selection = {email,password};
-            String query ="Select userID,email,password from UserInfo where email = "+x+" and password = "+y+";";
-            Log.e("Query out : ",query);
-            Cursor resultSet = db.rawQuery(query,null);
-            Log.e("Cursor : ",resultSet.toString());
-            if (resultSet.moveToFirst()){
-                String userID = resultSet.getString(0);
-                String Email = resultSet.getString(1);
-                String Password = resultSet.getString(2);
-                Log.e("Query in : ",query);
-                Log.e("userID : ",userID);
-                Log.e("Email : ",Email);
-                Log.e("Passwaord :",Password);
-                status = true;
-            }else{
-                status = false;
-            }
+        String x = '"'+email+'"';
+        String y = '"'+password+'"';
+        String[] selection = {email,password};
+        String query ="Select userID,email,password from UserInfo where email = "+x+" and password = "+y+";";
+        Log.e("Query out : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Log.e("Cursor : ",resultSet.toString());
+        if (resultSet.moveToFirst()){
+            String userID = resultSet.getString(0);
+            String Email = resultSet.getString(1);
+            String Password = resultSet.getString(2);
+            Log.e("Query in : ",query);
+            Log.e("userID : ",userID);
+            Log.e("Email : ",Email);
+            Log.e("Passwaord :",Password);
+            status = true;
+        }else{
+            status = false;
+        }
 
         resultSet.close();
         db.close();
         return  status;
     }
 
-   public boolean createUser(String eMail, String Pass, String firstName, String lastName, String gender) {
+    public boolean createUser(String eMail, String Pass, String firstName, String lastName, String gender) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         boolean status =false;
@@ -110,16 +117,17 @@ public class DatabaseOfUser extends SQLiteOpenHelper{
             throw e;
 
         }
-            if(i==-1)
-            {
-                status=false;
-            }else
-            {
-                status=true;
-            }
+        if(i==-1)
+        {
+            status=false;
+        }else
+        {
+            status=true;
+        }
         db.close();
         return status;
-   }
+    }
+
 
 
 

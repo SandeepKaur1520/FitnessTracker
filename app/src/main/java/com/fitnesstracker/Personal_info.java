@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.fitnesstracker.database.DatabaseOfUser;
+import com.fitnesstracker.database.DatabaseHelper;
 
 public class Personal_info extends AppCompatActivity {
 
@@ -44,7 +44,7 @@ public class Personal_info extends AppCompatActivity {
 
 
 
-        final DatabaseOfUser db =new DatabaseOfUser(this);
+        final DatabaseHelper db =new DatabaseHelper(this);
 
 
         gender.setOnItemSelectedListener(new Spinner.OnItemSelectedListener() {

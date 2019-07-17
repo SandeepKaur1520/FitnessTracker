@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.fitnesstracker.gymfragment.GymExercisepageFragment;
 import com.fitnesstracker.gymfragment.GymHomepageFragment;
 import com.fitnesstracker.gymfragment.GymProfileFragment;
+import com.fitnesstracker.gymfragment.RunFragment;
 
 public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEventListener{
     private LinearLayout llHome, llExercise, llProfile,llActivity;
@@ -155,7 +156,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
                 .commit();
     }
     private void onClickActivity() {
-        gymfragment = new GymExercisepageFragment();
+        gymfragment = new RunFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, gymfragment)
@@ -198,6 +199,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         if (doubleBackToExitPressedOnce) {
 
             finish();
+            finishAffinity();
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(0);
             return;

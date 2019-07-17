@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.fitnesstracker.database.DatabaseOfUser;
+import com.fitnesstracker.database.DatabaseHelper;
 
 
 public class Login_account extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class Login_account extends AppCompatActivity {
         final EditText etPass=findViewById(R.id.etPassword);
 
 
-        final DatabaseOfUser db = new DatabaseOfUser(this);
+        final DatabaseHelper db = new DatabaseHelper(this);
         Button loginToHealth = findViewById(R.id.bLoginToHealth);
         loginToHealth.setOnClickListener(new View.OnClickListener() {
             @Override
