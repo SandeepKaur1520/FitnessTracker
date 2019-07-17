@@ -31,8 +31,8 @@ public class Login_account extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 String password = etPass.getText().toString();
 
-                boolean status = db.verifyUser(email,password);
-                    if(status) {
+                boolean[] status = db.verifyUser(email,password);
+                    if(status[0]) {
                         Intent intent = new Intent(Login_account.this, Health_Info.class);
                         intent.putExtra("email",email);
                         startActivity(intent);

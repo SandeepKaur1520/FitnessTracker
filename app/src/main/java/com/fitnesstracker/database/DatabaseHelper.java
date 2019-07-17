@@ -68,16 +68,16 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         return db;
     }
-    public  boolean verifyUser(String email, String password) {
+    public boolean[] verifyUser(String email, String password) {
 
-        boolean status =false;
+        boolean status[] ={false,false};
         SQLiteDatabase db = this.getReadableDatabase();
-//       SQLiteQueryBuilder
+
 
         String x = '"'+email+'"';
         String y = '"'+password+'"';
         String[] selection = {email,password};
-        String query ="Select userID,email,password from UserInfo where email = "+x+" and password = "+y+";";
+        String query ="Select userID,email,password,Gender from UserInfo where email = "+x+" and password = "+y+";";
         Log.e("Query out : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         Log.e("Cursor : ",resultSet.toString());
@@ -85,13 +85,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String userID = resultSet.getString(0);
             String Email = resultSet.getString(1);
             String Password = resultSet.getString(2);
+            String gender =resultSet.getString(3);
+            if(gender.equals("Male")){
+                status[1]=false;
+            }
+            else if (gender.equals("Female")){
+                status[1]=true;
+            }
             Log.e("Query in : ",query);
             Log.e("userID : ",userID);
             Log.e("Email : ",Email);
             Log.e("Passwaord :",Password);
-            status = true;
+            Log.e("Gender ",gender);
+            Log.e("gender Status",String.valueOf(status[1]));
+            status[0] = true;
         }else{
-            status = false;
+            status[0] = false;
         }
 
         resultSet.close();

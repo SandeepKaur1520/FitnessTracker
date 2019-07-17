@@ -13,10 +13,17 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 public class Period_info extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     Button  StartPeriodDayDialogbtn ;
     String  date ;
     int StartPeriodDay ;
+    Calendar calendar = Calendar.getInstance();
+    int startYear =calendar.get(Calendar.YEAR);
+    int startMonth = calendar.get(Calendar.MONTH)+1;
+    int startDay= calendar.get(Calendar.DATE);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +45,9 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                        int startYear=2019,starthMonth=07,startDay=18;
+
                         final DatePickerDialog datePickerDialog = new DatePickerDialog(
-                                Period_info.this, (DatePickerDialog.OnDateSetListener) Period_info.this, startYear, starthMonth, startDay);
+                                Period_info.this, (DatePickerDialog.OnDateSetListener) Period_info.this, startYear, startMonth, startDay);
                         datePickerDialog.show();
                     }
                 });
@@ -49,6 +56,9 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        startDay=dayOfMonth;
+        startMonth=month;
+        startYear=year;
         date = ("Date: " + dayOfMonth + " Month: " + month + " Year: " + year);
         date =(dayOfMonth+"/"+month+"/"+year);
         Toast.makeText(Period_info.this,date, Toast.LENGTH_SHORT).show();
