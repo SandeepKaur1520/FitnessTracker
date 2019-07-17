@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/SetStartPeriodDay"
     tools:context=".PeriodStartDay_Dialog">
 
     <LinearLayout
@@ -27,6 +28,7 @@
             android:orientation="vertical">
 
             <CalendarView
+                android:id="@+id/CalenderDialogId"
                 android:layout_width="299dp"
                 android:layout_height="310dp"
                 android:layout_alignParentTop="true"
@@ -37,7 +39,7 @@
 
         </RelativeLayout>
         <Button
-            android:id="@+id/setheight"
+            android:id="@+id/SetStartPeriodDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
