@@ -89,7 +89,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
            // marker = this.gmap.addMarker(new MarkerOptions().position(latLng).title("marker"));
             CameraPosition googlePlex = CameraPosition.builder()
                     .target(latLng)
-                    .zoom(18)
+                    .zoom(25)
                     .bearing(0)
                     .tilt(45)
                     .build();

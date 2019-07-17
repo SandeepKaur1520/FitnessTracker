@@ -1,5 +1,4 @@
 package com.fitnesstracker.database;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -58,14 +57,20 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 ");";
 
         /**This table stores initial info about user's periods*/
-        String PeriodInfo = null;
+        String PeriodInfo = "CREATE TABLE IF NOT EXISTS `PeriodInfo` (\n" +
+                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `PeriodLength` varchar(100),\n"+
+                "  `CycleLength` varchar(100),\n"+
+                "  `LastStartDate` varchar(100)\n"+
+                ");";
 
         String PeriodHistory=null;
 
         db.execSQL(UserInfo);
         db.execSQL(GymInfo);
         db.execSQL(DailyGoals);
-//        db.execSQL(PeriodInfo);
+        db.execSQL(PeriodInfo);
 //        db.execSQL(PeriodHistory);
 
 
@@ -84,16 +89,16 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         return db;
     }
-    public boolean[] verifyUser(String email, String password) {
+    public boolean verifyUser(String email, String password) {
 
-        boolean status[] ={false,false};
+        boolean status=false;
         SQLiteDatabase db = this.getReadableDatabase();
 
 
         String x = '"'+email+'"';
         String y = '"'+password+'"';
         String[] selection = {email,password};
-        String query ="Select userID,email,password,Gender from UserInfo where email = "+x+" and password = "+y+";";
+        String query ="Select userID,email,password from UserInfo where email = "+x+" and password = "+y+";";
         Log.e("Query out : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         Log.e("Cursor : ",resultSet.toString());
@@ -101,22 +106,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String userID = resultSet.getString(0);
             String Email = resultSet.getString(1);
             String Password = resultSet.getString(2);
-            String gender =resultSet.getString(3);
-            if(gender.equals("Male")){
-                status[1]=false;
-            }
-            else if (gender.equals("Female")){
-                status[1]=true;
-            }
+
             Log.e("Query in : ",query);
             Log.e("userID : ",userID);
             Log.e("Email : ",Email);
             Log.e("Passwaord :",Password);
-            Log.e("Gender ",gender);
-            Log.e("gender Status",String.valueOf(status[1]));
-            status[0] = true;
+            status = true;
         }else{
-            status[0] = false;
+            status = false;
         }
 
         resultSet.close();
@@ -253,5 +250,57 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 status=false;
             }
                 return status;
+    }
+
+    public Boolean insertPeriodInfo(String email, String periodLength, String cycleLength, String lastStartDate) {
+            Boolean status = true;
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values =new ContentValues();
+            values.put("PeriodLength",periodLength);
+            values.put("CycleLength",cycleLength);
+            values.put("LastStartDate",lastStartDate);
+            values.put("email",email);
+            double i =db.insert("PeriodInfo",null,values);
+            if(i==-1){
+                status=false;
+            }else{
+                status=true;
+            }
+            return  status;
+    }
+
+    public String[] getUserProfile(String email) {
+
+            String x = '"'+email+'"';
+            SQLiteDatabase db = this.getWritableDatabase();
+            String query ="Select * from UserInfo where email = "+x+";";
+            Log.e("Query out : ",query);
+            Cursor resultSet = db.rawQuery(query,null);
+            Log.e("Cursor : ",resultSet.toString());
+            if (resultSet.moveToFirst()) {
+                String userID = resultSet.getString(0);
+                String Email = resultSet.getString(1);
+                String Password = resultSet.getString(2);
+                String FirstName = resultSet.getString(3);
+                String LastName = resultSet.getString(4);
+                String Gender = resultSet.getString(5);
+                String Height = resultSet.getString(6);
+                String Weight = resultSet.getString(7);
+                String DOB = resultSet.getString(8);
+                String Service = resultSet.getString(9);
+                String SubService = resultSet.getString(10);
+                String profile[]={userID,Email,Password,FirstName,LastName,Gender,Height,Weight,DOB,Service,SubService};
+                for (int k=0 ;k<11;k++){
+                    String msg = "profile db :"+k;
+                    Log.e(msg, profile[k]);
+                }
+                return profile;
+
+            }else {
+                return null;
+            }
+
+
     }
 }

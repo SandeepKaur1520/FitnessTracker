@@ -1,6 +1,7 @@
 package com.fitnesstracker;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +30,12 @@ public class PeriodDashboard extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perioddashboard);
-
+        Intent inten =getIntent();
+        String profile[]=inten.getStringArrayExtra("profile");
+        for (int k=0 ;k<11;k++){
+            String msg = "profile  :"+k;
+            Log.e(msg, profile[k]);
+        }
 
 
 
@@ -99,6 +106,7 @@ public class PeriodDashboard extends AppCompatActivity {
         onClickCalender();
         if (doubleBackToExitPressedOnce) {
             finish();
+            finishAffinity();
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(0);
             return;

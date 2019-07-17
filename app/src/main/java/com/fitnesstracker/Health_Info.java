@@ -219,6 +219,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                     vibrator.vibrate(300);
                     DOBbtn.setTextColor(getResources().getColor(R.color.Red));
 
+
                 }
                 if(isWeight&&isDOB&&isHeight&&isDOBValid) {
                     boolean status = db.updateHealthInfo(email, height, weight, date);

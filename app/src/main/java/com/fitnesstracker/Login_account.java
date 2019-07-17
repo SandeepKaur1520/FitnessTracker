@@ -31,11 +31,22 @@ public class Login_account extends AppCompatActivity {
                 String email = etEmail.getText().toString();
                 String password = etPass.getText().toString();
 
-                boolean[] status = db.verifyUser(email,password);
-                    if(status[0]) {
-                        Intent intent = new Intent(Login_account.this, Health_Info.class);
-                        intent.putExtra("email",email);
-                        startActivity(intent);
+                boolean status = db.verifyUser(email,password);
+                    if(status) {
+                        String profile[]=db.getUserProfile(email);
+                        if(profile[9].contentEquals("GymTrainer")) {
+                            Intent intent = new Intent(Login_account.this, GymTrainer_Dashboard.class);
+                            intent.putExtra("email", email);
+                            intent.putExtra("profile",profile);
+                            startActivity(intent);
+                        }else if(profile[9].contentEquals("PeriodTracker")){
+                            Intent intent = new Intent(Login_account.this, PeriodDashboard.class);
+                            intent.putExtra("email", email);
+                            intent.putExtra("profile",profile);
+                            startActivity(intent);
+                        }else if(profile==null){
+                            Toast.makeText(Login_account.this,"Create Anccount Again",Toast.LENGTH_LONG).show();
+                        }
                     }else{
                         Toast.makeText(Login_account.this,"Wrong Credentials",Toast.LENGTH_LONG).show();
                     }
