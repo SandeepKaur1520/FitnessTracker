@@ -10,9 +10,12 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.fitnesstracker.database.DatabaseHelper;
+
 public class BodyInfo extends AppCompatActivity {
     String email;
     boolean skinnyArms,beerBelly,thinLegs,weakChest;
+    DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +75,14 @@ public class BodyInfo extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(skinnyArms||weakChest||thinLegs||beerBelly) {
-                    Intent intent = new Intent(BodyInfo.this, BodyActivity.class);
-                    startActivity(intent);
+                    Boolean status = db.updateBodyinfo(email,skinnyArms,weakChest,beerBelly,thinLegs);
+                    if(status) {
+                        Toast.makeText(BodyInfo.this,"Your Data Saved",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(BodyInfo.this, BodyActivity.class);
+                        intent.putExtra("email",email);
+                        startActivity(intent);
+                    }else
+                        Toast.makeText(BodyInfo.this,"Somethong Went Wrong",Toast.LENGTH_LONG).show();
                 }else{
                     Toast.makeText(BodyInfo.this,"Please select at least one Option",Toast.LENGTH_LONG).show();
                     CountDownTimer countDownTimer =new CountDownTimer(2000,20) {

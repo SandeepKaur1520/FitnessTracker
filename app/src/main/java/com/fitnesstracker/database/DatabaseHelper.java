@@ -20,16 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        db.execSQL("CREATE TABLE IF NOT EXISTS `UserInfo` (\n" +
-//                "\t`email` VARCHAR(100),\n" +
-//                "\t`password` VARCHAR(100),\n" +
-//                "\t`First_Name` VARCHAR(100),\n" +
-//                "\t`Last_Name` VARCHAR(100),\n" +
-//                "\t`Gender` VARCHAR(100),\n" +
-//                "\tPRIMARY KEY (`email`)\n" +
-//                ");");
-
-        db.execSQL("CREATE TABLE IF NOT EXISTS `userinfo` (\n" +
+        /**This table stores personal information of user and which kind of service he/she wants to avail*/
+        String UserInfo = "CREATE TABLE IF NOT EXISTS `UserInfo` (\n" +
                 "  `userID` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "  `email` varchar(100) NOT NULL UNIQUE,\n" +
                 "  `password` varchar(100) NOT NULL,\n" +
@@ -41,18 +33,42 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "  `DOB` varchar(100) ,\n" +
                 "  `Service` varchar(50) ,\n" +
                 "  `SubService` varchar(50) \n" +
-                ");");
+                ");";
 
-//        SQLiteDatabase myDb = this.getWritableDatabase();
-//        mydatabase=db;
+        /**This table stores initial info about user's current Physique*/
+        String GymInfo = "CREATE TABLE IF NOT EXISTS `GymInfo` (\n" +
+                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `SkinnyArms` varchar(100),\n"+
+                "  `WeakChest` varchar(100),\n"+
+                "  `BearBelly` varchar(100),\n"+
+                "  `ThinLegs` varchar(100),\n"+
+                "  `BodyActiveness` varchar(50) \n" +
+                ");";
 
-//        ContentValues Values = new ContentValues();
-//        Values.put("email", "sandeep@gmail.com");
-//        Values.put("password", "123");
-//        Values.put("First_Name", "Sandeep");
-//        Values.put("Last_Name", "Kaur");
-//        Values.put("Gender", "Female");
-//        long i = myDb.insert("UserInfo",null,Values);
+        /**This table stores data of daily goals which user wants to achive on daily basis */
+
+        String DailyGoals = "CREATE TABLE IF NOT EXISTS `DailyGoals` (\n" +
+                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `Steps` varchar(100),\n"+
+                "  `Calories` varchar(100),\n"+
+                "  `Water` varchar(100),\n"+
+                "  `Sleep` varchar(100)\n"+
+                ");";
+
+        /**This table stores initial info about user's periods*/
+        String PeriodInfo = null;
+
+        String PeriodHistory=null;
+
+        db.execSQL(UserInfo);
+        db.execSQL(GymInfo);
+        db.execSQL(DailyGoals);
+        db.execSQL(PeriodInfo);
+        db.execSQL(PeriodHistory);
+
+
 
     }
     @Override
@@ -202,5 +218,40 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             status=false;
         }
         return status;
+    }
+
+    public Boolean updateBodyinfo(String email, boolean skinnyArms, boolean weakChest, boolean beerBelly, boolean thinLegs) {
+            Boolean status = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("email",email);
+        values.put("SkinnyArms",String.valueOf(skinnyArms));
+        values.put("WeakChest",String.valueOf(weakChest));
+        values.put("BeerBelly",String.valueOf(beerBelly));
+        values.put("ThinLegs",String.valueOf(thinLegs));
+        double i = db.insert("GymInfo", null, values);
+        if(i==-1){
+            status=false;
+        }else{
+            status=true;
+        }
+    //db.update("GymInfo",values,"email = ?",new String[] {email});
+      //  Log.e("Update :",String.valueOf(i));
+            return status;
+    }
+
+    public Boolean updateBodyActiveness(String email, String bodyActiveness) {
+            Boolean status=false;
+            SQLiteDatabase db =this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("BodyActiveness",bodyActiveness);
+            int i = db.update("GymInfo",values,"email = ?",new String[] {email});
+            Log.e("Update :",String.valueOf(i));
+            if(i==1){
+            status=true;
+            }else{
+                status=false;
+            }
+                return status;
     }
 }

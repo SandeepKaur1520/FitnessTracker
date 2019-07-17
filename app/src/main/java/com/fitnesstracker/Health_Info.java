@@ -68,6 +68,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                         heightBtn.setText("  Height : "+height+"cm");
                         dialog.dismiss();
                         isHeight=true;
+                        heightBtn.setTextColor(getResources().getColor(R.color.whiteText));
                     }
                 });
 
@@ -121,6 +122,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                         weightBtn.setText("  Weight : "+weight + " kg");
                         dialog.dismiss();
                         isWeight=true;
+                        weightBtn.setTextColor(getResources().getColor(R.color.whiteText));
                     }
                 });
 
@@ -241,7 +243,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
         DOBbtn.setText("  Date of Birth : "+date);
         isDOB=true;
-
+        DOBbtn.setTextColor(getResources().getColor(R.color.whiteText));
         if((currentYear - year) > 5){
             isDOBValid=true;
             startYear=year;
@@ -249,6 +251,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
             startMonth=month;
         }else{
             isDOBValid=false;
+            DOBbtn.setTextColor(getResources().getColor(R.color.Red));
             Toast.makeText(Health_Info.this, "Please Select a Vaild DOB", Toast.LENGTH_LONG).show();
         }
 

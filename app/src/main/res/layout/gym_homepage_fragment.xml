@@ -4,6 +4,7 @@
     android:id="@+id/gymHomePage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:background="@mipmap/background03">
 
     <TextView
@@ -52,6 +53,15 @@
                         android:text="Daily Goals"
                         android:textColor="#F7F8FA"
                         android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="15dp"
+                        android:text="Set Your Daily Goals Here"
+                        android:textColor="#FFFF"
+                        android:textStyle="bold|italic"
+                        android:textSize="30sp" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -79,24 +89,26 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/StepDisplay"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
                             android:text="0"
                             android:textColor="#fff"
                             android:textSize="45dp"
+                            android:textAlignment="center"
                             android:textStyle="bold|italic" />
 
                         <TextView
                             android:id="@+id/stepsAchieve"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:text="of 1000"
+                            android:text="of 10000"
+                            android:textAlignment="center"
                             android:layout_gravity="bottom"
                             android:textColor="#fff"
                             android:textSize="20dp"
@@ -136,7 +148,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/caloriesDisplay"
@@ -153,7 +165,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:layout_gravity="bottom"
+                            android:layout_gravity="center_horizontal"
                             android:text="Kcal of 1000"
                             android:textColor="#fff"
                             android:textSize="20dp"
@@ -178,51 +190,56 @@
                         android:text="Water"
                         android:textSize="20sp"
                         android:textColor="#F7F8FA"
+                        android:layout_weight="1"
                         android:padding="15dp"
                         android:drawableRight="@mipmap/plusicon"/>
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="20dp"
                         android:gravity="center"
+                        android:layout_weight="1"
                         android:orientation="horizontal">
                         <Button
                             android:id="@+id/waterMinus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/minusicon"
-                            android:layout_weight="5"/>
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="5dp"
+                            android:background="@drawable/boldminusicon"/>
+
                         <TextView
                             android:id="@+id/waterDisplay"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="7dp"
+
                             android:text="00"
+                            android:layout_centerInParent="true"
                             android:textColor="#fff"
                             android:textSize="40dp"
-                            android:layout_weight="0"
                             android:textStyle="bold|italic" />
 
-                        <TextView
-                            android:id="@+id/waterAchieve"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="7dp"
-                            android:layout_weight="2.5"
-                            android:layout_gravity="bottom"
-                            android:text="Glass of 20"
-                            android:textColor="#fff"
-                            android:textSize="15dp"
-                            android:textStyle="bold|italic" />
                         <Button
                             android:id="@+id/waterPlus"
-                            android:layout_weight="5"
-                            android:background="@mipmap/plusicon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/boldplusicon"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginRight="5dp"/>
+                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/waterAchieve"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="7dp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:text="Glass of 20"
+                        android:textColor="#fff"
+                        android:textSize="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold|italic"
+                        android:layout_marginBottom="20dp"/>
                  </LinearLayout>
 
         </LinearLayout>
@@ -253,7 +270,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
                         android:gravity="center">
@@ -272,7 +289,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="7dp"
-                            android:layout_gravity="bottom"
+                            android:layout_gravity="center_horizontal"
                             android:text="Hrs of 1000"
                             android:textColor="#fff"
                             android:textSize="20dp"

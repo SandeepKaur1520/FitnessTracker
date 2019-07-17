@@ -18,7 +18,7 @@ public class stepsChart extends AppCompatActivity {
         Intent intent = getIntent();
         completed = (int) intent.getIntExtra("stepValue",0);
 
-        int target = 1000;
+        int target = 10000;
 
         updateChart(completed,target);
     }
