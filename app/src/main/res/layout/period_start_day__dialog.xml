@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".PeriodStartDay_Dialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Your start day of last period "
+            android:textSize="20sp"
+            android:textColor="@color/colorAccent"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginTop="20sp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CalendarView
+                android:layout_width="299dp"
+                android:layout_height="310dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
+
+            </CalendarView>
+
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/setheight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/signupbutton"
+            android:textColor="#fff"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:text="Set"
+            android:layout_alignParentLeft="true" />
+
+    </LinearLayout>
+
+</RelativeLayout>

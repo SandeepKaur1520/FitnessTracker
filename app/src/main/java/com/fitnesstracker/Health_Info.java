@@ -63,7 +63,6 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
                         height = numberPicker.getValue();
                         Log.e("onValueChange: ", String.valueOf((numberPicker.getValue())));
-
                     }
                 });
                 final NumberPicker mmNP = dialog.findViewById(R.id.mmNP);
