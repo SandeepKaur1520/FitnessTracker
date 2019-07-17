@@ -48,7 +48,8 @@
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textColor="#CFC6C6"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            android:gravity="start" />
 <!--
         <NumberPicker
             android:layout_width="wrap_content"
@@ -70,7 +71,8 @@
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textColor="#CFC6C6"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:gravity="start" />
 
         <Button
             android:id="@+id/DateOfBirthDialog"
@@ -85,7 +87,8 @@
             android:textAlignment="textStart"
             android:textAllCaps="false"
             android:textColor="#fff"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:gravity="start" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
