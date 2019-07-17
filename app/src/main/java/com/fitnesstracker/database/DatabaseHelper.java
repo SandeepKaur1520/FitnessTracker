@@ -138,11 +138,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             values.put("DOB",String.valueOf(date));
             int i=db.update("UserInfo",values,"email = ?",new String[] {email});
             Log.e("Update :",String.valueOf(i));
-            String x = '"'+email+'"';
-            String query ="Select Height,Weight,DOB from UserInfo where email = "+x+";";
-            Log.e("Query out : ",query);
-            Cursor resultSet = db.rawQuery(query,null);
-            Log.e("Cursor : ",resultSet.toString());
+//            String x = '"'+email+'"';
+//            String query ="Select Height,Weight,DOB from UserInfo where email = "+x+";";
+//            Log.e("Query out : ",query);
+//            Cursor resultSet = db.rawQuery(query,null);
+//            Log.e("Cursor : ",resultSet.toString());
 //            if (resultSet.moveToFirst()){
 //                String Height = resultSet.getString(0);
 //                String Weight = resultSet.getString(1);
@@ -161,6 +161,37 @@ public class DatabaseHelper extends SQLiteOpenHelper{
               }
 
 
+        return status;
+    }
+
+    public boolean updateSelectedField(String email, String subService, String service) {
+        boolean status=false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Service",String.valueOf(service));
+        values.put("SubService",String.valueOf(subService));
+        int i=db.update("UserInfo",values,"email = ?",new String[] {email});
+        Log.e("Update :",String.valueOf(i));
+
+        String x = '"'+email+'"';
+        String query ="Select Service,SubService from UserInfo where email = "+x+";";
+        Log.e("Query out : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Log.e("Cursor : ",resultSet.toString());
+            if (resultSet.moveToFirst()){
+                String serv = resultSet.getString(0);
+                String subserv = resultSet.getString(1);
+               Log.e("Query in : ",query);
+                Log.e("Service : ",serv);
+                Log.e("SubService : ",subserv);
+
+            }
+
+        if(i==1){
+            status=true;
+        }else {
+            status=false;
+        }
         return status;
     }
 }
