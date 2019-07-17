@@ -192,9 +192,15 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 boolean status = db.updateHealthInfo(email,height,weight,date);
-                Toast.makeText(Health_Info.this,"Email ID : "+email, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(Health_Info.this, Selected_Field.class);
-                startActivity(intent);
+                if(status) {
+                    Toast.makeText(Health_Info.this, "Your Data Saved", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Health_Info.this, Selected_Field.class);
+                    intent.putExtra("email",email);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(Health_Info.this, "Something Went Wrong", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }

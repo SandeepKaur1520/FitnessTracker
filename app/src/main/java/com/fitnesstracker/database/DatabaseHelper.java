@@ -130,7 +130,37 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
     public boolean updateHealthInfo(String email, double height, double weight, String date) {
+            boolean status=false;
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("Height",String.valueOf(height));
+            values.put("Weight",String.valueOf(weight));
+            values.put("DOB",String.valueOf(date));
+            int i=db.update("UserInfo",values,"email = ?",new String[] {email});
+            Log.e("Update :",String.valueOf(i));
+            String x = '"'+email+'"';
+            String query ="Select Height,Weight,DOB from UserInfo where email = "+x+";";
+            Log.e("Query out : ",query);
+            Cursor resultSet = db.rawQuery(query,null);
+            Log.e("Cursor : ",resultSet.toString());
+//            if (resultSet.moveToFirst()){
+//                String Height = resultSet.getString(0);
+//                String Weight = resultSet.getString(1);
+//                String Password = resultSet.getString(2);
+//                Log.e("Query in : ",query);
+//                Log.e("Height : ",Height);
+//                Log.e("Weight : ",Weight);
+//                Log.e("DOB :",Password);
+//            }else{
+//
+//            }
+              if(i==1){
+                  status=true;
+              }else {
+                  status=false;
+              }
 
-            return false;
+
+        return status;
     }
 }
