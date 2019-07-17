@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PeriodStartDay_Dialog"></activity>
+        <activity android:name=".Period_Length_Dialog"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
