@@ -37,6 +37,7 @@
         android:textAlignment="center"/>
 
     <Button
+        android:id="@+id/StartPeriodDayDialog"
         android:layout_width="177dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -58,6 +59,7 @@
         android:textAlignment="center"/>
 
     <Button
+        android:id="@+id/PeriodLengthDialog"
         android:layout_width="177dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -79,6 +81,7 @@
     android:textAlignment="center"/>
 
     <Button
+        android:id="@+id/CycleLengthDialog"
         android:layout_width="177dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

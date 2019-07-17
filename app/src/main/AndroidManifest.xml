@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".PeriodStartDay_Dialog"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -77,9 +78,7 @@
         </activity> <!-- Google MAP API key -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCiDJHWJJLXAzGB8gO3Ryc0718aRNutfgQ"/>
-            <!--android:value="AIzaSyAtyUV-9L4J1kxX7qGJB-AUuZ-aig3aO0I" />-->
+            android:value="AIzaSyCiDJHWJJLXAzGB8gO3Ryc0718aRNutfgQ" />
     </application>
-
 
 </manifest>
