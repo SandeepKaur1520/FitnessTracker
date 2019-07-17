@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "  `email` varchar(100) NOT NULL UNIQUE,\n" +
                 "  `SkinnyArms` varchar(100),\n"+
                 "  `WeakChest` varchar(100),\n"+
-                "  `BearBelly` varchar(100),\n"+
+                "  `BeerBelly` varchar(100),\n"+
                 "  `ThinLegs` varchar(100),\n"+
                 "  `BodyActiveness` varchar(50) \n" +
                 ");";
@@ -65,8 +65,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(UserInfo);
         db.execSQL(GymInfo);
         db.execSQL(DailyGoals);
-        db.execSQL(PeriodInfo);
-        db.execSQL(PeriodHistory);
+//        db.execSQL(PeriodInfo);
+//        db.execSQL(PeriodHistory);
 
 
 

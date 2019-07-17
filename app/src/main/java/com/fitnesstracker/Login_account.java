@@ -37,7 +37,7 @@ public class Login_account extends AppCompatActivity {
                         intent.putExtra("email",email);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(Login_account.this,"You need to work hard ",Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login_account.this,"Wrong Credentials",Toast.LENGTH_LONG).show();
                     }
 
 
