@@ -21,10 +21,9 @@ import com.fitnesstracker.database.DatabaseHelper;
 public class Health_Info extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     Button nextBtn, heightBtn ,setHeightBtn , weightBtn , setWeightBtn , DOBbtn , setDOB;
-    double weight,height;
+    double weight,height,x=0,x1=0;
     String date,email;
     DatabaseHelper db = new DatabaseHelper(this);
-    final String[] Storage = {"","","","","","","","",""};
 
 
     @Override
@@ -37,6 +36,8 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         heightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                height = 120;
+
                 final Dialog dialog = new Dialog(Health_Info.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_height_picker);
@@ -46,7 +47,9 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 {
                     @Override
                     public void onClick(View v) {
-                        heightBtn.setText("Height : "+height+"cm");
+                        double y = 0.1*x;
+                        height = height + y;
+                        heightBtn.setText("  Height : "+height+"cm");
                         dialog.dismiss();
                     }
                 });
@@ -64,18 +67,16 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                     }
                 });
                 final NumberPicker mmNP = dialog.findViewById(R.id.mmNP);
-                mmNP.setMaxValue(100);
+                mmNP.setMaxValue(9);
                 mmNP.setMinValue(0);
                 mmNP.setWrapSelectorWheel(false);
 
                 mmNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        double x = (double) numberPicker.getValue();
-                        double y = 0.01*x;
-                        height = height + y;
+                        x = (double) numberPicker.getValue();
                         Log.e("onValueChange: ", String.valueOf((numberPicker.getValue())));
-                        Log.e("Height : ",String.valueOf(height));
+
 
                     }
                 });
@@ -88,6 +89,8 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         weightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               weight=35;
+
                 final Dialog dialog = new Dialog(Health_Info.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_weight_picker);
@@ -97,7 +100,9 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 {
                     @Override
                     public void onClick(View v) {
-                        weightBtn.setText("Weight : "+weight + " kg");
+                        double y = 0.1*x1;
+                        weight = weight + y;
+                        weightBtn.setText("  Weight : "+weight + " kg");
                         dialog.dismiss();
                     }
                 });
@@ -117,17 +122,16 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 });
 
                 final NumberPicker gNP = dialog.findViewById(R.id.gNP);
-                gNP.setMaxValue(100);
+                gNP.setMaxValue(9);
                 gNP.setMinValue(0);
                 gNP.setWrapSelectorWheel(false);
 
                 gNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        double x = (double) numberPicker.getValue();
-                        double y = 0.01*x;
-                        weight = weight + y;
-                        Log.e("Weight : ",String.valueOf(weight));
+                        x1 = (double) numberPicker.getValue();
+
+                        Log.e("onValueChange: ", String.valueOf((numberPicker.getValue())));
 
 
 
@@ -210,7 +214,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         date = ("Date: " + dayOfMonth +" Month: " + month +" Year: "+year);
         date =(dayOfMonth+"/"+month+"/"+year);
         Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
-        DOBbtn.setText("Date of Birth : "+date);
+        DOBbtn.setText("  Date of Birth : "+date);
     }
 
 //    @Override
