@@ -24,15 +24,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <CalendarView
-                android:id="@+id/Calender"
-                android:layout_width="wrap_content"
-                android:layout_height="318dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="1dp">
+            <!--<DatePicker-->
+                <!--android:id="@+id/Calenderview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="1dp">-->
 
-            </CalendarView>
+            <!--</DatePicker>-->
+            <!--<CalendarView-->
+                <!--android:id="@+id/Calenderview"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="318dp"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:layout_marginTop="1dp">-->
+
+            <!--</CalendarView>-->
 
         </RelativeLayout>
 

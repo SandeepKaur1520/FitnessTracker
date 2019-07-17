@@ -3,20 +3,27 @@ package com.fitnesstracker;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
-public class Health_Info extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+import com.fitnesstracker.database.DatabaseHelper;
+
+public class Health_Info extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     Button nextBtn, heightBtn ,setHeightBtn , weightBtn , setWeightBtn , DOBbtn , setDOB;
     double weight,height;
+    String date,email;
+    DatabaseHelper db = new DatabaseHelper(this);
     final String[] Storage = {"","","","","","","","",""};
 
 
@@ -38,6 +45,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 {
                     @Override
                     public void onClick(View v) {
+                        heightBtn.setText("Height : "+height+"cm");
                         dialog.dismiss();
                     }
                 });
@@ -46,7 +54,6 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 cmNP.setMaxValue(250);
                 cmNP.setMinValue(120);
                 cmNP.setWrapSelectorWheel(false);
-
                 cmNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
@@ -89,6 +96,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 {
                     @Override
                     public void onClick(View v) {
+                        weightBtn.setText("Weight : "+weight + " kg");
                         dialog.dismiss();
                     }
                 });
@@ -101,7 +109,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 kgNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-
+                        weight = numberPicker.getValue();
                         Log.e("onValueChange: ", String.valueOf((numberPicker.getValue())));
 
                     }
@@ -115,6 +123,11 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 gNP.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                        double x = (double) numberPicker.getValue();
+                        double y = 0.01*x;
+                        weight = weight + y;
+                        Log.e("Weight : ",String.valueOf(weight));
+
 
 
                         Log.e("onValueChange: ", String.valueOf((numberPicker.getValue())));
@@ -129,25 +142,46 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
 
         DOBbtn = findViewById(R.id.DateOfBirthDialog);
         DOBbtn.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(Health_Info.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_dob_picker);
-                dialog.setCancelable(false);
-                setDOB=dialog.findViewById(R.id.setDOBbtn);
-                setDOB.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                int startYear= 2019 ,starthMonth = 06, startDay =20;
+//                final Dialog dialog = new Dialog(Health_Info.this);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setContentView(R.layout.dialog_dob_picker);
+//                dialog.setCancelable(false);
+//                setDOB=dialog.findViewById(R.id.setDOBbtn);
+//                setDOB.setOnClickListener(new View.OnClickListener()
+//                {
+//                    @Override
+//                    public void onClick(View v) {
+//                        DOBbtn.setText("Date of Birth : "+date);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                DatePicker picker = findViewById(R.id.Calenderview);
+//                picker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+//                    @Override
+//                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//                        date = ("Date: " + dayOfMonth +" Month: " + monthOfYear +" Year: "+year);
+//                                date =(dayOfMonth+"/"+monthOfYear+"/"+year);
+//                                Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//               CalendarView calendarView =findViewById(R.id.Calenderview);
+//
+//                calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+//                    @Override
+//                    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+//                                date = ("Date: " + dayOfMonth +" Month: " + month +" Year: "+year);
+//                                date =(dayOfMonth+"/"+month+"/"+year);
+//                                Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+                int startYear=2019,starthMonth=07,startDay=18;
                 final DatePickerDialog datePickerDialog = new DatePickerDialog(
                         Health_Info.this, (DatePickerDialog.OnDateSetListener) Health_Info.this, startYear, starthMonth, startDay);
-
-                dialog.show();
+                datePickerDialog.show();
+//                dialog.show();
 
             }
         });
@@ -156,6 +190,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.updateHealthInfo(email,height,weight,date);
                 Intent intent = new Intent(Health_Info.this, Selected_Field.class);
                 startActivity(intent);
             }
@@ -163,11 +198,19 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
     }
 
     @Override
-    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        String date = ("Date:" +i2 +"Month: " +  i1 +"Year: "+i);
-        Storage[1]=date;
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        date = ("Date: " + dayOfMonth +" Month: " + month +" Year: "+year);
+        date =(dayOfMonth+"/"+month+"/"+year);
         Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
+        DOBbtn.setText("Date of Birth : "+date);
     }
+
+//    @Override
+//    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+//        String date = ("Date:" +i2 +"Month: " +  i1 +"Year: "+i);
+//        Storage[1]=date;
+//        Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
+//    }
 
 }
 

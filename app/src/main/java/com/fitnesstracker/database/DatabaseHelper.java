@@ -129,6 +129,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-
-
+    public void updateHealthInfo(String email, double height, double weight, String date) {
+    }
 }
