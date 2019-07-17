@@ -34,6 +34,7 @@ public class Login_account extends AppCompatActivity {
                 boolean status = db.verifyUser(email,password);
                     if(status) {
                         Intent intent = new Intent(Login_account.this, Health_Info.class);
+                        intent.putExtra("email",email);
                         startActivity(intent);
                     }else{
                         Toast.makeText(Login_account.this,"You need to work hard ",Toast.LENGTH_LONG).show();

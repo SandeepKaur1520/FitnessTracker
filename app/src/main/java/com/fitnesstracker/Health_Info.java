@@ -31,7 +31,8 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.health__info);
-
+        Intent intent =getIntent();
+        email =intent.getStringExtra("email");
         heightBtn = findViewById(R.id.HeightDialog);
         heightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +191,8 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.updateHealthInfo(email,height,weight,date);
+                boolean status = db.updateHealthInfo(email,height,weight,date);
+                Toast.makeText(Health_Info.this,"Email ID : "+email, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Health_Info.this, Selected_Field.class);
                 startActivity(intent);
             }
