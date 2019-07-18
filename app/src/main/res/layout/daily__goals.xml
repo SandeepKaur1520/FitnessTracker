@@ -4,6 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Daily_Goals">
+    android:orientation="vertical"
+    tools:context=".Daily_Goals"
+    android:background="@mipmap/backgroundimage">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Daily Goals"
+            android:textSize="23dp"
+            android:textStyle="bold"
+            android:textColor="#030303"
+            android:padding="10dp"
+            android:background="#C48519"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/tvStepGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Steps Goal"
+            android:layout_weight="1"
+            android:layout_marginTop="25dp"
+            android:textSize="26dp"
+            android:textStyle="bold"
+            android:textColor="#E0326D"/>
+
+           <SeekBar
+               android:id="@+id/seekStepGoals"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:min="10"
+               android:max="50000"/>
+           <TextView
+               android:id="@+id/tvCalories"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Calories"
+               android:layout_weight="1"
+               android:layout_marginTop="25dp"
+               android:textSize="26dp"
+               android:textStyle="bold"
+               android:textColor="#E0326D"/>
+
+           <SeekBar
+                android:id="@+id/seekCalories"
+               android:layout_width="match_parent"
+               android:layout_weight="1"
+               android:min="10"
+               android:max="50000"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:id="@+id/tvWater"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Water"
+               android:layout_weight="1"
+               android:layout_marginTop="25dp"
+               android:textSize="26dp"
+               android:textStyle="bold"
+               android:textColor="#E0326D" />
+
+           <SeekBar
+                android:id="@+id/seekWater"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:max="30"
+               android:min="0" />
+           <TextView
+               android:id="@+id/tvSleep"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Sleep"
+               android:layout_marginTop="25dp"
+               android:layout_weight="1"
+               android:textSize="26dp"
+               android:textStyle="bold"
+               android:textColor="#E0326D" />
+
+           <SeekBar
+                android:id="@+id/seekSleep"
+               android:min="0"
+               android:max="24"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_weight="1" />
+           <Button
+               android:id="@+id/setGoalsBtn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center_horizontal"
+               android:text="Set Goals"
+               android:layout_marginBottom="25dp"
+               android:textAlignment="center"
+               android:textColor="@color/whiteText"
+               android:textStyle="bold|italic"
+               android:background="@color/colorAccent"/>
+       </LinearLayout>
+    </ScrollView>
+
+
 
 </LinearLayout>

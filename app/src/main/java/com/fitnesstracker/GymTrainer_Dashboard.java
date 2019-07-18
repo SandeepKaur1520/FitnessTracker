@@ -118,7 +118,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         gymfragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, gymfragment)
+                .replace(R.id.containergym, gymfragment)
                 .addToBackStack("")
                 .commit();
     }
@@ -147,11 +147,12 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         gymfragment = new GymHomepageFragment();
         Bundle bundle = new Bundle();
         bundle.putString("Steps", stepsValue);
+        bundle.putString("email",profile[1]);
         gymfragment.setArguments(bundle);
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, gymfragment)
+                .replace(R.id.containergym, gymfragment)
                 .addToBackStack("")
                 .commit();
     }
@@ -160,7 +161,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         gymfragment = new GymExercisepageFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, gymfragment)
+                .replace(R.id.containergym, gymfragment)
                 .addToBackStack("")
                 .commit();
     }
@@ -168,7 +169,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         gymfragment = new RunFragment();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, gymfragment)
+                .replace(R.id.containergym, gymfragment)
                 .addToBackStack("")
                 .commit();
     }

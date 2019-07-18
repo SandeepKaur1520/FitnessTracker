@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         String DailyGoals = "CREATE TABLE IF NOT EXISTS `DailyGoals` (\n" +
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `email` varchar(100) NOT NULL,\n" +
                 "  `Steps` varchar(100),\n"+
                 "  `Calories` varchar(100),\n"+
                 "  `Water` varchar(100),\n"+
@@ -249,11 +249,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             }else{
                 status=false;
             }
+        db.close();
                 return status;
     }
 
     public Boolean insertPeriodInfo(String email, String periodLength, String cycleLength, String lastStartDate) {
-            Boolean status = true;
+            Boolean status = false;
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues values =new ContentValues();
@@ -267,7 +268,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             }else{
                 status=true;
             }
+            db.close();
             return  status;
+
     }
 
     public String[] getUserProfile(String email) {
@@ -301,6 +304,52 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 return null;
             }
 
+    }
+    public Boolean insertDailyGoals(String email,String sleep,String water,String calories,String steps){
+        Boolean status = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values =new ContentValues();
+        values.put("email",email);
+        values.put("Steps",steps);
+        values.put("Calories",calories);
+        values.put("Water",water);
+        values.put("Sleep",sleep);
+
+        double i =db.insert("DailyGoals",null,values);
+        if(i==-1){
+            status=false;
+        }else{
+            status=true;
+        }
+        return status;
+
+    }
+
+    public String[] getDailyGoals(String email) {
+        String x = '"'+email+'"';
+        String goals[]= new String[4];
+        SQLiteDatabase db = getRDatabase();
+        String query ="Select MAX(SrNo),Steps,Calories,Water,Sleep from DailyGoals where email = "+x+";";
+        Log.e("Query out : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Log.e("Cursor : ",resultSet.toString());
+        if (resultSet.moveToFirst()) {
+            String Steps = resultSet.getString(1);
+            String Calories = resultSet.getString(2);
+            String water = resultSet.getString(3);
+            String sleep = resultSet.getString(4);
+            goals[0] =Steps;
+            goals[1]=Calories;
+            goals[2]=water;
+            goals[3]=sleep;
+
+            return goals;
+
+        }else {
+            goals[0]="Nothing";
+            return goals;
+        }
 
     }
 }

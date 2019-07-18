@@ -16,4 +16,5 @@
     <color name="fertileDayBackground">#2e7d32</color>
     <color name="ovulationDayBackground">#512da8</color>
     <color name="neutralBackground">#ffffff</color>
+    <color name="DarkBlue">#3651E9</color>
 </resources>
