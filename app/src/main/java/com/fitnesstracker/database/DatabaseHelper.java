@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         /**This table stores initial info about user's current Physique*/
         String GymInfo = "CREATE TABLE IF NOT EXISTS `GymInfo` (\n" +
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `email` varchar(100) NOT NULL ,\n" +
                 "  `SkinnyArms` varchar(100),\n"+
                 "  `WeakChest` varchar(100),\n"+
                 "  `BeerBelly` varchar(100),\n"+
@@ -64,6 +64,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "  `CycleLength` varchar(100),\n"+
                 "  `LastStartDate` varchar(100)\n"+
                 ");";
+
+
 
         String PeriodHistory=null;
 
@@ -244,7 +246,18 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             values.put("BodyActiveness",bodyActiveness);
             int i = db.update("GymInfo",values,"email = ?",new String[] {email});
             Log.e("Update :",String.valueOf(i));
-            if(i==1){
+
+            ContentValues value =new ContentValues();
+             value.put("email",email);
+              value.put("Steps","1000");
+             value.put("Calories","1000");
+             value.put("Water","20");
+             value.put("Sleep","24");
+
+             double j =db.insert("DailyGoals",null,value);
+
+
+            if(i>=0){
             status=true;
             }else{
                 status=false;

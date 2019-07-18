@@ -35,7 +35,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
 //    SensorManager  sensorManager ;
     Sensor stepsSensor;
     String stepsValue=null;
-
+    String  email;
     private SensorManager sensorManager;
     //private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Number of Steps: ";
@@ -48,6 +48,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_trainer__dashboard);
         Intent inten =getIntent();
+        email = inten.getStringExtra("email");
         profile = inten.getStringArrayExtra("profile");
         BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
 
@@ -147,7 +148,13 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         gymfragment = new GymHomepageFragment();
         Bundle bundle = new Bundle();
         bundle.putString("Steps", stepsValue);
-        bundle.putString("email",profile[1]);
+        bundle.putString("email", email);
+//        if(!(profile[1].isEmpty())) {
+//            bundle.putString("email", profile[1]);
+//        }else{
+//            bundle.putString("email", email);
+//        }
+
         gymfragment.setArguments(bundle);
 
         getSupportFragmentManager()

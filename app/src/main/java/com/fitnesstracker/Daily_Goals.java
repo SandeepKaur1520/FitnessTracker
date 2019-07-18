@@ -27,10 +27,10 @@ public class Daily_Goals extends AppCompatActivity {
         SeekBar seekSleep =findViewById(R.id.seekSleep);
         SeekBar seekWater =findViewById(R.id.seekWater);
 
-        steps=String.valueOf(seekSteps.getProgress());
-        sleep=String.valueOf(seekSleep.getProgress());
-        water=String.valueOf(seekWater.getProgress());
-        calories=String.valueOf(seekCal.getProgress());
+       steps = "1000";
+       water = "20";
+       sleep = "24";
+       calories = "1000";
         Intent intent = getIntent();
         final TextView tvStep =findViewById(R.id.tvStepGoals);
         final TextView tvWater =findViewById(R.id.tvWater);
