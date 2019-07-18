@@ -37,7 +37,7 @@ public class ChartFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        chart = view.findViewById(R.id.LineChart);;
+        chart = view.findViewById(R.id.LineChart);
 
         ArrayList<Entry> cycleLength = new ArrayList<>();
         cycleLength.add(new Entry(0, 30));
@@ -46,6 +46,7 @@ public class ChartFragment extends Fragment {
         cycleLength.add(new Entry(90, 32));
         cycleLength.add(new Entry(120, 33));
         cycleLength.add(new Entry(150, 29));
+
 
         ArrayList<Entry> periodLength = new ArrayList<>();
         periodLength.add(new Entry(0, 4));

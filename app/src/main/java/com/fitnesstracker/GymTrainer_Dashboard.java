@@ -163,7 +163,6 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
                 getSupportFragmentManager().popBackStack(null , FragmentManager.POP_BACK_STACK_INCLUSIVE );
             }
             onClickHome();
-
         }
     }
 

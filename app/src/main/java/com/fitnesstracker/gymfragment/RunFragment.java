@@ -97,8 +97,8 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                 if (currentLoc != null)
                     camera(currentLoc);
                 break;
-            case R.id.bStop:
-                /*Bundle bundle = new Bundle();
+           /* case R.id.bStop:
+                Bundle bundle = new Bundle();
                     bundle.putString("dist", distance + "");
                     bundle.putInt("tTime", sec);
                     bundle.putString("speed", tvAvgTime.getText().toString());
@@ -108,8 +108,8 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.runContainer, fragment)
-                        .commit();*/
-                break;
+                        .commit();
+                break;*/
         }
 
     }

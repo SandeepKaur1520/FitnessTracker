@@ -41,7 +41,6 @@ public class CalenderFragment extends Fragment {
         periodDays = manager.getHistoricPeriodDays();
         fertileDays = manager.getHistoricFertileDays();
         ovulationDays = manager.getHistoricOvulationDays();
-
         return view;
 
     }
