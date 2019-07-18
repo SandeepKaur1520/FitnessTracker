@@ -144,6 +144,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
                     if (status) {
 
                         Intent intent = new Intent(Period_info.this, PeriodDashboard.class);
+                        intent.putExtra("email",email);
                         startActivity(intent);
                     }else{
                         Toast.makeText(Period_info.this,"Something Went Wrong",Toast.LENGTH_LONG).show();

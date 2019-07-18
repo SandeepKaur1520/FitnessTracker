@@ -59,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         /**This table stores initial info about user's periods*/
         String PeriodInfo = "CREATE TABLE IF NOT EXISTS `PeriodInfo` (\n" +
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "  `email` varchar(100) NOT NULL UNIQUE,\n" +
+                "  `email` varchar(100) NOT NULL,\n" +
                 "  `PeriodLength` varchar(100),\n"+
                 "  `CycleLength` varchar(100),\n"+
                 "  `LastStartDate` varchar(100)\n"+

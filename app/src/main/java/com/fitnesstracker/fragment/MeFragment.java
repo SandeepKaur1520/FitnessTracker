@@ -1,5 +1,6 @@
 package com.fitnesstracker.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,15 +12,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.fitnesstracker.R;
+import com.fitnesstracker.database.DatabaseHelper;
 
 public class MeFragment extends Fragment {
-    String profile[]= new String[11];
+    String email,profile[]= new String[11];
+    Context context;
+    DatabaseHelper db ;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context =context;
+        db = new DatabaseHelper(context);
+    }
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.mefragment,container,false);
-        profile = getArguments().getStringArray("profile");
+        email = getArguments().getString("email");
+        profile =db.getUserProfile(email);
 
         EditText nameET = view.findViewById(R.id.etName);
         EditText dobET = view.findViewById(R.id.etDOB);
@@ -31,7 +43,7 @@ public class MeFragment extends Fragment {
 
         nameET.setText(profile[3]+" "+profile[4]);
         dobET.setText(profile[8]);
-        emailET.setText(profile[2]);
+        emailET.setText(profile[1]);
         heightET.setText(profile[6]+ "cm");
         weigthET.setText(profile[7]+" kg");
         passET.setText(profile[2]);

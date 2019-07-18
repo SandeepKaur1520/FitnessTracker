@@ -1,5 +1,6 @@
 package com.fitnesstracker.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,10 +9,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
+import com.fitnesstracker.Health_Info;
 import com.fitnesstracker.R;
 import com.fitnesstracker.period.PeriodDaysManager;
+import com.stacktips.view.CalendarListener;
 import com.stacktips.view.CustomCalendarView;
 import com.stacktips.view.DayDecorator;
 import com.stacktips.view.DayView;
@@ -20,6 +25,7 @@ import org.joda.time.LocalDate;
 
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -41,6 +47,27 @@ public class CalenderFragment extends Fragment {
         periodDays = manager.getHistoricPeriodDays();
         fertileDays = manager.getHistoricFertileDays();
         ovulationDays = manager.getHistoricOvulationDays();
+
+        calendarView.setCalendarListener(new CalendarListener() {
+            @Override
+            public void onDateSelected(Date date) {
+                Toast.makeText(getContext(),""+date,Toast.LENGTH_LONG).show();
+                final Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_periodcalenderpopup);
+                dialog.setCancelable(true);
+                dialog.show();
+
+
+
+
+            }
+
+            @Override
+            public void onMonthChanged(Date date) {
+
+            }
+        });
         return view;
 
     }

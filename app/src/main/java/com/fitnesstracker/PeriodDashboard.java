@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fitnesstracker.database.DatabaseHelper;
 import com.fitnesstracker.fragment.CalenderFragment;
 import com.fitnesstracker.fragment.ChartFragment;
 import com.fitnesstracker.fragment.MeFragment;
@@ -24,19 +25,17 @@ public class PeriodDashboard extends AppCompatActivity {
     private Fragment fragment;
     private ImageView ivCalender;
     boolean doubleBackToExitPressedOnce =false;
-    String profile[]=new String[11];//={"","","","","","","","","","",""};
+    DatabaseHelper db = new DatabaseHelper(this);
+    String email,profile[]=new String[11];//={"","","","","","","","","","",""};
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.perioddashboard);
         Intent inten =getIntent();
-        profile = inten.getStringArrayExtra("profile");
+        email=inten.getStringExtra("email");
+        profile = db.getUserProfile(email);
 
-        for (int k=0 ;k<11;k++){
-            String msg = "profile  :"+k;
-            Log.e(msg, profile[k]);
-        }
 
 
 
@@ -67,7 +66,7 @@ public class PeriodDashboard extends AppCompatActivity {
     private void onMeClicked() {
         fragment = new MeFragment();
         Bundle bundle = new Bundle();
-        bundle.putStringArray("profile",profile);
+        bundle.putString("email",email);
         fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()

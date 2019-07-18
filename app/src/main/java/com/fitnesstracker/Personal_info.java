@@ -101,6 +101,7 @@ public class Personal_info extends AppCompatActivity {
                 String password = pass.getText().toString();
 //                if((!TextUtils.isEmpty(s)) && (password.matches(s))){
 //
+//
 //                }
             }
 
