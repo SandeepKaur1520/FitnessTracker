@@ -137,16 +137,12 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
                 .commit();
     }
     private void onClickActivity() {
+
+        gymfragment = new RunFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("profile", String.valueOf(profile));
-//        if(!(profile[1].isEmpty())) {
-//            bundle.putString("email", profile[1]);
-//        }else{
-//            bundle.putString("email", email);
-//        }
+        bundle.putString("email", email);
 
         gymfragment.setArguments(bundle);
-        gymfragment = new RunFragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.containergym, gymfragment)

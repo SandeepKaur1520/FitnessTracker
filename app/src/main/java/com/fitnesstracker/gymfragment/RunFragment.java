@@ -1,5 +1,6 @@
 package com.fitnesstracker.gymfragment;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fitnesstracker.R;
+import com.fitnesstracker.database.DatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -48,15 +50,21 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
     long pauseTime;
     CountDownTimer countDownTimer;
     double calories;
-    String profile[]=new String[11];
-
-
+    String email,profile[]=new String[11];
+    Context context;
+    DatabaseHelper db;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context =context;
+        db = new DatabaseHelper(context);
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.gym_activitypage_fragment,container,false);
 
-        profile = getArguments().getStringArray("profile");//{userID,Email,Password,FirstName,LastName,Gender,Height,Weight,DOB,Service,SubService};
+        email =getArguments().getString("email");
+        profile =db.getUserProfile(email);//{userID,Email,Password,FirstName,LastName,Gender,Height,Weight,DOB,Service,SubService};
 
 
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
