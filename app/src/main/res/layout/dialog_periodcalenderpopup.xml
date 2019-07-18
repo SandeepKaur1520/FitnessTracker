@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/extralightPink">
+    android:background="@color/white">
     <TextView
         android:id="@+id/dialogPeriodHeader"
         android:layout_width="match_parent"
@@ -14,61 +14,149 @@
         android:textAlignment="center"
         android:textColor="@color/whiteText"
         android:textSize="30dp"
-        android:layout_alignParentTop="true"
         android:textStyle="bold|italic"
         android:fontFamily="cursive"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialogPeriodHeader"
-        android:padding="25dp">
+        android:padding="10dp"
+        android:orientation="horizontal">
 
-        <TextView
+        <ImageView
             android:id="@+id/periodIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="1dp"
-            android:background="@drawable/mc_period_icon" />
+            android:background="@drawable/icon_little_period" />
+
         <TextView
             android:id="@+id/tvPeriodText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/Black"
             android:layout_toRightOf="@+id/periodIcon"
-            android:fontFamily="cursive"
-            android:text="Period"
-            android:textSize="25dp" />
+            android:text="  Period"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
 
-        <ToggleButton
-            android:id="@+id/toggle_periodEnd"
-            android:layout_width="45dp"
-            android:layout_height="35dp"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="right"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/periodendcheck"
-            android:checked="false"
-            android:gravity="right"
-            android:textAlignment="center"
-            android:textOff=" "
-            android:textOn=" " />
         <ToggleButton
             android:id="@+id/toggle_periodStart"
             android:layout_toLeftOf="@+id/toggle_periodEnd"
-            android:layout_width="45dp"
+            android:layout_width="60dp"
             android:layout_height="35dp"
-            android:gravity="right"
-            android:layout_marginRight="5dp"
             android:background="@drawable/periodstartcheck"
             android:text="Start"
             android:textOn=" "
             android:textOff=" "
             android:textAlignment="center"
+            android:layout_marginRight="10dp"
             android:layout_gravity="right"/>
+        <ToggleButton
+            android:id="@+id/toggle_periodEnd"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:background="@drawable/periodendcheck"
+            android:checked="false"
+            android:textAlignment="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:textOff=" "
+            android:textOn=" " />
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogPeriodHeader"
+        android:padding="10dp"
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/flowIcon"
+            android:layout_width="30dp"
+            android:layout_height="30"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/mc_period_icon" />
+
+        <TextView
+            android:id="@+id/tvFlowText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/flowIcon"
+            android:text="  Flow"
+            android:textStyle="bold"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
+
+
+        <ToggleButton
+            android:id="@+id/toggle_flow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/flowcheck"
+            android:checked="false"
+            android:textAlignment="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:textOff=" "
+            android:textOn=" " />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogPeriodHeader"
+        android:padding="10dp"
+        android:background="@color/gray"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tvFlowSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="  Flow"
+            android:textColor="@color/Black"
+            android:textSize="20dp" />
+
+        <ToggleButton
+            android:id="@+id/toggle_lightflow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/flowlightcheck"
+            android:checked="false"
+            android:textAlignment="center"
+            android:layout_toLeftOf="@id/toggle_Mediumflow"
+            android:layout_marginRight="5dp"
+            android:textOff=" "
+            android:textOn=" " />
+        <ToggleButton
+            android:id="@+id/toggle_Mediumflow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/flowcheck"
+            android:checked="false"
+            android:textAlignment="center"
+            android:layout_toLeftOf="@+id/toggle_Highflow"
+            android:layout_marginRight="5dp"
+            android:textOff=" "
+            android:textOn=" " />
+        <ToggleButton
+            android:id="@+id/toggle_Highflow"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/flowhighseleted"
+            android:checked="false"
+            android:textAlignment="center"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:textOff=" "
+            android:textOn=" " />
     </RelativeLayout>
 
 
 
-</RelativeLayout>
+
+
+</LinearLayout>
