@@ -22,41 +22,39 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.fitnesstracker.database.DatabaseHelper;
 import com.fitnesstracker.gymfragment.GymExercisepageFragment;
 import com.fitnesstracker.gymfragment.GymHomepageFragment;
 import com.fitnesstracker.gymfragment.GymProfileFragment;
 import com.fitnesstracker.gymfragment.RunFragment;
 
 public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEventListener{
-    private LinearLayout llHome, llExercise, llProfile,llActivity;
-    private Fragment gymfragment;
+   private Fragment gymfragment;
     private  boolean running = false;
-//
-//    SensorManager  sensorManager ;
     Sensor stepsSensor;
     String stepsValue=null;
     String  email;
     private SensorManager sensorManager;
-    //private Sensor accel;
-    private static final String TEXT_NUM_STEPS = "Number of Steps: ";
-    private int numSteps;
     private boolean doubleBackToExitPressedOnce =false;
     String profile[]=new String[11];
+    DatabaseHelper db = new DatabaseHelper(this);
+
+
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_trainer__dashboard);
+
         Intent inten =getIntent();
         email = inten.getStringExtra("email");
-        profile = inten.getStringArrayExtra("profile");
-        BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
+        profile = db.getUserProfile(email);
 
+        BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
-                switch (menuItem.getItemId()) {
+               switch (menuItem.getItemId()) {
                     case R.id.llHome:
                         onClickHome();
                         return true;
@@ -75,40 +73,6 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         });
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         stepsSensor =   sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-
-
- //            llHome = findViewById(R.id.llHome);
-//           llExercise = findViewById(R.id.llExercise);
-
-//        llProfile = findViewById(R.id.llProfile);
-//
-//        llHome.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (savedInstanceState == null) {
-//                    onClickHome();
-//                }
-//            }
-//        });
-//        llExercise.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(savedInstanceState == null){
-//                  onClickExercise();
-//                }
-//            }
-//        });
-//        llProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(savedInstanceState==null)
-//                {
-//                  onProfileclick();
-//                }
-//            }
-//        });
-//
-
         onClickHome();
     }
 

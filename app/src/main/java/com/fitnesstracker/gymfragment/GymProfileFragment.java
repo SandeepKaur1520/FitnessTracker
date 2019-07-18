@@ -31,7 +31,7 @@ public class GymProfileFragment extends Fragment {
 
         nameET.setText(profile[3]+" "+profile[4]);
         dobET.setText(profile[8]);
-        emailET.setText(profile[2]);
+        emailET.setText(profile[1]);
         heightET.setText(profile[6]+ "cm");
         weigthET.setText(profile[7]+" kg");
         passET.setText(profile[2]);

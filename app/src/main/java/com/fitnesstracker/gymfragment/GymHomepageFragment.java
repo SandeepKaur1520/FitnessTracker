@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fitnesstracker.Calories;
 import com.fitnesstracker.Daily_Goals;
 import com.fitnesstracker.R;
 import com.fitnesstracker.database.DatabaseHelper;
@@ -79,7 +80,7 @@ public class GymHomepageFragment extends Fragment {
         llCalories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), stepsChart.class);
+                Intent intent = new Intent(getActivity(), Calories.class);
                 int x =Integer.parseInt(calValue);
 
                 intent.putExtra("calValue",x);
