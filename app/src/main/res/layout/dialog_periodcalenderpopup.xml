@@ -24,10 +24,18 @@
         android:padding="25dp">
 
         <TextView
+            android:id="@+id/periodIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="1dp"
+            android:background="@drawable/mc_period_icon" />
+        <TextView
             android:id="@+id/tvPeriodText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:textColor="@color/Black"
+            android:layout_toRightOf="@+id/periodIcon"
             android:fontFamily="cursive"
             android:text="Period"
             android:textSize="25dp" />
@@ -39,7 +47,7 @@
             android:layout_alignParentRight="true"
             android:layout_gravity="right"
             android:layout_marginLeft="5dp"
-
+            android:background="@drawable/periodendcheck"
             android:checked="false"
             android:gravity="right"
             android:textAlignment="center"
@@ -52,6 +60,7 @@
             android:layout_height="35dp"
             android:gravity="right"
             android:layout_marginRight="5dp"
+            android:background="@drawable/periodstartcheck"
             android:text="Start"
             android:textOn=" "
             android:textOff=" "
