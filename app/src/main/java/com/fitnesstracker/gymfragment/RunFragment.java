@@ -68,8 +68,6 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
         imvCurrent.setOnClickListener(this);
 
         return view;
-
-
     }
 
     @Override
@@ -115,8 +113,6 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
             }
         }
         calories = calculateCalories(distance, Minutes);
-
-
         double speed = (distance * 1000) / sec;
         if (String.valueOf(speed).matches("^[a-zA-Z]*$"))
             tvAvgTime.setText("0.0");
@@ -126,7 +122,6 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
         line = mMap.addPolyline(options); //add Polyline
         Log.e("test",calories+" "+distance+" ");
     }
-
     private double calculateCalories(double velocity, long calTime) {
         double weight = Double.parseDouble("55");
         double height = Double.parseDouble("20");
@@ -182,6 +177,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                 * Math.sin(deg2rad(lat2))
                 + Math.cos(deg2rad(lat1))
                 * Math.cos(deg2rad(lat2))
+
                 * Math.cos(deg2rad(theta));
         dist = Math.acos(dist);
         dist = rad2deg(dist);
