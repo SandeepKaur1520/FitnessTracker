@@ -46,8 +46,7 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_trainer__dashboard);
 
-        Intent inten =getIntent();
-        email = inten.getStringExtra("email");
+        email = getIntent().getStringExtra("email");
         profile = db.getUserProfile(email);
 
         BottomNavigationView navigationView=findViewById(R.id.gymNavigation);
@@ -165,7 +164,6 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
             onClickHome();
         }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
 
