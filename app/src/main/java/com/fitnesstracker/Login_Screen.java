@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.fitnesstracker.gymfragment.Utility;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -45,15 +48,19 @@ public class Login_Screen extends AppCompatActivity {
 
         textView.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent = new Intent(Login_Screen.this, Login_account.class);
-                startActivity(intent);
+                if (Utility.checkPermission(Login_Screen.this)) {
+                    Intent intent = new Intent(Login_Screen.this, Login_account.class);
+                    startActivity(intent);
+                }
             }
         });
         bsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Login_Screen.this, Personal_info.class);
-                startActivity(intent);
+                if (Utility.checkPermission(Login_Screen.this)) {
+                    Intent intent = new Intent(Login_Screen.this, Personal_info.class);
+                    startActivity(intent);
+                }
             }
         });
         setTimerTask();
