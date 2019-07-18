@@ -48,13 +48,17 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
     long pauseTime;
     CountDownTimer countDownTimer;
     double calories;
-
+    String profile[]=new String[11];
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.gym_activitypage_fragment,container,false);
+
+        profile = getArguments().getStringArray("profile");//{userID,Email,Password,FirstName,LastName,Gender,Height,Weight,DOB,Service,SubService};
+
+
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
@@ -128,8 +132,8 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
     }
 
     private double calculateCalories(double velocity, long calTime) {
-        double weight = Double.parseDouble("55");
-        double height = Double.parseDouble("20");
+        double weight = Double.parseDouble(profile[7]);
+        double height = Double.parseDouble(profile[6]);
         double calories = (0.035 * weight) + ((velocity * 2) / height) * (0.029) * (weight);
         return calories * calTime;
 
