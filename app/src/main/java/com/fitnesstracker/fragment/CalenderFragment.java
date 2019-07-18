@@ -11,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CalendarView;
+import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.fitnesstracker.Health_Info;
 import com.fitnesstracker.R;
@@ -56,6 +59,33 @@ public class CalenderFragment extends Fragment {
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_periodcalenderpopup);
                 dialog.setCancelable(true);
+                RelativeLayout RLMood = dialog.findViewById(R.id.RLMoodpopup);
+                final RelativeLayout RLFlowPopup = dialog.findViewById(R.id.RLPopupFlow);
+                ToggleButton flowBtn = dialog.findViewById(R.id.toggle_flow);
+                flowBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            RLFlowPopup.setVisibility(View.VISIBLE);
+                        }else {
+                            RLFlowPopup.setVisibility(View.GONE);
+                        }
+                    }
+                });
+
+                RLMood.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        final Dialog dialogMood = new Dialog(getContext());
+                        dialogMood.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialogMood.setContentView(R.layout.dialog_mood);
+                        dialogMood.setCancelable(true);
+                        dialog.dismiss();
+                        dialogMood.show();
+                    }
+                });
+
                 dialog.show();
 
 

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scrollView"
+        android:text="Moods"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        android:textAlignment="center"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:fillViewport="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:id="@+id/llContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_centerInParent="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_angryBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_angry"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Angry"
+                            android:textAlignment="center"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_boredBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_bored"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bored"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                    <ToggleButton
+                        android:id="@+id/toggle_cryingBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textOn=" "
+                        android:textOff=" "
+                        android:layout_gravity="center"
+                        android:background="@drawable/moodcheck"
+                        android:foreground="@drawable/dp_moods_crying"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Crying"
+                        android:textAlignment="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_cuteBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_cute"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cute"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_dazedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_dazed"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dazed"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                    <ToggleButton
+                        android:id="@+id/toggle_excitedBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textOn=" "
+                        android:layout_gravity="center"
+                        android:textOff=" "
+                        android:background="@drawable/moodcheck"
+                        android:foreground="@drawable/dp_moods_excited"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Excited"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_exhustedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_exhausted"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Exhausted"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_frustratedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_frustrater"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Frustrated"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_happyBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:layout_gravity="center"
+                            android:textOff=" "
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_happy"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Happy"
+                            android:textAlignment="center"/>
+                </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="7.5dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_illBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_ill"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ill"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_indecisiveBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_indecisive"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Indecisive"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_inloveBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_inlove"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="In Love"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="7.5dp"
+                    android:layout_weight="1" >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_lonelyBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_lonely"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lonely"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_stressedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:layout_gravity="center"
+                            android:textOff=" "
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_stressed"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Stressed"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_superHappyBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:textOff=" "
+                            android:layout_gravity="center"
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_superhappy"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Super Happy"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="7.5dp"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <ToggleButton
+                            android:id="@+id/toggle_tormentedBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textOn=" "
+                            android:layout_gravity="center"
+                            android:textOff=" "
+                            android:background="@drawable/moodcheck"
+                            android:foreground="@drawable/dp_moods_tormented"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tormented"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                    <ToggleButton
+                        android:id="@+id/toggle_unhappyBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textOn=" "
+                        android:textOff=" "
+                        android:layout_gravity="center"
+                        android:background="@drawable/moodcheck"
+                        android:foreground="@drawable/dp_moods_unhappy"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Unhappy"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7.5dp"
+                        android:layout_weight="1">
+                    <ToggleButton
+                        android:id="@+id/toggle_worriedBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textOn=" "
+                        android:textOff=" "
+                        android:layout_gravity="center"
+                        android:background="@drawable/moodcheck"
+                        android:foreground="@drawable/dp_moods_worried"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Worried"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Clear"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="@color/gray"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Ok"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:background="@color/lightPink"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
