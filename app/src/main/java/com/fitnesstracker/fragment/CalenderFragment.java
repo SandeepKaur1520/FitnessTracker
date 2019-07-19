@@ -42,6 +42,7 @@ import java.util.Set;
 public class CalenderFragment extends Fragment {
 
     private static Set<LocalDate> periodDays = new HashSet<>();
+    private static Set<LocalDate> predictedPeriodDays = new HashSet<>();
     private static Set<LocalDate> fertileDays = new HashSet<>();
     private static Set<LocalDate> ovulationDays = new HashSet<>();
     private PeriodDaysManager manager;
@@ -69,7 +70,7 @@ public class CalenderFragment extends Fragment {
 
         email = getArguments().getString("email");
         intialPeriodInfo = db.getPeriodInfo(email);//{periodLength,cycleLength,lastStartdate}
-        addPeriodHistory(email,intialPeriodInfo);
+        addPeriodIntial(email,intialPeriodInfo);
         refreshCalendar(view);
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
@@ -138,23 +139,28 @@ public class CalenderFragment extends Fragment {
 
     }
 
-    private void addPeriodHistory(String email, String[] intialPeriodInfo) {
+    private void addPeriodIntial(String email, String[] intialPeriodInfo) {
         try {
         int Periodlength = Integer.parseInt(intialPeriodInfo[0]);
         int cyclelength = Integer.parseInt(intialPeriodInfo[1]);
+        String StartDate,EndDate,LastEndDate;
+        Date lastStartDate,lastEndDate,startDate,endDate;
+
         Calendar c = Calendar.getInstance();
-        Date lastStartDate =new Date();
-        Date lastEndDate=new Date();
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         lastStartDate = sdf.parse(intialPeriodInfo[2]);
+
+       /**Calculating lastend Date*/
         c.setTime(lastStartDate);
         Log.e("Last Start Date",lastStartDate.toString());
         c.add(Calendar.DATE,Periodlength);
-        String LastEndDate=sdf.format(c.getTime());
+        LastEndDate=sdf.format(c.getTime());
         lastEndDate = sdf.parse(LastEndDate);
         Log.e("Last End Date",lastEndDate.toString());
-
         Log.e("Last End Date String",LastEndDate.toString());
+
+
         Calendar sDate = Calendar.getInstance();
         Calendar eDate = Calendar.getInstance();
         sDate.setTime(lastStartDate);
@@ -163,8 +169,30 @@ public class CalenderFragment extends Fragment {
             LocalDate localDate = new LocalDate(sDate.getTime());
             periodDays.add(localDate);
             sDate.add(Calendar.DAY_OF_MONTH,1);
+
         }
 
+        /**Calculating Start and end Date*/
+
+        c.setTime(lastStartDate);
+        c.add(Calendar.DATE,cyclelength);
+        StartDate = sdf.format(c.getTime());
+        startDate = sdf.parse(StartDate);
+
+        c.setTime(startDate);
+        c.add(Calendar.DATE,Periodlength);
+        EndDate=sdf.format(c.getTime());
+        endDate = sdf.parse(EndDate);
+
+        sDate.setTime(startDate);
+        eDate.setTime(endDate);
+
+        while (sDate.before(eDate)){
+            LocalDate localDate = new LocalDate(sDate.getTime());
+            predictedPeriodDays.add(localDate);
+            sDate.add(Calendar.DAY_OF_MONTH,1);
+
+        }
 
 
 
@@ -208,7 +236,10 @@ public class CalenderFragment extends Fragment {
             dayView.setBackgroundColor(getResources().getColor(R.color.neutralBackground));
 
             if (periodDays.contains(actualDate)) {
-                dayView.setBackgroundColor(getResources().getColor(R.color.periodDayBackground));
+                dayView.setBackgroundColor(getResources().getColor(R.color.Pink));
+            }
+            if (predictedPeriodDays.contains(actualDate)) {
+                dayView.setBackgroundColor(getResources().getColor(R.color.lightPink));
             }
 
             if (fertileDays.contains(actualDate)) {

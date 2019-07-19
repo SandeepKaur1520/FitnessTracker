@@ -160,7 +160,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         startDay = dayOfMonth;
-        startMonth = month;
+        startMonth = month+1;
         startYear = year;
         date = ("Date: " + dayOfMonth + " Month: " + month + " Year: " + year);
         date = (dayOfMonth + "/" + month + "/" + year);

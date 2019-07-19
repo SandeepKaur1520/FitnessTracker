@@ -57,17 +57,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 ");";
 
         /**This table stores initial info about user's periods*/
-        String PeriodInfo = "CREATE TABLE IF NOT EXISTS `PeriodInfo` (\n" +
-                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "  `email` varchar(100) NOT NULL,\n" +
-                "  `PeriodLength` varchar(100),\n"+
-                "  `CycleLength` varchar(100),\n"+
-                "  `LastStartDate` varchar(100)\n"+
-                ");";
+//        String PeriodInfo = "CREATE TABLE IF NOT EXISTS `PeriodInfo` (\n" +
+//                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+//                "  `email` varchar(100) NOT NULL,\n" +
+//                "  `PeriodLength` varchar(100),\n"+
+//                "  `CycleLength` varchar(100),\n"+
+//                "  `LastStartDate` varchar(100)\n"+
+//                ");";
 
 
 
-        String PeriodHistory="CREATE TABLE IF NOT EXISTS `PeriodHistory` (\n" +
+        String PeriodInfo="CREATE TABLE IF NOT EXISTS `Periodinfo` (\n" +
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "  `email` varchar(100) NOT NULL,\n" +
                 "  `Event` varchar(100),\n"+
@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(GymInfo);
         db.execSQL(DailyGoals);
         db.execSQL(PeriodInfo);
-        db.execSQL(PeriodHistory);
+//        db.execSQL(PeriodHistory);
 
 
 
@@ -244,7 +244,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }else{
             status=true;
         }
-    //db.update("GymInfo",values,"email = ?",new String[] {email});
+      //db.update("GymInfo",values,"email = ?",new String[] {email});
       //  Log.e("Update :",String.valueOf(i));
             return status;
     }
@@ -380,7 +380,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String x = '"'+email+'"';
         String periodINfo[]= new String[3];
         SQLiteDatabase db = getRDatabase();
-        String query ="Select MAX(SrNo),PeriodLength,CycleLength,LastStartDate from PeriodInfo where email = "+x+";";
+        String query ="Select Min(SrNo),PeriodLength,CycleLength,LastStartDate from PeriodInfo where email = "+x+";";
         Log.e("Query out : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         Log.e("Cursor : ",resultSet.toString());
