@@ -51,6 +51,8 @@ public class CalenderFragment extends Fragment {
     String email,intialPeriodInfo[],periodHistory[];
     Context context;
     DatabaseHelper db ;
+    Boolean isStartSelected=false;
+    Date bufferPressedDate;
 
     @Override
     public void onAttach(Context context) {
@@ -78,7 +80,7 @@ public class CalenderFragment extends Fragment {
         ovulationDays = getIntialOvulationDays(email);
         predictedPeriodDays =getPredictedDays(email);
 
-//        addPeriodIntial(email,intialPeriodInfo);
+//      addPeriodIntial(email,intialPeriodInfo);
         Periodlength = Integer.parseInt(intialPeriodInfo[0]);
         cyclelength = Integer.parseInt(intialPeriodInfo[1]);
 
@@ -87,92 +89,32 @@ public class CalenderFragment extends Fragment {
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(final Date date) {
-                Toast.makeText(getContext(),""+date,Toast.LENGTH_LONG).show();
                 final Dialog dialog = new Dialog(getContext());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
                 dialog.setContentView(R.layout.dialog_periodcalenderpopup);
                 dialog.setCancelable(true);
                 RelativeLayout RLMood = dialog.findViewById(R.id.RLMoodpopup);
                 final RelativeLayout RLFlowPopup = dialog.findViewById(R.id.RLPopupFlow);
                 ToggleButton flowBtn = dialog.findViewById(R.id.toggle_flow);
                 final ToggleButton toggleStart = dialog.findViewById(R.id.toggle_periodStart);
-               toggleStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                final ToggleButton toggleEnd = dialog.findViewById(R.id.toggle_periodEnd);
+                if(date.equals(bufferPressedDate)&&isStartSelected){
+                    toggleStart.setChecked(true);
+                    toggleEnd.setEnabled(false);
+
+                }
+                else {
+                    toggleStart.setChecked(false);
+                    toggleEnd.setEnabled(true);
+                }
+                toggleStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                    @Override
                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                       try {
-                           DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                           Set<LocalDate> newperiodpredicted = new HashSet<>();
-                           Set<LocalDate> oldperiodpredicted = new HashSet<>();
-                           Set<LocalDate> periodDaystemp = new HashSet<>();
-                           Calendar c = Calendar.getInstance();
-                           Date  newEndDate,newStartDate=date;
-                           String NewStartDate, NewEndDate;
-                           String StartDate,EndDate;
-                           Date startDate,endDate;
 
-                           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-                           NewStartDate = dateFormat.format(date);
-                           Log.e("Date = ", NewStartDate);
-                           if(isChecked) {
-
-                               c.setTime(newStartDate);
-                               c.add(Calendar.DATE, Periodlength);
-                               NewEndDate = sdf.format(c.getTime());
-                               newEndDate = sdf.parse(NewEndDate);
-                               Log.e("Last End Date", newEndDate.toString());
-                               Log.e("Last End Date String", NewEndDate.toString());
-                               Calendar sDate = Calendar.getInstance();
-                               Calendar eDate = Calendar.getInstance();
-                               sDate.setTime(newStartDate);
-                               eDate.setTime(newEndDate);
-                               while (sDate.before(eDate)) {
-                                   LocalDate localDate = new LocalDate(sDate.getTime());
-                                   periodDaystemp.add(localDate);
-                                   sDate.add(Calendar.DAY_OF_MONTH, 1);
-
-                               }
-
-
-                               c.setTime(newStartDate);
-                               c.add(Calendar.DATE, cyclelength);
-                               StartDate = sdf.format(c.getTime());
-                               startDate = sdf.parse(StartDate);
-
-                               c.setTime(startDate);
-                               c.add(Calendar.DATE, Periodlength);
-                               EndDate = sdf.format(c.getTime());
-                               endDate = sdf.parse(EndDate);
-
-                               sDate.setTime(startDate);
-                               eDate.setTime(endDate);
-                               while (sDate.before(eDate)) {
-                                   LocalDate localDate = new LocalDate(sDate.getTime());
-                                   newperiodpredicted.add(localDate);
-                                   sDate.add(Calendar.DAY_OF_MONTH, 1);
-
-                               }
-                               refreshCalendar(view);
-
-                               periodDays.addAll(periodDaystemp);
-                               oldperiodpredicted.addAll(predictedPeriodDays);
-                               predictedPeriodDays.clear();
-                               predictedPeriodDays.addAll(newperiodpredicted);
-                               toggleStart.setChecked(true);
-                           }else{
-
-                               periodDays.removeAll(periodDaystemp);
-                               predictedPeriodDays.clear();
-                               predictedPeriodDays.addAll(oldperiodpredicted);
-
-
-                               refreshCalendar(view);
-                               toggleStart.setChecked(false);
-                           }
-
-                       }catch (Exception e){
-
-                       }
+                        isStartSelected=isChecked;
+                        bufferPressedDate=date;
+                        dialog.dismiss();
 
 
                    }
@@ -472,4 +414,77 @@ calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
             calendarView.scrollToMonth(currentMonth)
 */
 
+/**Start button
+ try {
+ DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+ Set<LocalDate> newperiodpredicted = new HashSet<>();
+ Set<LocalDate> oldperiodpredicted = new HashSet<>();
+ Set<LocalDate> periodDaystemp = new HashSet<>();
+ Calendar c = Calendar.getInstance();
+ Date  newEndDate,newStartDate=date;
+ String NewStartDate, NewEndDate;
+ String StartDate,EndDate;
+ Date startDate,endDate;
 
+ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+ NewStartDate = dateFormat.format(date);
+ Log.e("Date = ", NewStartDate);
+ if(isChecked) {
+ bufferPressedDate=date;
+ isStartSelected=true;
+ c.setTime(newStartDate);
+ c.add(Calendar.DATE, Periodlength);
+ NewEndDate = sdf.format(c.getTime());
+ newEndDate = sdf.parse(NewEndDate);
+ Log.e("Last End Date", newEndDate.toString());
+ Log.e("Last End Date String", NewEndDate.toString());
+ Calendar sDate = Calendar.getInstance();
+ Calendar eDate = Calendar.getInstance();
+ sDate.setTime(newStartDate);
+ eDate.setTime(newEndDate);
+ while (sDate.before(eDate)) {
+ LocalDate localDate = new LocalDate(sDate.getTime());
+ periodDaystemp.add(localDate);
+ sDate.add(Calendar.DAY_OF_MONTH, 1);
+ }
+ c.setTime(newStartDate);
+ c.add(Calendar.DATE, cyclelength);
+ StartDate = sdf.format(c.getTime());
+ startDate = sdf.parse(StartDate);
+
+ c.setTime(startDate);
+ c.add(Calendar.DATE, Periodlength);
+ EndDate = sdf.format(c.getTime());
+ endDate = sdf.parse(EndDate);
+
+ sDate.setTime(startDate);
+ eDate.setTime(endDate);
+ while (sDate.before(eDate)) {
+ LocalDate localDate = new LocalDate(sDate.getTime());
+ newperiodpredicted.add(localDate);
+ sDate.add(Calendar.DAY_OF_MONTH, 1);
+
+ }
+ refreshCalendar(view);
+
+ periodDays.addAll(periodDaystemp);
+ oldperiodpredicted.addAll(predictedPeriodDays);
+ predictedPeriodDays.clear();
+ predictedPeriodDays.addAll(newperiodpredicted);
+ toggleStart.setChecked(true);
+ }else{
+
+ periodDays.removeAll(periodDaystemp);
+ predictedPeriodDays.clear();
+ predictedPeriodDays.addAll(oldperiodpredicted);
+
+
+ refreshCalendar(view);
+ toggleStart.setChecked(false);
+ }
+
+ }catch (Exception e){
+
+ }
+ isStartSelected=isChecked;
+ */

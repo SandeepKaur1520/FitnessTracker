@@ -206,10 +206,11 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
             /**Calculating lastendDate*/
             c.setTime(StartDate);
             Log.e("Last Start Date", StartDate.toString()+"   +   "+Periodlength);
-            while (Periodlength>1) {
-                c.add(Calendar.DAY_OF_MONTH, 1);
-                Periodlength--;
-            }
+//            while (Periodlength>1) {
+//                c.add(Calendar.DAY_OF_MONTH, 1);
+//                Periodlength--;
+//            }
+            c.add(Calendar.DAY_OF_MONTH,Periodlength);
             String LastEndDate = sdf.format(c.getTime());
             Log.e("LastEnd Into Database",LastEndDate);
             return LastEndDate;
