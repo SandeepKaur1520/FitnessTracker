@@ -110,7 +110,7 @@
                 android:paddingLeft="18dp"
                 android:textSize="15sp"/>
         </RadioGroup>
-        </LinearLayout>n
+        </LinearLayout>
     </ScrollView>
     <RelativeLayout
         android:layout_width="fill_parent"

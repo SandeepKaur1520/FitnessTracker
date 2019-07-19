@@ -1,5 +1,6 @@
 package com.fitnesstracker.gymfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,20 +10,25 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.fitnesstracker.Daily_Goals;
+import com.fitnesstracker.Gym_CongratsActivity;
 import com.fitnesstracker.R;
 
 public class GymActivityFragment extends Fragment {
 
     private ViewPager viewpager;
     private TabLayout tablayout;
+    Button button;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gym_activitypage_fragment);
-
-
     }
 
     private void setContentView(int gym_activitypage_fragment) {
@@ -33,6 +39,15 @@ public class GymActivityFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.gym_activitypage_fragment,container,false);
+
+        button = view.findViewById(R.id.bStop);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Gym_CongratsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         tablayout = view.findViewById(R.id.tabLayout);
         viewpager =view.findViewById(R.id.viewPager);
