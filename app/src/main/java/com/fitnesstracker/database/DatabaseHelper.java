@@ -70,13 +70,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String PeriodInfo="CREATE TABLE IF NOT EXISTS `Periodinfo` (\n" +
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "  `email` varchar(100) NOT NULL,\n" +
-                "  `Event` varchar(100),\n"+
-                "  `PeriodLength` varchar(100),\n"+
-                "  `CycleLength` varchar(100),\n"+
+                "  `PeriodLength` INTERGER,\n"+
+                "  `CycleLength` INTEGER,\n"+
                 "  `LastStartDate` varchar(100),\n"+
                 "  `LastEndDate` varchar(100),\n"+
-                "  `StartDate` varchar(100),\n"+
-                "  `EndDate` varchar(100)\n"+
+                "  `PeriodStatus` varchar(100) NOT NULL\n"+//periodstatus = end when end button is press else = start when start is press
                 ");";
 
         db.execSQL(UserInfo);
@@ -276,14 +274,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 return status;
     }
 
-    public Boolean insertPeriodInfo(String email, String periodLength, String cycleLength, String lastStartDate) {
+    public Boolean insertPeriodInfo(String email, String periodLength, String cycleLength, String lastStartDate, String lastEndDate, String periodStatus) {
             Boolean status = false;
             SQLiteDatabase db = this.getWritableDatabase();
-
+            int x =Integer.parseInt(cycleLength);
+            int y= Integer.parseInt(periodLength);
             ContentValues values =new ContentValues();
-            values.put("PeriodLength",periodLength);
-            values.put("CycleLength",cycleLength);
+            values.put("PeriodLength",y);
+            values.put("CycleLength",x);
             values.put("LastStartDate",lastStartDate);
+            values.put("LastEndDate",lastEndDate);
+            values.put("PeriodStatus",periodStatus);
             values.put("email",email);
             double i =db.insert("PeriodInfo",null,values);
             if(i==-1){
@@ -398,5 +399,65 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             periodINfo = null;
             return periodINfo;
         }
+    }
+
+    public Cursor getCompletedPeriodsHistory(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+        String periodINfo[]= new String[3];
+        SQLiteDatabase db = getRDatabase();
+        String query ="Select * from PeriodInfo where email = "+x+" and PeriodStatus = "+y+" ;";
+        Log.e("Query out cursor : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Cursor temp =resultSet;
+        Log.e("Return Cursor",resultSet.toString());
+
+        return resultSet;
+    }
+
+    public int getAvgCycleLength(String email) {
+            String x = '"'+email+'"';
+            String y = "\"end\"";
+            int length=0;
+
+            SQLiteDatabase db = getReadableDatabase();
+            String query ="Select AVG(CycleLength) from PeriodInfo where email = "+x+";";
+            Log.e("Query out cursor : ",query);
+            Cursor resultSet = db.rawQuery(query,null);
+            if(resultSet.moveToFirst()){
+                length = Integer.parseInt(resultSet.getString(0));
+            }
+            Log.e("Return Length",""+length);
+            return length;
+    }
+
+    public Cursor getLatestCompletedPeriods(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+        String periodINfo[]= new String[3];
+        SQLiteDatabase db = getRDatabase();
+        String query ="Select MAX(SrNo),email,PeriodLength,CycleLength,LastStartDate,LastEndDate from PeriodInfo where email = "+x+" and PeriodStatus = "+y+" ;";
+        Log.e("Query out cursor : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Cursor temp =resultSet;
+        Log.e("Return Cursor",resultSet.toString());
+
+        return resultSet;
+    }
+
+    public int getAvgPeriodLength(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+        int length=0;
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query ="Select AVG(PeriodLength) from PeriodInfo where email = "+x+"  and PeriodStatus = "+y+";";
+        Log.e("Query out cursor : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        if(resultSet.moveToFirst()){
+            length = Integer.parseInt(resultSet.getString(0));
+        }
+        Log.e("Return Length",""+length);
+        return length;
     }
 }

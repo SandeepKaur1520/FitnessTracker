@@ -109,7 +109,7 @@ public class Selected_Field extends AppCompatActivity {
                         } else if (flag[0] == 2) {
                             Toast.makeText(Selected_Field.this, "Period Data Saved", Toast.LENGTH_LONG).show();
                             Intent inte = new Intent(Selected_Field.this, Period_info.class);
-                            inte.putExtra("periodInfoEmail", email);
+                            inte.putExtra("email", email);
                             startActivity(inte);
                         }
                     } else {

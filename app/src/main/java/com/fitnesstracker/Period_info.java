@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.fitnesstracker.database.DatabaseHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Period_info extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     String date;
@@ -26,7 +28,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
     int startYear = calendar.get(Calendar.YEAR);
     int startMonth = calendar.get(Calendar.MONTH) ;
     int startDay = calendar.get(Calendar.DATE);
-    String lastStartDate,periodLength,cycleLength,email;
+    public static  String lastEndDate,lastStartDate,periodLength,cycleLength,email;
     boolean isPeriodSelected=false;
     boolean isCycleSelected =false;
     boolean isLastDateSelected =false;
@@ -41,7 +43,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
         setContentView(R.layout.period_info);
 
         Intent obj = getIntent();
-        email = obj.getStringExtra("periodInfoEmail");
+        email = obj.getStringExtra("email");
         Log.e("Email in oncreate ",email);
         periodLength = "1";
         cycleLength = "15";
@@ -51,10 +53,11 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-
+                Calendar cal = Calendar.getInstance();
                 final DatePickerDialog datePickerDialog = new DatePickerDialog(
                         Period_info.this, (DatePickerDialog.OnDateSetListener) Period_info.this, startYear, startMonth, startDay);
                 datePickerDialog.show();
+                datePickerDialog.getDatePicker().setMaxDate(cal.getTimeInMillis());
             }
         });
         final Button periodlengthbtn =findViewById(R.id.PeriodLengthDialog);
@@ -140,11 +143,14 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 if(isCycleSelected&&isPeriodSelected&&isLastDateSelected&&isLastDateVaild) {
-                     Boolean status = db.insertPeriodInfo(email, periodLength, cycleLength, lastStartDate);
+                    int length   = Integer.parseInt(periodLength);
+                    lastEndDate =calEndDate(length);
+                    String periodStatus = "end";
+                     Boolean status = db.insertPeriodInfo(email, periodLength, cycleLength, lastStartDate,lastEndDate,periodStatus);
                     if (status) {
-
                         Intent intent = new Intent(Period_info.this, PeriodDashboard.class);
                         intent.putExtra("email",email);
+//                        Toast.makeText(Period_info.this,"Data Saved",Toast.LENGTH_LONG).show();
                         startActivity(intent);
                     }else{
                         Toast.makeText(Period_info.this,"Something Went Wrong",Toast.LENGTH_LONG).show();
@@ -161,7 +167,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         int x=month+1;
         startDay = dayOfMonth;
-        startMonth = x;
+        startMonth = month;
         startYear = year;
         date = ("Date: " + dayOfMonth + " Month: " + x + " Year: " + year);
         date = (dayOfMonth + "/" + x + "/" + year);
@@ -170,10 +176,46 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
         Toast.makeText(Period_info.this, date, Toast.LENGTH_SHORT).show();
         StartPeriodDayDialogbtn =findViewById(R.id.StartPeriodDayDialog);
         StartPeriodDayDialogbtn.setText(" Last Start Date : " + date);
-        if(true){
+        Calendar cStart = Calendar.getInstance();
+        Calendar cEnd = Calendar.getInstance();
+        cEnd.setTime(Calendar.getInstance().getTime());
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date StartDate = sdf.parse(lastStartDate);
+
+            /**Calculating lastendDate*/
+            cStart.setTime(StartDate);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if(cStart.before(cEnd)){
             isLastDateVaild=true;
         }else{
+            Toast.makeText(Period_info.this,"Last Period Date can't Be in Future",Toast.LENGTH_LONG).show();
             isLastDateVaild=false;
+        }
+    }
+
+    public String calEndDate(int Periodlength){
+        try {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date StartDate = sdf.parse(lastStartDate);
+            Calendar c = Calendar.getInstance();
+            /**Calculating lastendDate*/
+            c.setTime(StartDate);
+            Log.e("Last Start Date", StartDate.toString()+"   +   "+Periodlength);
+            while (Periodlength>1) {
+                c.add(Calendar.DAY_OF_MONTH, 1);
+                Periodlength--;
+            }
+            String LastEndDate = sdf.format(c.getTime());
+            Log.e("LastEnd Into Database",LastEndDate);
+            return LastEndDate;
+        }catch (Exception e){
+            e.printStackTrace();
+            return  null;
         }
     }
 
