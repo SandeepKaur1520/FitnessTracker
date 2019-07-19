@@ -24,7 +24,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
     Button StartPeriodDayDialogbtn;
     Calendar calendar = Calendar.getInstance();
     int startYear = calendar.get(Calendar.YEAR);
-    int startMonth = calendar.get(Calendar.MONTH) + 1;
+    int startMonth = calendar.get(Calendar.MONTH) ;
     int startDay = calendar.get(Calendar.DATE);
     String lastStartDate,periodLength,cycleLength,email;
     boolean isPeriodSelected=false;
@@ -159,11 +159,12 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        int x=month+1;
         startDay = dayOfMonth;
-        startMonth = month+1;
+        startMonth = x;
         startYear = year;
-        date = ("Date: " + dayOfMonth + " Month: " + month+1 + " Year: " + year);
-        date = (dayOfMonth + "/" + month+1 + "/" + year);
+        date = ("Date: " + dayOfMonth + " Month: " + x + " Year: " + year);
+        date = (dayOfMonth + "/" + x + "/" + year);
         lastStartDate=date;
         isLastDateSelected=true;
         Toast.makeText(Period_info.this, date, Toast.LENGTH_SHORT).show();
