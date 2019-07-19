@@ -162,8 +162,8 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
         startDay = dayOfMonth;
         startMonth = month+1;
         startYear = year;
-        date = ("Date: " + dayOfMonth + " Month: " + month + " Year: " + year);
-        date = (dayOfMonth + "/" + month + "/" + year);
+        date = ("Date: " + dayOfMonth + " Month: " + month+1 + " Year: " + year);
+        date = (dayOfMonth + "/" + month+1 + "/" + year);
         lastStartDate=date;
         isLastDateSelected=true;
         Toast.makeText(Period_info.this, date, Toast.LENGTH_SHORT).show();
