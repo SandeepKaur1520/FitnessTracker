@@ -161,8 +161,8 @@ public class CalenderFragment extends Fragment {
         sDate.setTime(lastStartDate);
         eDate.setTime(lastEndDate);
         while (sDate.before(eDate)){
-            periodDays = sDate.getTime();
-            sDate
+//            periodDays = sDate.getTime();
+//            sDate
         }
 
 
