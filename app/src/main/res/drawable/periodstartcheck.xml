@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/selectedstart"
-        android:state_checked="true" />
-    <!-- When not selected, use white-->
-    <item android:drawable="@drawable/unselectedstart"
-        android:state_checked="false"/>
+
+    <item android:drawable="@drawable/selectedstart" android:state_selected="true"/>
+    <item android:drawable="@drawable/selectedstart" android:state_checked="true"/>
+
+    <item android:drawable="@drawable/selectedstart" android:state_pressed="true"/>
+    <item android:drawable="@drawable/disabledstart" android:state_enabled="false" />
+    <item android:drawable="@drawable/unselectedstart"/>
+    <item android:drawable="@drawable/unselectedstart" android:state_checked="false"/>
+
+    <!--<item android:drawable="@drawable/selectedstart"-->
+        <!--android:state_checked="true" />-->
+    <!--&lt;!&ndash; When not selected, use white&ndash;&gt;-->
+    <!--<item android:drawable="@drawable/unselectedstart"-->
+        <!--android:state_checked="false"/>-->
+    <!--<item android:drawable="@drawable/disabledstart"-->
+        <!--android:state_enabled="false"/>-->
 
 </selector>

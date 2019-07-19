@@ -45,11 +45,11 @@
             android:id="@+id/toggle_periodStart"
             android:layout_toLeftOf="@+id/toggle_periodEnd"
             android:layout_width="60dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
+            android:textAllCaps="false"
             android:background="@drawable/periodstartcheck"
-            android:text="Start"
-            android:textOn=" "
-            android:textOff=" "
+            android:textOn=""
+            android:textOff=""
             android:textAlignment="center"
             android:layout_marginRight="10dp"
             android:layout_gravity="right"/>
@@ -58,8 +58,9 @@
             android:layout_width="60dp"
             android:layout_height="35dp"
             android:background="@drawable/periodendcheck"
-            android:checked="false"
+
             android:textAlignment="center"
+
             android:layout_alignParentRight="true"
             android:layout_marginRight="5dp"
             android:textOff=" "

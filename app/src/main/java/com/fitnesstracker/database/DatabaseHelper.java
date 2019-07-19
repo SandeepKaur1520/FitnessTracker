@@ -461,4 +461,45 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         Log.e("Return Length",""+length);
         return length;
     }
+
+    public int getMaxPeriodSrNo(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+        int max=0;
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query ="Select MAX(SrNo) from PeriodInfo where email = "+x+";";
+        Log.e("Query out cursor : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        if(resultSet.moveToFirst()){
+            max = Integer.parseInt(resultSet.getString(0));
+        }
+        Log.e("Return Length",""+max);
+        return max;
+        }
+
+    public Boolean removePeriodInfo(String email, String PeriodStatus) {
+            SQLiteDatabase db = getWritableDatabase();
+
+            String Max = String.valueOf(getMaxPeriodSrNo(email));
+
+            int i = db.delete("PeriodInfo","email = ? and SrNo = ? and PeriodStatus = ?",new String[] {email,Max,PeriodStatus});
+            Log.e("Remove record ",""+i);
+            return true;
+
+    }
+
+    public Cursor getInCompletedPeriodsHistory(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+        String periodINfo[]= new String[3];
+        SQLiteDatabase db = getRDatabase();
+        String query ="Select * from PeriodInfo where email = "+x+"  ;";
+        Log.e("Query out cursor : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Cursor temp =resultSet;
+        Log.e("Return Cursor",resultSet.toString());
+
+        return resultSet;
+    }
 }

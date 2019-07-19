@@ -76,9 +76,10 @@ public class CalenderFragment extends Fragment {
         email = getArguments().getString("email");
         intialPeriodInfo = db.getPeriodInfo(email);//{periodLength,cycleLength,lastStartdate}
 
-        periodDays = getIntialPeriodDays(email);
-        ovulationDays = getIntialOvulationDays(email);
-        predictedPeriodDays =getPredictedDays(email);
+        updateLocalDateSetValue(email);
+//        periodDays = getIntialPeriodDays(email);
+//        ovulationDays = getIntialOvulationDays(email);
+//        predictedPeriodDays =getPredictedDays(email);
 
 //      addPeriodIntial(email,intialPeriodInfo);
         Periodlength = Integer.parseInt(intialPeriodInfo[0]);
@@ -99,28 +100,70 @@ public class CalenderFragment extends Fragment {
                 ToggleButton flowBtn = dialog.findViewById(R.id.toggle_flow);
                 final ToggleButton toggleStart = dialog.findViewById(R.id.toggle_periodStart);
                 final ToggleButton toggleEnd = dialog.findViewById(R.id.toggle_periodEnd);
+
                 if(date.equals(bufferPressedDate)&&isStartSelected){
                     toggleStart.setChecked(true);
                     toggleEnd.setEnabled(false);
-
-                }
-                else {
+                    toggleEnd.setFocusable(false);
+                }else {
                     toggleStart.setChecked(false);
                     toggleEnd.setEnabled(true);
                 }
                 toggleStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                    @Override
                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                       if (toggleStart.isChecked()) {
+                            String SelectedDate, PredictedEndDate;
+                            Calendar c = Calendar.getInstance();
+                            Date selectedDate=(c.getTime());
+                            Date predictedEndDate;
+                            isStartSelected = isChecked;
+                            bufferPressedDate = date;
+                            int periodLength = db.getAvgPeriodLength(email);
+                            int cycleLength = db.getAvgCycleLength(email);
 
-                        isStartSelected=isChecked;
-                        bufferPressedDate=date;
-                        dialog.dismiss();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+//                            try {
+//                                selectedDate = sdf.parse(date);
+//                            }catch (Exception e){
+//                                Log.e("Seleted day Exp= ",e.toString());
+//                                e.printStackTrace();
+//                            }
+
+                            /**predicting the period end date*/
+                            c.setTime(date);
+                            c.add(Calendar.DAY_OF_MONTH,(periodLength-1));
+                            predictedEndDate =c.getTime();
+                            PredictedEndDate =sdf.format(predictedEndDate);
+                            SelectedDate = sdf.format(date);
+
+                            Log.e("Predicted EndDate ",PredictedEndDate);
+
+                                Toast.makeText(getContext(),"Selected Date "+SelectedDate,Toast.LENGTH_LONG).show();
+                                Log.e("Start = ","is Checked ");
+                                Boolean  status = db.insertPeriodInfo(email,String.valueOf(periodLength),String.valueOf(cycleLength),SelectedDate,PredictedEndDate,"start");
+//                                updateLocalDateSetValue(email);
+//                                refreshCalendar(view);
+                            }else{
+                                Log.e("Start = ","is unChecked ");
+                                Boolean status = db.removePeriodInfo(email,"start");
+//                                updateLocalDateSetValue(email);
+//                                refreshCalendar(view);
+                            }
+
+                            dialog.dismiss();
 
 
                    }
                });
 
+                toggleEnd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
+                    }
+                });
                 flowBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -147,9 +190,6 @@ public class CalenderFragment extends Fragment {
 
                 dialog.show();
 
-
-
-
             }
 
             @Override
@@ -158,6 +198,13 @@ public class CalenderFragment extends Fragment {
             }
         });
         return view;
+
+    }
+
+    private void updateLocalDateSetValue(String email) {
+        periodDays = getIntialPeriodDays(email);
+        ovulationDays = getIntialOvulationDays(email);
+        predictedPeriodDays = getPredictedDays(email);
 
     }
 
@@ -283,6 +330,8 @@ public class CalenderFragment extends Fragment {
         return days;
 
     }
+
+
 
 //    private void addPeriodIntial(String email, String[] intialPeriodInfo) {
 //        try {

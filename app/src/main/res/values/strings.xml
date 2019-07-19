@@ -18,7 +18,9 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string-array name="Gender">
-        <item>Male</item>
+        <item>Male
+
+        </item>
         <item>Female</item>
 
     </string-array>
@@ -42,4 +44,7 @@
     <string name="fertile_notification_text">Tomorrow is fertile day</string>
     <string name="period_notification_title">Menstruation day!</string>
     <string name="period_notification_text">Tomorrow is a menstruation day</string>
+    <string name="StartON">Start
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+    </string>
 </resources>
