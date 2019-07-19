@@ -114,6 +114,7 @@
         tools:context=".MapsActivity" />
 
     <Button
+        android:id="@+id/bStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -122,7 +123,8 @@
         android:layout_marginBottom="65dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:id="@+id/bStop"/>
+        android:textColor="#fff"
+      />
 
     <ImageView
         android:id="@+id/imvCurrent"
