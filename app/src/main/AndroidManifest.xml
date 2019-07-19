@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Calories"></activity>
+        <activity android:name=".Gym_CongratsActivity"></activity>
+        <activity android:name=".Calories" />
         <activity android:name=".Daily_Goals" />
         <activity android:name=".Period_Length_Dialog" />
 
