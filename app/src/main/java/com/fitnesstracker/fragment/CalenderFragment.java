@@ -2,24 +2,22 @@ package com.fitnesstracker.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.fitnesstracker.Health_Info;
 import com.fitnesstracker.R;
 import com.fitnesstracker.database.DatabaseHelper;
 import com.fitnesstracker.period.PeriodDaysManager;
@@ -32,6 +30,7 @@ import org.joda.time.LocalDate;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -71,7 +70,7 @@ public class CalenderFragment extends Fragment {
         email = getArguments().getString("email");
         intialPeriodInfo = db.getPeriodInfo(email);//{periodLength,cycleLength,lastStartdate}
         addPeriodHistory(email,intialPeriodInfo);
-
+        refreshCalendar(view);
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(final Date date) {
@@ -161,8 +160,9 @@ public class CalenderFragment extends Fragment {
         sDate.setTime(lastStartDate);
         eDate.setTime(lastEndDate);
         while (sDate.before(eDate)){
-//            periodDays = sDate.getTime();
-//            sDate
+            LocalDate localDate = new LocalDate(sDate.getTime());
+            periodDays.add(localDate);
+            sDate.add(Calendar.DAY_OF_MONTH,1);
         }
 
 
@@ -175,6 +175,11 @@ public class CalenderFragment extends Fragment {
         }
 
 
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private java.time.LocalDate convertToLocalDate(Date time) {
+        return time.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     private void refreshCalendar(View view) {
