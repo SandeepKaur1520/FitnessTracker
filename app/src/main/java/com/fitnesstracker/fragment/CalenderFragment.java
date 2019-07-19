@@ -225,15 +225,13 @@ public class CalenderFragment extends Fragment {
             Cursor resultSet = db.getLatestCompletedPeriods(email);
             int cyclelength =db.getAvgCycleLength(email);
             int peroidlength =db.getAvgPeriodLength(email);
-
             if (resultSet.moveToFirst()) {
                 do {
-
                     String OldStartDate = resultSet.getString(4);
                     String OldEndDate = resultSet.getString(5);
                     Date oldStartDate, oldEndDate,newStartDate,newEndDate;
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    oldStartDate = sdf.parse(OldEndDate);
+                    oldStartDate = sdf.parse(OldStartDate);
                     oldEndDate = sdf.parse(OldEndDate);
                     Calendar sDate = Calendar.getInstance();
                     Calendar eDate = Calendar.getInstance();
@@ -245,7 +243,6 @@ public class CalenderFragment extends Fragment {
                     c.setTime(newStartDate);
                     c.add(Calendar.DAY_OF_MONTH,peroidlength);
                     newEndDate = c.getTime();
-
 
                     sDate.setTime(newStartDate);
                     eDate.setTime(newEndDate);
@@ -276,7 +273,7 @@ public class CalenderFragment extends Fragment {
                     String OldEndDate = resultSet.getString(5);
                     Date oldStartDate, oldEndDate,newStartDate,firstSevenDays,lastfourteendays;
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    oldStartDate = sdf.parse(OldEndDate);
+                    oldStartDate = sdf.parse(OldStartDate);
                     oldEndDate = sdf.parse(OldEndDate);
                     Calendar sDate = Calendar.getInstance();
                     Calendar eDate = Calendar.getInstance();
