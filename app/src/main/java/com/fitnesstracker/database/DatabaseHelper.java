@@ -17,6 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         /**This table stores personal information of user and which kind of service he/she wants to avail*/
