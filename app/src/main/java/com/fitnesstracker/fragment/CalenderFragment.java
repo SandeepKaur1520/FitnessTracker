@@ -57,11 +57,11 @@ public class CalenderFragment extends Fragment {
         this.context =context;
         db = new DatabaseHelper(context);
     }
-
+    int Periodlength , cyclelength;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.calenderfragment,container,false);
+        final View view =inflater.inflate(R.layout.calenderfragment,container,false);
         calendarView = view.findViewById(R.id.calendar_view);
         manager = new PeriodDaysManager(getContext());
 //        periodDays = manager.getHistoricPeriodDays();
@@ -71,6 +71,10 @@ public class CalenderFragment extends Fragment {
         email = getArguments().getString("email");
         intialPeriodInfo = db.getPeriodInfo(email);//{periodLength,cycleLength,lastStartdate}
         addPeriodIntial(email,intialPeriodInfo);
+        Periodlength = Integer.parseInt(intialPeriodInfo[0]);
+        cyclelength = Integer.parseInt(intialPeriodInfo[1]);
+
+
         refreshCalendar(view);
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
@@ -83,18 +87,87 @@ public class CalenderFragment extends Fragment {
                 RelativeLayout RLMood = dialog.findViewById(R.id.RLMoodpopup);
                 final RelativeLayout RLFlowPopup = dialog.findViewById(R.id.RLPopupFlow);
                 ToggleButton flowBtn = dialog.findViewById(R.id.toggle_flow);
-                ToggleButton toggleStart = dialog.findViewById(R.id.toggle_periodStart);
+                final ToggleButton toggleStart = dialog.findViewById(R.id.toggle_periodStart);
 
                toggleStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                    @Override
                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                       int Day = date.getDay();
-                       int Year = date.getYear();
-                       int month = date.getMonth();
-                       DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                       try {
+                           DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                           Set<LocalDate> newperiodpredicted = new HashSet<>();
+                           Set<LocalDate> oldperiodpredicted = new HashSet<>();
+                           Set<LocalDate> periodDaystemp = new HashSet<>();
+                           Calendar c = Calendar.getInstance();
+                           Date  newEndDate,newStartDate=date;
+                           String NewStartDate, NewEndDate;
+                           String StartDate,EndDate;
+                           Date startDate,endDate;
 
-                       String selectedDate = dateFormat.format(date);
-                       Log.e("Date = ",selectedDate);
+                           SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+                           NewStartDate = dateFormat.format(date);
+                           Log.e("Date = ", NewStartDate);
+                           if(isChecked) {
+
+                               c.setTime(newStartDate);
+                               c.add(Calendar.DATE, Periodlength);
+                               NewEndDate = sdf.format(c.getTime());
+                               newEndDate = sdf.parse(NewEndDate);
+                               Log.e("Last End Date", newEndDate.toString());
+                               Log.e("Last End Date String", NewEndDate.toString());
+                               Calendar sDate = Calendar.getInstance();
+                               Calendar eDate = Calendar.getInstance();
+                               sDate.setTime(newStartDate);
+                               eDate.setTime(newEndDate);
+                               while (sDate.before(eDate)) {
+                                   LocalDate localDate = new LocalDate(sDate.getTime());
+                                   periodDaystemp.add(localDate);
+                                   sDate.add(Calendar.DAY_OF_MONTH, 1);
+
+                               }
+
+
+                               c.setTime(newStartDate);
+                               c.add(Calendar.DATE, cyclelength);
+                               StartDate = sdf.format(c.getTime());
+                               startDate = sdf.parse(StartDate);
+
+                               c.setTime(startDate);
+                               c.add(Calendar.DATE, Periodlength);
+                               EndDate = sdf.format(c.getTime());
+                               endDate = sdf.parse(EndDate);
+
+                               sDate.setTime(startDate);
+                               eDate.setTime(endDate);
+                               while (sDate.before(eDate)) {
+                                   LocalDate localDate = new LocalDate(sDate.getTime());
+                                   newperiodpredicted.add(localDate);
+                                   sDate.add(Calendar.DAY_OF_MONTH, 1);
+
+                               }
+                               refreshCalendar(view);
+
+                               periodDays.addAll(periodDaystemp);
+                               oldperiodpredicted.addAll(predictedPeriodDays);
+                               predictedPeriodDays.clear();
+                               predictedPeriodDays.addAll(newperiodpredicted);
+                               toggleStart.setChecked(true);
+                           }else{
+
+                               periodDays.removeAll(periodDaystemp);
+                               predictedPeriodDays.clear();
+                               predictedPeriodDays.addAll(oldperiodpredicted);
+
+
+                               refreshCalendar(view);
+                               toggleStart.setChecked(false);
+                           }
+
+                       }catch (Exception e){
+
+                       }
+
+
                    }
                });
 
@@ -141,8 +214,8 @@ public class CalenderFragment extends Fragment {
 
     private void addPeriodIntial(String email, String[] intialPeriodInfo) {
         try {
-        int Periodlength = Integer.parseInt(intialPeriodInfo[0]);
-        int cyclelength = Integer.parseInt(intialPeriodInfo[1]);
+        Periodlength = Integer.parseInt(intialPeriodInfo[0]);
+        cyclelength = Integer.parseInt(intialPeriodInfo[1]);
         String StartDate,EndDate,LastEndDate;
         Date lastStartDate,lastEndDate,startDate,endDate;
 
@@ -172,7 +245,7 @@ public class CalenderFragment extends Fragment {
 
         }
 
-        /**Calculating Start and end Date*/
+        /**Calculating perdicted period Start and end Date*/
 
         c.setTime(lastStartDate);
         c.add(Calendar.DATE,cyclelength);
