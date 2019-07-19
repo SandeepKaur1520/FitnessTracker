@@ -67,13 +67,23 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
 
 
-        String PeriodHistory=null;
+        String PeriodHistory="CREATE TABLE IF NOT EXISTS `PeriodHistory` (\n" +
+                "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                "  `email` varchar(100) NOT NULL,\n" +
+                "  `Event` varchar(100),\n"+
+                "  `PeriodLength` varchar(100),\n"+
+                "  `CycleLength` varchar(100),\n"+
+                "  `LastStartDate` varchar(100),\n"+
+                "  `LastEndDate` varchar(100),\n"+
+                "  `StartDate` varchar(100),\n"+
+                "  `EndDate` varchar(100)\n"+
+                ");";
 
         db.execSQL(UserInfo);
         db.execSQL(GymInfo);
         db.execSQL(DailyGoals);
         db.execSQL(PeriodInfo);
-//        db.execSQL(PeriodHistory);
+        db.execSQL(PeriodHistory);
 
 
 
@@ -364,5 +374,29 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return goals;
         }
 
+    }
+
+    public String[] getPeriodInfo(String email) {
+        String x = '"'+email+'"';
+        String periodINfo[]= new String[3];
+        SQLiteDatabase db = getRDatabase();
+        String query ="Select MAX(SrNo),PeriodLength,CycleLength,LastStartDate from PeriodInfo where email = "+x+";";
+        Log.e("Query out : ",query);
+        Cursor resultSet = db.rawQuery(query,null);
+        Log.e("Cursor : ",resultSet.toString());
+        if (resultSet.moveToFirst()) {
+            String periodLength = resultSet.getString(1);
+            String cycleLegth = resultSet.getString(2);
+            String lastStartDate = resultSet.getString(3);
+
+            periodINfo[0]=periodLength;
+            periodINfo[1]=cycleLegth;
+            periodINfo[2]=lastStartDate;
+            return periodINfo;
+
+        }else {
+            periodINfo = null;
+            return periodINfo;
+        }
     }
 }

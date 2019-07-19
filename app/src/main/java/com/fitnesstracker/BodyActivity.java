@@ -24,7 +24,7 @@ public class BodyActivity extends AppCompatActivity {
         RGbodyActiveness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.rbtnworkoutHero){
+                if(checkedId==R.id.rbtndWorkoutHero){
                     BodyActiveness="Workout Hero";
                 }else if(checkedId==R.id.rbtnlightMode){
                     BodyActiveness="Light Mode";

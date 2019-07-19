@@ -78,6 +78,9 @@ public class PeriodDashboard extends AppCompatActivity {
     private void onClickCalender() {
        /* ivCalender.setImageResource(R.mipmap.facebook);*/
         fragment = new CalenderFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
+        fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, fragment)
