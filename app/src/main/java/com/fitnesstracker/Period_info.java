@@ -146,7 +146,8 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
                     int length   = Integer.parseInt(periodLength);
                     lastEndDate =calEndDate(length);
                     String periodStatus = "end";
-                     Boolean status = db.insertPeriodInfo(email, periodLength, cycleLength, lastStartDate,lastEndDate,periodStatus);
+                    db.insertPeriodInfo(email, periodLength, cycleLength, lastStartDate,lastEndDate,periodStatus);
+                    Boolean status = db.insertPeriodInfo(email, periodLength, cycleLength, lastStartDate,lastEndDate,periodStatus);
                     if (status) {
                         Intent intent = new Intent(Period_info.this, PeriodDashboard.class);
                         intent.putExtra("email",email);
@@ -198,6 +199,7 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
     }
 
     public String calEndDate(int Periodlength){
+        String LastEndDate =null;
         try {
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -211,13 +213,13 @@ public class Period_info extends AppCompatActivity implements DatePickerDialog.O
 //                Periodlength--;
 //            }
             c.add(Calendar.DAY_OF_MONTH,Periodlength);
-            String LastEndDate = sdf.format(c.getTime());
+            LastEndDate = sdf.format(c.getTime());
             Log.e("LastEnd Into Database",LastEndDate);
-            return LastEndDate;
+
         }catch (Exception e){
             e.printStackTrace();
-            return  null;
-        }
+
+        }return LastEndDate;
     }
 
 }

@@ -3,11 +3,9 @@ package com.fitnesstracker.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +14,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.fitnesstracker.R;
 import com.fitnesstracker.database.DatabaseHelper;
-import com.fitnesstracker.period.PeriodDaysManager;
 import com.stacktips.view.CalendarListener;
 import com.stacktips.view.CustomCalendarView;
 import com.stacktips.view.DayDecorator;
@@ -29,13 +25,15 @@ import com.stacktips.view.DayView;
 
 import org.joda.time.LocalDate;
 
-import java.text.DateFormat;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -46,47 +44,45 @@ public class CalenderFragment extends Fragment {
     private static Set<LocalDate> predictedPeriodDays = new HashSet<>();
     private static Set<LocalDate> fertileDays = new HashSet<>();
     private static Set<LocalDate> ovulationDays = new HashSet<>();
-    private PeriodDaysManager manager;
+
+    ToggleButton toggleStart;
+    ToggleButton toggleEnd;
     CustomCalendarView calendarView;
-    String email,intialPeriodInfo[],periodHistory[];
+    String email, intialPeriodInfo[], periodHistory[];
     Context context;
-    DatabaseHelper db ;
-    Boolean isStartSelected=false;
-    Date bufferPressedDate;
+    DatabaseHelper db;
+    static Boolean isStartSelected = false;
+    static Date bufferPressedDate;
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.context =context;
+        this.context = context;
         db = new DatabaseHelper(context);
     }
-    int Periodlength , cyclelength;
+
+    int Periodlength, cyclelength;
+
     @Nullable
     @Override
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view =inflater.inflate(R.layout.calenderfragment,container,false);
+        final View view = inflater.inflate(R.layout.calenderfragment, container, false);
         calendarView = view.findViewById(R.id.calendar_view);
-        manager = new PeriodDaysManager(getContext());
-        //periodDays = manager.getHistoricPeriodDays();
-//        fertileDays = manager.getHistoricFertileDays();
-//        ovulationDays = manager.getHistoricOvulationDays();
 
-        email = getArguments().getString("email");
         intialPeriodInfo = db.getPeriodInfo(email);//{periodLength,cycleLength,lastStartdate}
 
+        email = getArguments().getString("email");
         updateLocalDateSetValue(email);
-//        periodDays = getIntialPeriodDays(email);
-//        ovulationDays = getIntialOvulationDays(email);
-//        predictedPeriodDays =getPredictedDays(email);
-
-//      addPeriodIntial(email,intialPeriodInfo);
-        Periodlength = Integer.parseInt(intialPeriodInfo[0]);
-        cyclelength = Integer.parseInt(intialPeriodInfo[1]);
 
 
+        Periodlength = db.getAvgPeriodLength(email);
+        cyclelength = db.getAvgCycleLength(email);
         refreshCalendar(view);
+
+
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(final Date date) {
@@ -98,78 +94,72 @@ public class CalenderFragment extends Fragment {
                 RelativeLayout RLMood = dialog.findViewById(R.id.RLMoodpopup);
                 final RelativeLayout RLFlowPopup = dialog.findViewById(R.id.RLPopupFlow);
                 ToggleButton flowBtn = dialog.findViewById(R.id.toggle_flow);
-                final ToggleButton toggleStart = dialog.findViewById(R.id.toggle_periodStart);
-                final ToggleButton toggleEnd = dialog.findViewById(R.id.toggle_periodEnd);
+                toggleStart = dialog.findViewById(R.id.toggle_periodStart);
+                toggleEnd = dialog.findViewById(R.id.toggle_periodEnd);
 
-                if(date.equals(bufferPressedDate)&&isStartSelected){
-                    toggleStart.setChecked(true);
+                if (date.equals(bufferPressedDate) && isStartSelected) {
                     toggleEnd.setEnabled(false);
                     toggleEnd.setFocusable(false);
-                }else {
-                    toggleStart.setChecked(false);
+                } else {
                     toggleEnd.setEnabled(true);
                 }
+
                 toggleStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                   @Override
-                   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                       if (toggleStart.isChecked()) {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Date selectedDate = date;
+                        if (isChecked) {
                             String SelectedDate, PredictedEndDate;
-                            Calendar c = Calendar.getInstance();
-                            Date selectedDate=(c.getTime());
-                            Date predictedEndDate;
+
+                            Date predictedEndDate = new Date();
+                            int cycleLength = 0;
                             isStartSelected = isChecked;
-                            bufferPressedDate = date;
+                            bufferPressedDate = selectedDate;
                             int periodLength = db.getAvgPeriodLength(email);
-                            int cycleLength = db.getAvgCycleLength(email);
+                            try{
+                                Date previousStartDate = db.getLatestStartPeriodDate(email);
+                                cycleLength = getNumberOfDaysBetweenTwoDates(previousStartDate,selectedDate);
 
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-//                            try {
-//                                selectedDate = sdf.parse(date);
-//                            }catch (Exception e){
-//                                Log.e("Seleted day Exp= ",e.toString());
-//                                e.printStackTrace();
-//                            }
-
-                            /**predicting the period end date*/
-                            c.setTime(date);
-                            c.add(Calendar.DAY_OF_MONTH,(periodLength-1));
-                            predictedEndDate =c.getTime();
-                            PredictedEndDate =sdf.format(predictedEndDate);
-                            SelectedDate = sdf.format(date);
-
-                            Log.e("Predicted EndDate ",PredictedEndDate);
-
-                                Toast.makeText(getContext(),"Selected Date "+SelectedDate,Toast.LENGTH_LONG).show();
-                                Log.e("Start = ","is Checked ");
-                                Boolean  status = db.insertPeriodInfo(email,String.valueOf(periodLength),String.valueOf(cycleLength),SelectedDate,PredictedEndDate,"start");
-//                                updateLocalDateSetValue(email);
-//                                refreshCalendar(view);
-                            }else{
-                                Log.e("Start = ","is unChecked ");
-                                Boolean status = db.removePeriodInfo(email,"start");
-//                                updateLocalDateSetValue(email);
-//                                refreshCalendar(view);
+                            }catch (Exception exp){
+                                Log.e("Expection startButton","Line 126 to 127");
                             }
 
-                            dialog.dismiss();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            /**predicting the period end date*/
+                            predictedEndDate = calPeriodEndDate(selectedDate,email);
+                            PredictedEndDate = sdf.format(predictedEndDate);
+                            SelectedDate = sdf.format(selectedDate);
+                            Boolean status = db.insertPeriodInfo(email, String.valueOf(periodLength), String.valueOf(cycleLength), SelectedDate, PredictedEndDate, "start");
+                            Log.e("DAta in Database","Status = "+status);
+                            updateLocalDateSetValue(email);
+                            calendarView.setDecorators(Collections.<DayDecorator>singletonList(new SampleDayDecorator()));
 
+                        } else {
+                            Date nearestDate = getNearestStartDate(selectedDate,email);
+                            Log.e("Nearest Date",""+nearestDate);
+//                            Boolean status = db.removePeriodInfo(email, "start");
+                            updateLocalDateSetValue(email);
+                        }
+                        dialog.dismiss();
 
-                   }
-               });
+                    }
+                });
 
                 toggleEnd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Date nearestDate = getNearestStartDate(date,email);
+                        Log.e("Nearest Date",""+nearestDate);
+                        dialog.dismiss();
 
                     }
                 });
                 flowBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked){
+                        if (isChecked) {
                             RLFlowPopup.setVisibility(View.VISIBLE);
-                        }else {
+                        } else {
                             RLFlowPopup.setVisibility(View.GONE);
                         }
                     }
@@ -201,205 +191,136 @@ public class CalenderFragment extends Fragment {
 
     }
 
-    private void updateLocalDateSetValue(String email) {
-        periodDays = getIntialPeriodDays(email);
-        ovulationDays = getIntialOvulationDays(email);
-        predictedPeriodDays = getPredictedDays(email);
+    private Date getNearestStartDate(Date selectedDate, String email) {
 
+        Date nearestDate = new Date();
+        List<Date> dates = new ArrayList<Date>();
+        Cursor resultSet = db.getPeriodStartDates(email);
+        if(resultSet.moveToFirst()){
+            do{
+                Date date = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                if(resultSet.moveToFirst()){
+                    try {
+                        date = sdf.parse(resultSet.getString(0));
+                    } catch (Exception exp) {
+                        Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
+                    }
+                }
+                Calendar sDate = Calendar.getInstance();
+                Calendar eDate = Calendar.getInstance();
+                sDate.setTime(date);
+                eDate.setTime(selectedDate);
+                if(sDate.before(eDate)){
+                    dates.add(date);
+                }
+//                if(date.compareTo(selectedDate)==-1){
+//                    dates.add(date);
+//                }
+            }while(resultSet.moveToNext());
+
+        }
+//        nearestDate = Collections.min(dates, new Comparator<Date>() {
+//            @Override
+//            public int compare(Date d1, Date d2) {
+//                long diff1 = Math.abs(d1.getTime() - now);
+//                long diff2 = Math.abs(d2.getTime() - now);
+//                return Long.compare(diff1,diff2);
+//            }
+//        });
+        int size = dates.size();
+        nearestDate = dates.get(size);
+
+        return nearestDate;
+    }
+
+    private int getNumberOfDaysBetweenTwoDates(Date previousStartDate, Date selectedDate) {
+        int numberOfDays=0;
+        Calendar sDate = Calendar.getInstance();
+        Calendar eDate = Calendar.getInstance();
+        sDate.setTime(previousStartDate);
+        eDate.setTime(selectedDate);
+        while (eDate.before(sDate)) {
+            numberOfDays++;
+        }
+        return numberOfDays;
+    }
+
+    public Date calPeriodEndDate(Date startDate,String email){
+        Date peroidEndDate;
+        String PeroidEndDate;
+        int periodLength = db.getAvgPeriodLength(email);
+        Calendar c = Calendar.getInstance();
+        c.setTime(startDate);
+        c.add(Calendar.DAY_OF_MONTH,periodLength);
+        peroidEndDate = c.getTime();
+        return peroidEndDate;
+    }
+
+    public Date calCycleStartDate(Date oldStartDate,String email){
+        Date cycleStartDate;
+        String CycleStartDate;
+        int cycleLength = db.getAvgCycleLength(email);
+        Calendar c = Calendar.getInstance();
+        c.setTime(oldStartDate);
+        c.add(Calendar.DAY_OF_MONTH,cycleLength);
+        cycleStartDate = c.getTime();
+        return cycleStartDate;
+    }
+
+    public Set<LocalDate>getDaysBetweenDates(Date startdate,Date enddate){
+        Set<LocalDate> days = new HashSet<>();
+        Calendar sDate = Calendar.getInstance();
+        Calendar eDate = Calendar.getInstance();
+        sDate.setTime(startdate);
+        eDate.setTime(enddate);
+        while (sDate.before(eDate)) {
+            LocalDate localDate = new LocalDate(sDate.getTime());
+            days.add(localDate);
+            sDate.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return days;
     }
 
     private Set<LocalDate> getPredictedDays(String email) {
         Set<LocalDate> days = new HashSet<>();
-        try {
-            Cursor resultSet = db.getLatestCompletedPeriods(email);
-            int cyclelength =db.getAvgCycleLength(email);
-            int peroidlength =db.getAvgPeriodLength(email);
-            if (resultSet.moveToFirst()) {
-                do {
-                    String OldStartDate = resultSet.getString(4);
-                    String OldEndDate = resultSet.getString(5);
-                    Date oldStartDate, oldEndDate,newStartDate,newEndDate;
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Cursor resultSet = db.getLatestCompletedPeriods(email);
+        if (resultSet.moveToFirst()) {
+            do {
+                int cycleLength = Integer.parseInt(resultSet.getString(3));
+                int periodLength = Integer.parseInt(resultSet.getString(2));
+                String OldStartDate = resultSet.getString(4);
+                String OldEndDate = resultSet.getString(5);
+                Date newStartDate, newEndDate,oldStartDate=new Date() ;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
                     oldStartDate = sdf.parse(OldStartDate);
-                    oldEndDate = sdf.parse(OldEndDate);
-                    Calendar sDate = Calendar.getInstance();
-                    Calendar eDate = Calendar.getInstance();
-                    Calendar c =Calendar.getInstance();
-                    c.setTime(oldStartDate);
-                    c.add(Calendar.DAY_OF_MONTH,cyclelength);
-                    newStartDate = c.getTime();
+                } catch (Exception e) {
+                  Log.e("Expection","in Predicted Days Method"+e.toString());
+                }
+                Calendar c = Calendar.getInstance();
+                c.setTime(oldStartDate);
+                c.add(Calendar.DAY_OF_MONTH,cycleLength);
+                newStartDate = c.getTime();
 
-                    c.setTime(newStartDate);
-                    c.add(Calendar.DAY_OF_MONTH,peroidlength);
-                    newEndDate = c.getTime();
+                String PeroidEndDate;
+                c.setTime(newStartDate);
+                c.add(Calendar.DAY_OF_MONTH,periodLength);
+                newEndDate =  c.getTime();
+                Calendar sDate = Calendar.getInstance();
+                Calendar eDate = Calendar.getInstance();
 
-                    sDate.setTime(newStartDate);
-                    eDate.setTime(newEndDate);
-                    while (sDate.before(eDate)) {
-                        LocalDate localDate = new LocalDate(sDate.getTime());
-                        days.add(localDate);
-                        sDate.add(Calendar.DAY_OF_MONTH, 1);
-                    }
-                } while (resultSet.moveToNext());
-            }
+                sDate.setTime(newStartDate);
+                eDate.setTime(newEndDate);
+                while (sDate.before(eDate)) {
+                    LocalDate localDate = new LocalDate(sDate.getTime());
+                    days.add(localDate);
+                    sDate.add(Calendar.DAY_OF_MONTH, 1);
+                }
 
-        }catch (Exception e){
-            return null;
-//            Log.e("Expection in Perdiodays",e.toString());
+            } while (resultSet.moveToNext());
         }
         return days;
-    }
-
-    private Set<LocalDate> getIntialOvulationDays(String email) {
-        Set<LocalDate> days = new HashSet<>();
-        try {
-            Cursor resultSet = db.getLatestCompletedPeriods(email);
-            int cyclelength =db.getAvgCycleLength(email);
-            if (resultSet.moveToFirst()) {
-                do {
-
-                    String OldStartDate = resultSet.getString(4);
-                    String OldEndDate = resultSet.getString(5);
-                    Date oldStartDate, oldEndDate,newStartDate,firstSevenDays,lastfourteendays;
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    oldStartDate = sdf.parse(OldStartDate);
-                    oldEndDate = sdf.parse(OldEndDate);
-                    Calendar sDate = Calendar.getInstance();
-                    Calendar eDate = Calendar.getInstance();
-                    Calendar c =Calendar.getInstance();
-                    c.setTime(oldStartDate);
-                    c.add(Calendar.DAY_OF_MONTH,cyclelength);
-                    newStartDate = c.getTime();
-
-                    c.setTime(oldEndDate);
-                    c.add(Calendar.DAY_OF_MONTH,6);
-                    firstSevenDays = c.getTime();
-
-                    c.setTime(newStartDate);
-                    c.add(Calendar.DAY_OF_MONTH,-13);
-                    lastfourteendays=c.getTime();
-
-                    sDate.setTime(firstSevenDays);
-                    eDate.setTime(lastfourteendays);
-                    while (sDate.before(eDate)) {
-                        LocalDate localDate = new LocalDate(sDate.getTime());
-                        days.add(localDate);
-                        sDate.add(Calendar.DAY_OF_MONTH, 1);
-                    }
-                } while (resultSet.moveToNext());
-            }
-
-        }catch (Exception e){
-            return null;
-//            Log.e("Expection in Perdiodays",e.toString());
-        }
-        return days;
-    }
-
-    //return the set of completed period days
-    private Set<LocalDate> getIntialPeriodDays(String email) {
-        Set<LocalDate> days = new HashSet<>();
-        try {
-            Cursor resultSet = db.getCompletedPeriodsHistory(email);
-
-            if (resultSet.moveToFirst()) {
-                do {
-
-                    String StartDate = resultSet.getString(4);
-                    String EndDate = resultSet.getString(5);
-                    Date startDate, endDate;
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                    startDate = sdf.parse(StartDate);
-                    endDate = sdf.parse(EndDate);
-                    Calendar sDate = Calendar.getInstance();
-                    Calendar eDate = Calendar.getInstance();
-                    sDate.setTime(startDate);
-                    eDate.setTime(endDate);
-                    while (sDate.before(eDate)) {
-                        LocalDate localDate = new LocalDate(sDate.getTime());
-                        days.add(localDate);
-                        sDate.add(Calendar.DAY_OF_MONTH, 1);
-                    }
-                } while (resultSet.moveToNext());
-            }
-
-        }catch (Exception e){
-            return null;
-//            Log.e("Expection in Perdiodays",e.toString());
-        }
-        return days;
-
-    }
-
-
-
-//    private void addPeriodIntial(String email, String[] intialPeriodInfo) {
-//        try {
-//        Periodlength = Integer.parseInt(intialPeriodInfo[0]);
-//        cyclelength = Integer.parseInt(intialPeriodInfo[1]);
-//        String StartDate,EndDate,LastEndDate;
-//        Date lastStartDate,lastEndDate,startDate,endDate;
-//
-//        Calendar c = Calendar.getInstance();
-//
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        lastStartDate = sdf.parse(intialPeriodInfo[2]);
-//
-//       /**Calculating lastend Date*/
-//        c.setTime(lastStartDate);
-//        Log.e("Last Start Date",lastStartDate.toString());
-//        c.add(Calendar.DATE,Periodlength);
-//        LastEndDate=sdf.format(c.getTime());
-//        lastEndDate = sdf.parse(LastEndDate);
-//        Log.e("Last End Date",lastEndDate.toString());
-//        Log.e("Last End Date String",LastEndDate.toString());
-//
-//
-//        Calendar sDate = Calendar.getInstance();
-//        Calendar eDate = Calendar.getInstance();
-//        sDate.setTime(lastStartDate);
-//        eDate.setTime(lastEndDate);
-//        while (sDate.before(eDate)){
-//            LocalDate localDate = new LocalDate(sDate.getTime());
-//            periodDays.add(localDate);
-//            sDate.add(Calendar.DAY_OF_MONTH,1);
-//
-//        }
-//
-//        /**Calculating perdicted period Start and end Date*/
-//
-//        c.setTime(lastStartDate);
-//        c.add(Calendar.DATE,cyclelength);
-//        StartDate = sdf.format(c.getTime());
-//        startDate = sdf.parse(StartDate);
-//
-//        c.setTime(startDate);
-//        c.add(Calendar.DATE,Periodlength);
-//        EndDate=sdf.format(c.getTime());
-//        endDate = sdf.parse(EndDate);
-//
-//        sDate.setTime(startDate);
-//        eDate.setTime(endDate);
-//
-//        while (sDate.before(eDate)){
-//            LocalDate localDate = new LocalDate(sDate.getTime());
-//            predictedPeriodDays.add(localDate);
-//            sDate.add(Calendar.DAY_OF_MONTH,1);
-//
-//        }
-//
-//
-//        }catch (Exception es){
-//            Log.e("ExceptionSDF","");
-//            es.printStackTrace();
-//        }
-//
-//
-//    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private java.time.LocalDate convertToLocalDate(Date time) {
-        return time.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     private void refreshCalendar(View view) {
@@ -411,14 +332,6 @@ public class CalenderFragment extends Fragment {
         calendarView.refreshCalendar(currentCalendar);
     }
 
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == GATHER_NEW_PREFERENCES) {
-//            periodDays = manager.getHistoricPeriodDays();
-//            fertileDays = manager.getHistoricFertileDays();
-//            ovulationDays = manager.getHistoricOvulationDays();
-//            refreshCalendar();
-//        }
-//    }
     private class SampleDayDecorator implements DayDecorator {
 
         @Override
@@ -444,24 +357,203 @@ public class CalenderFragment extends Fragment {
         }
     }
 
-    /*int currentMonth = YearMonth.now()
-    int firstMonth = currentMonth.minusMonths(10)
-    val lastMonth = currentMonth.plusMonths(10)
-    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
-calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
-            calendarView.scrollToMonth(currentMonth)
-*/
+    public Set<LocalDate>getPeriodDays(String email){
+        Set<LocalDate> days = new HashSet<>();
+        Cursor resultSet = db.getPeriodDates(email);
+        if(resultSet.moveToFirst()){
+            do{
+                String StartDate=resultSet.getString(0);
+                String EndDate=resultSet.getString(1);
+                Date startDate=new Date(),endDate=new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    startDate = sdf.parse(StartDate);
+                    endDate = sdf.parse(EndDate);
+                } catch (Exception exp) {
+                    Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
+                }
+                Calendar sDate = Calendar.getInstance();
+                Calendar eDate = Calendar.getInstance();
+                sDate.setTime(startDate);
+                eDate.setTime(endDate);
+                while (sDate.before(eDate)) {
+                    LocalDate localDate = new LocalDate(sDate.getTime());
+                    days.add(localDate);
+                    sDate.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+            }while (resultSet.moveToNext());
+        }
+        return days;
+    }
+
+    public Set<LocalDate>getOvulationDays(String email){
+        Set<LocalDate> days = new HashSet<>();
+        Cursor resultSet = db.getOvulDates(email);
+        if(resultSet.moveToFirst()){
+            do{
+                String StartDate=resultSet.getString(0);
+                String EndDate=resultSet.getString(1);
+                String NewStartDate=resultSet.getString(2);
+                Date startDate=new Date(),endDate=new Date(),newStartDate =new Date(),lastfourteendays = new Date(),firstSevenDays =new  Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    startDate = sdf.parse(StartDate);
+                    endDate = sdf.parse(EndDate);
+                    newStartDate =sdf.parse(NewStartDate);
+                } catch (Exception exp) {
+                    Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
+                }
+                Calendar c = Calendar.getInstance();
+                c.setTime(endDate);
+                c.add(Calendar.DAY_OF_MONTH, 6);
+                firstSevenDays = c.getTime();
+
+                c.setTime(newStartDate);
+                c.add(Calendar.DAY_OF_MONTH, -13);
+                lastfourteendays = c.getTime();
+                Calendar sDate = Calendar.getInstance();
+                Calendar eDate = Calendar.getInstance();
+                sDate.setTime(firstSevenDays);
+                eDate.setTime(lastfourteendays);
+                while (sDate.before(eDate)) {
+                    LocalDate localDate = new LocalDate(sDate.getTime());
+                    days.add(localDate);
+                    sDate.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+            }while (resultSet.moveToNext());
+        }
+        return days;
+
+    }
+
+    private Set<LocalDate> getIntialOvulationDays(String email) {
+        Set<LocalDate> days = new HashSet<>();
+        try {
+            Cursor resultSet = db.getLatestCompletedPeriods(email);
+            int cyclelength = db.getAvgCycleLength(email);
+            if (resultSet.moveToFirst()) {
+                do {
+                    String OldStartDate = resultSet.getString(4);
+                    String OldEndDate = resultSet.getString(5);
+                    Date oldStartDate, oldEndDate, newStartDate, firstSevenDays, lastfourteendays;
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                    oldStartDate = sdf.parse(OldStartDate);
+                    oldEndDate = sdf.parse(OldEndDate);
+
+                    Calendar sDate = Calendar.getInstance();
+                    Calendar eDate = Calendar.getInstance();
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(oldStartDate);
+                    c.add(Calendar.DAY_OF_MONTH, cyclelength);
+                    newStartDate = c.getTime();
+
+                    c.setTime(oldEndDate);
+                    c.add(Calendar.DAY_OF_MONTH, 6);
+                    firstSevenDays = c.getTime();
+
+                    c.setTime(newStartDate);
+                    c.add(Calendar.DAY_OF_MONTH, -13);
+                    lastfourteendays = c.getTime();
+
+                    sDate.setTime(firstSevenDays);
+                    eDate.setTime(lastfourteendays);
+                    while (sDate.before(eDate)) {
+                        LocalDate localDate = new LocalDate(sDate.getTime());
+                        days.add(localDate);
+                        sDate.add(Calendar.DAY_OF_MONTH, 1);
+                    }
+                } while (resultSet.moveToNext());
+            }
+
+        } catch (Exception e) {
+            return null;
+            //            Log.e("Expection in Perdiodays",e.toString());
+        }
+        return days;
+    }
+
+
+    private void updateLocalDateSetValue(String email) {
+        periodDays.clear();
+        ovulationDays.clear();
+        periodDays = getPeriodDays(email);
+        ovulationDays = getOvulationDays(email);
+        predictedPeriodDays = getPredictedDays(email);
+
+    }
 
 
 }
 
-    /*val currentMonth = YearMonth.now()
-    val firstMonth = currentMonth.minusMonths(10)
-    val lastMonth = currentMonth.plusMonths(10)
-    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
-calendarView.setup(firstMonth, lastMonth, firstDayOfWeek)
-            calendarView.scrollToMonth(currentMonth)
-*/
+/**private Set<LocalDate> getIntialOvulationDays(String email) {
+ Set<LocalDate> days = new HashSet<>();
+ try {
+ Cursor resultSet = db.getLatestCompletedPeriods(email);
+ int cyclelength = db.getAvgCycleLength(email);
+ if (resultSet.moveToFirst()) {
+ do {
+ String OldStartDate = resultSet.getString(4);
+ String OldEndDate = resultSet.getString(5);
+ Date oldStartDate, oldEndDate, newStartDate, firstSevenDays, lastfourteendays;
+ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+ oldStartDate = sdf.parse(OldStartDate);
+ oldEndDate = sdf.parse(OldEndDate);
+
+ Calendar sDate = Calendar.getInstance();
+ Calendar eDate = Calendar.getInstance();
+ Calendar c = Calendar.getInstance();
+ c.setTime(oldStartDate);
+ c.add(Calendar.DAY_OF_MONTH, cyclelength);
+ newStartDate = c.getTime();
+
+ c.setTime(oldEndDate);
+ c.add(Calendar.DAY_OF_MONTH, 6);
+ firstSevenDays = c.getTime();
+
+ c.setTime(newStartDate);
+ c.add(Calendar.DAY_OF_MONTH, -13);
+ lastfourteendays = c.getTime();
+
+ sDate.setTime(firstSevenDays);
+ eDate.setTime(lastfourteendays);
+ while (sDate.before(eDate)) {
+ LocalDate localDate = new LocalDate(sDate.getTime());
+ days.add(localDate);
+ sDate.add(Calendar.DAY_OF_MONTH, 1);
+ }
+ } while (resultSet.moveToNext());
+ }
+
+ } catch (Exception e) {
+ return null;
+ //            Log.e("Expection in Perdiodays",e.toString());
+ }
+ return days;
+ }*/
+
+/** private Set<LocalDate> getIntialPeriodDays(String email) {
+ Set<LocalDate> days = new HashSet<>();
+ Cursor resultSet = db.getInCompletedPeriodsHistory(email);
+ if (resultSet.moveToFirst()) {
+ do {
+ String StartDate = resultSet.getString(4);
+ String EndDate = resultSet.getString(5);
+ Date startDate =new Date();
+ Date endDate=new Date();
+ SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+ try {
+ startDate = sdf.parse(StartDate);
+ endDate = sdf.parse(EndDate);
+ } catch (Exception exp) {
+ Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
+ }
+ days.addAll(getDaysBetweenDates(startDate,endDate));//
+ } while (resultSet.moveToNext());
+ }
+ return days;
+ }*/
 
 /**Start button
  try {
