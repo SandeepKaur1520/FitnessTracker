@@ -28,15 +28,18 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/periodLength_Display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="3 Days"
                 android:textAlignment="center"
+                android:textStyle="bold|italic"
+                android:textSize="25dp"
                 android:textColor="@color/Pink"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cycle Length"
+                android:text="Average Period Length"
                 android:textAlignment="center"
                 android:textColor="@color/Black"
                 android:textStyle="bold|italic"/>
@@ -47,9 +50,12 @@
             android:orientation="vertical"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/cycleLength_Display"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="32 Days"
+                android:textStyle="bold|italic"
+                android:textSize="25dp"
                 android:textColor="@color/Blue"
                 android:textAlignment="center"/>
             <TextView
@@ -57,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textStyle="bold|italic"
-                android:text="Period Length"
+                android:text="Average Cycle Length"
                 android:textColor="@color/Black"/>
         </LinearLayout>
     </LinearLayout>
@@ -239,6 +245,7 @@
                     android:inputType="textPassword"/>
 
                 <ToggleButton
+                    android:id="@+id/eyeButton"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_weight="0.1"

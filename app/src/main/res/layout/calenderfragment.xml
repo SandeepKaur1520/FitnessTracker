@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/lightPink"
+    android:background="#FFFAF5F6"
     android:orientation="vertical"
     android:fillViewport="true">
 
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@color/lightPink">
+            android:background="#FAF5F6">
         </com.stacktips.view.CustomCalendarView>
 
         <!--<com.kizitonwose.calendarview.CalendarView-->

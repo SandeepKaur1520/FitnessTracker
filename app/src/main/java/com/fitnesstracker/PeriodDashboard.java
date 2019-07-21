@@ -92,6 +92,9 @@ public class PeriodDashboard extends AppCompatActivity {
         /* ivCalender.setImageResource(R.mipmap.facebook);*/
 
         fragment = new ChartFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("email",email);
+        fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, fragment)

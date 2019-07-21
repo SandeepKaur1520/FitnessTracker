@@ -386,10 +386,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String periodINfo[]= new String[3];
         SQLiteDatabase db = getRDatabase();
         String query ="Select Min(SrNo),PeriodLength,CycleLength,LastStartDate from PeriodInfo where email = "+x+";";
-        Log.e("Query out : ",query);
         Cursor resultSet = db.rawQuery(query,null);
-        Log.e("Cursor : ",resultSet.toString());
-        if (resultSet.moveToFirst()) {
+       if (resultSet.moveToFirst()) {
             String periodLength = resultSet.getString(1);
             String cycleLegth = resultSet.getString(2);
             String lastStartDate = resultSet.getString(3);
@@ -426,13 +424,12 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             double leng;
             SQLiteDatabase db = getReadableDatabase();
             String query ="Select AVG(CycleLength) from PeriodInfo where email = "+x+";";
-            Log.e("Query out cursor : ",query);
             Cursor resultSet = db.rawQuery(query,null);
             if(resultSet.moveToFirst()){
                 leng = Double.parseDouble(resultSet.getString(0));
                 length = (int)leng;
             }
-            Log.e("Return Length",""+length);
+            Log.e("Return Length","Avg Cycle length "+length);
             return length;
     }
 
@@ -443,10 +440,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = getRDatabase();
 //        String query ="Select MAX(SrNo),email,PeriodLength,CycleLength,LastStartDate,LastEndDate from PeriodInfo where email = "+x+" and PeriodStatus = "+y+" ;";
         String query ="Select Max(SrNo),email,PeriodLength,CycleLength,LastStartDate,LastEndDate from PeriodInfo;";
-        Log.e("Query out cursor : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         Cursor temp =resultSet;
-        Log.e("Return Cursor",resultSet.toString());
 
         return resultSet;
     }
@@ -464,7 +459,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             leng = Double.parseDouble(resultSet.getString(0));
             length = (int)leng;
         }
-        Log.e("Return Length",""+length);
+        Log.e("Return Length","Avg Period length "+length);
         return length;
     }
 
@@ -475,7 +470,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         SQLiteDatabase db = getReadableDatabase();
         String query ="Select MAX(SrNo) from PeriodInfo where email = "+x+";";
-        Log.e("Query out cursor : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         if(resultSet.moveToFirst()){
             max = Integer.parseInt(resultSet.getString(0));
@@ -501,10 +495,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String periodINfo[]= new String[3];
         SQLiteDatabase db = getRDatabase();
         String query ="Select * from PeriodInfo where email = "+x+"  ;";
-        Log.e("Query out cursor : ",query);
-        Cursor resultSet = db.rawQuery(query,null);
+       Cursor resultSet = db.rawQuery(query,null);
         Cursor temp =resultSet;
-        Log.e("Return Cursor",resultSet.toString());
 
         return resultSet;
     }
@@ -514,10 +506,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String y = "\"end\"";
         SQLiteDatabase db = getRDatabase();
         String query ="Select LastStartDate,LastEndDate from PeriodInfo where email = "+x+" ORDER BY SrNo ASC;";
-        Log.e("Query out cursor : ",query);
         Cursor resultSet = db.rawQuery(query,null);
         Cursor temp =resultSet;
-        Log.e("Return Cursor",resultSet.toString());
 
         return resultSet;
     }
@@ -527,10 +517,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         String y = "\"end\"";
         SQLiteDatabase db = getRDatabase();
         String query ="Select LastStartDate from PeriodInfo where email = "+x+" ORDER BY SrNo ASC;";
-        Log.e("Query out cursor : ",query);
+
         Cursor resultSet = db.rawQuery(query,null);
         Cursor temp =resultSet;
-        Log.e("Return Cursor",resultSet.toString());
 
         return resultSet;
     }
@@ -541,10 +530,9 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             String y = "\"end\"";
             SQLiteDatabase db = getRDatabase();
             String query ="Select LastStartDate,LastEndDate,(SELECT LastStartDate from PeriodInfo b where b.SrNo>a.SrNo) as NewStartDate from PeriodInfo a where email = "+x+" ORDER BY SrNo;";
-            Log.e("Query out cursor : ",query);
+
             Cursor resultSet = db.rawQuery(query,null);
             Cursor temp =resultSet;
-            Log.e("Return Cursor",resultSet.toString());
 
             return resultSet;
         }
@@ -557,7 +545,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
             SQLiteDatabase db = getReadableDatabase();
             String query ="Select LastStartDate,Max(SrNo) from PeriodInfo where email = "+x+";";
-            Log.e("Query out cursor : ",query);
             Cursor resultSet = db.rawQuery(query,null);
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             if(resultSet.moveToFirst()){
@@ -565,10 +552,31 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     date = sdf.parse(resultSet.getString(0));
 
                 } catch (Exception exp) {
-                    Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
+
                 }
             }
-
             return date;
+    }
+
+    public Cursor getCyclePeriodLength(String email) {
+        String x = '"'+email+'"';
+        String y = "\"end\"";
+
+        SQLiteDatabase db = getReadableDatabase();
+        String query ="Select SrNo,CycleLength,PeriodLength from PeriodInfo where email = "+x+" order by SrNo;";
+        Cursor resultSet = db.rawQuery(query,null);
+
+        return resultSet;
+    }
+
+    public Boolean updatePeriodEndDate(String selectedDate, String periodLength, String nearestStartDate, String email) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("LastEndDate",selectedDate);
+        values.put("PeriodLength",periodLength);
+        int i=db.update("PeriodInfo",values,"LastStartDate = ? and email = ?",new String[] {nearestStartDate,email});
+        Log.e("Update End Date:",String.valueOf(i));
+            return true;
     }
 }

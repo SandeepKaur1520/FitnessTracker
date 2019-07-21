@@ -240,7 +240,7 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         date = ("Date: " + dayOfMonth +" Month: " + month +" Year: "+year);
-        date =(dayOfMonth+"/"+month+"/"+year);
+        date =(dayOfMonth+"/"+(month+1)+"/"+year);
         Toast.makeText(Health_Info.this,date, Toast.LENGTH_SHORT).show();
         DOBbtn.setText("  Date of Birth : "+date);
         isDOB=true;

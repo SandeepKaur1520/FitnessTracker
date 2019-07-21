@@ -1,6 +1,7 @@
 package com.fitnesstracker.gymfragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fitnesstracker.Gym_CongratsActivity;
 import com.fitnesstracker.R;
 import com.fitnesstracker.database.DatabaseHelper;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -97,19 +99,14 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                 if (currentLoc != null)
                     camera(currentLoc);
                 break;
-           /* case R.id.bStop:
-                Bundle bundle = new Bundle();
-                    bundle.putString("dist", distance + "");
-                    bundle.putInt("tTime", sec);
-                    bundle.putString("speed", tvAvgTime.getText().toString());
-                    bundle.putString("cal", calories + "");
-                Fragment fragment = new CongratulationFragment();
-                fragment.setArguments(bundle);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.runContainer, fragment)
-                        .commit();
-                break;*/
+            case R.id.bStop:
+                Intent intent = new Intent(getContext(), Gym_CongratsActivity.class);
+                intent.putExtra("dist", distance + "");
+                intent.putExtra("tTime", sec);
+                intent.putExtra("speed", tvAvgTime.getText().toString());
+                intent.putExtra("cal", calories + "");
+                startActivity(intent);
+                break;
         }
 
     }

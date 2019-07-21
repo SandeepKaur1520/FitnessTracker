@@ -1,5 +1,7 @@
 package com.fitnesstracker.fragment;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fitnesstracker.R;
+import com.fitnesstracker.database.DatabaseHelper;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;
@@ -24,6 +27,16 @@ import java.util.ArrayList;
 
 public class ChartFragment extends Fragment {
     LineChart chart;
+    Context context;
+    DatabaseHelper db;
+    String email;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = context;
+        db = new DatabaseHelper(context);
+    }
 
     @NonNull
     @Override
@@ -38,38 +51,31 @@ public class ChartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         chart = view.findViewById(R.id.LineChart);
-
+        email = getArguments().getString("email");
+        Cursor resultSet = db.getCyclePeriodLength(email);
         ArrayList<Entry> cycleLength = new ArrayList<>();
-        cycleLength.add(new Entry(0, 30));
-        cycleLength.add(new Entry(30,28));
-        cycleLength.add(new Entry(60, 34));
-        cycleLength.add(new Entry(90, 32));
-        cycleLength.add(new Entry(120, 33));
-        cycleLength.add(new Entry(150, 29));
-
-
         ArrayList<Entry> periodLength = new ArrayList<>();
-        periodLength.add(new Entry(0, 4));
-        periodLength.add(new Entry(30,5));
-        periodLength.add(new Entry(60, 3));
-        periodLength.add(new Entry(90, 4));
-        periodLength.add(new Entry(120, 5));
-        periodLength.add(new Entry(150, 3));
+        if(resultSet.moveToFirst()){
+            do {
+                int SrNo = Integer.parseInt(resultSet.getString(0));
+                int cycle = Integer.parseInt(resultSet.getString(1));
+                int period = Integer.parseInt(resultSet.getString(2));
+
+                cycleLength.add(new Entry(SrNo,cycle));
+                periodLength.add(new Entry(SrNo,period));
+            }while (resultSet.moveToNext());
+        }
 
 
         LineDataSet periodDataSet = new LineDataSet(periodLength, "Period Length");
         LineDataSet cycleDataSet = new LineDataSet(cycleLength, "Cycle Length");
-        periodDataSet.setColor(getResources().getColor(R.color.LightBlue));
-        cycleDataSet.setColor(getResources().getColor(R.color.Pink));
-       /* dataSet.setColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        dataSet.setValueTextColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-*/
-        //****
-        // Controlling X axis
+        periodDataSet.setColor(getResources().getColor(R.color.Pink));
+        cycleDataSet.setColor(getResources().getColor(R.color.LightBlue));
+
         XAxis xAxis = chart.getXAxis();
-        // Set the xAxis position to bottom. Default is top
+
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //Customizing x axis value
+
         final String[] months = new String[]{"Jan", "Feb", "Mar", "Apr"};
 
         ValueFormatter formatter = new ValueFormatter() {
@@ -91,7 +97,6 @@ public class ChartFragment extends Fragment {
         YAxis yAxisLeft = chart.getAxisLeft();
         yAxisLeft.setGranularity(1f);
 
-        // Setting Data
         LineData data = new LineData();
         data.addDataSet(periodDataSet);
         data.addDataSet(cycleDataSet);
@@ -99,7 +104,6 @@ public class ChartFragment extends Fragment {
         chart.setData(data);
         chart.animateX(1000);
 
-        //refresh
         chart.invalidate();
 
 

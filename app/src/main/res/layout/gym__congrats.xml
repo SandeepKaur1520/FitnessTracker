@@ -52,6 +52,62 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="87dp"
             android:layout_marginTop="3dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="00:00:00"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:padding="2dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:padding="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="0.00"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:padding="2dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Miles"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:padding="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="0.0"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:padding="2dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Avg Speed"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:padding="2dp" />
 
 
     </LinearLayout>

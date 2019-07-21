@@ -8,12 +8,12 @@
 
         android:enabled="true"
         app:showAsAction="always"/>
-    <item
-        android:id="@+id/llExercise"
-        android:icon="@mipmap/charticon"
-        android:title="Exercise"
-        android:enabled="true"
-        app:showAsAction="always"/>
+    <!--<item-->
+        <!--android:id="@+id/llExercise"-->
+        <!--android:icon="@mipmap/charticon"-->
+        <!--android:title="Exercise"-->
+        <!--android:enabled="true"-->
+        <!--app:showAsAction="always"/>-->
     <item
         android:id="@+id/llActivity"
         android:icon="@mipmap/plusicon"

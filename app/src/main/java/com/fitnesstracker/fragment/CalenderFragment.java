@@ -82,7 +82,7 @@ public class CalenderFragment extends Fragment {
         cyclelength = db.getAvgCycleLength(email);
         refreshCalendar(view);
 
-
+        calendarView.setShowOverflowDate(false);
         calendarView.setCalendarListener(new CalendarListener() {
             @Override
             public void onDateSelected(final Date date) {
@@ -108,22 +108,17 @@ public class CalenderFragment extends Fragment {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Date selectedDate = date;
-                        if (isChecked) {
+                        if (isChecked && toggleStart.isPressed()) {
                             String SelectedDate, PredictedEndDate;
-
                             Date predictedEndDate = new Date();
                             int cycleLength = 0;
                             isStartSelected = isChecked;
                             bufferPressedDate = selectedDate;
                             int periodLength = db.getAvgPeriodLength(email);
-                            try{
-                                Date previousStartDate = db.getLatestStartPeriodDate(email);
-                                cycleLength = getNumberOfDaysBetweenTwoDates(previousStartDate,selectedDate);
-
-                            }catch (Exception exp){
-                                Log.e("Expection startButton","Line 126 to 127");
-                            }
-
+                            Date previousStartDate = db.getLatestStartPeriodDate(email);
+                            cycleLength = getNumberOfDaysBetweenTwoDates(previousStartDate,selectedDate);
+                            Log.e("Previous","Start Date is"+previousStartDate) ;
+                            Log.e("Selected","Date is"+selectedDate);
                             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                             /**predicting the period end date*/
                             predictedEndDate = calPeriodEndDate(selectedDate,email);
@@ -133,12 +128,8 @@ public class CalenderFragment extends Fragment {
                             Log.e("DAta in Database","Status = "+status);
                             updateLocalDateSetValue(email);
                             calendarView.setDecorators(Collections.<DayDecorator>singletonList(new SampleDayDecorator()));
-
+//                            calendarView.invalidate();
                         } else {
-                            Date nearestDate = getNearestStartDate(selectedDate,email);
-                            Log.e("Nearest Date",""+nearestDate);
-//                            Boolean status = db.removePeriodInfo(email, "start");
-                            updateLocalDateSetValue(email);
                         }
                         dialog.dismiss();
 
@@ -148,10 +139,25 @@ public class CalenderFragment extends Fragment {
                 toggleEnd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        Date nearestDate = getNearestStartDate(date,email);
-                        Log.e("Nearest Date",""+nearestDate);
-                        dialog.dismiss();
+                        Date selectedDate=date;
+                        if(isChecked) {
+                            Log.e("End Button Pressed", "Block Start Here");
 
+                            Date nearestStartDate = getNearestStartDate(selectedDate, email);
+                            Log.e("Nearest Date", "" + nearestStartDate);
+                            int periodLength = getNumberOfDaysBetweenTwoDates(nearestStartDate,selectedDate);
+
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                            String SelectedDate = sdf.format(selectedDate);
+                            String NearestStartDate = sdf.format(nearestStartDate);
+                            Boolean status = db.updatePeriodEndDate(SelectedDate,String.valueOf(periodLength),NearestStartDate,email);
+                            Log.e("DAta in Database","Status = "+status);
+                            updateLocalDateSetValue(email);
+                            calendarView.setDecorators(Collections.<DayDecorator>singletonList(new SampleDayDecorator()));
+//                            calendarView.invalidate();
+//
+                            dialog.dismiss();
+                        }
                     }
                 });
                 flowBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -200,23 +206,23 @@ public class CalenderFragment extends Fragment {
             do{
                 Date date = new Date();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                if(resultSet.moveToFirst()){
-                    try {
-                        date = sdf.parse(resultSet.getString(0));
-                    } catch (Exception exp) {
-                        Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
-                    }
+                try {
+                    date = sdf.parse(resultSet.getString(0));
+                } catch (Exception exp) {
+                    Log.e("Expection ","in getIntialPeriodDays method while praseing dates");
                 }
                 Calendar sDate = Calendar.getInstance();
                 Calendar eDate = Calendar.getInstance();
                 sDate.setTime(date);
                 eDate.setTime(selectedDate);
-                if(sDate.before(eDate)){
+//                if(sDate.before(eDate)){
+//                    dates.add(date);
+//
+//                    sDate.add(Calendar.DAY_OF_MONTH,1);
+//                }
+                if(date.compareTo(selectedDate)==-1||date.compareTo(selectedDate)==0){
                     dates.add(date);
                 }
-//                if(date.compareTo(selectedDate)==-1){
-//                    dates.add(date);
-//                }
             }while(resultSet.moveToNext());
 
         }
@@ -229,7 +235,7 @@ public class CalenderFragment extends Fragment {
 //            }
 //        });
         int size = dates.size();
-        nearestDate = dates.get(size);
+        nearestDate = dates.get(size-1);
 
         return nearestDate;
     }
@@ -240,8 +246,10 @@ public class CalenderFragment extends Fragment {
         Calendar eDate = Calendar.getInstance();
         sDate.setTime(previousStartDate);
         eDate.setTime(selectedDate);
-        while (eDate.before(sDate)) {
+        while (sDate.before(eDate)) {
             numberOfDays++;
+            sDate.add(Calendar.DAY_OF_MONTH,1);
+            Log.e("Cycle Length in Start",""+numberOfDays);
         }
         return numberOfDays;
     }
@@ -376,10 +384,10 @@ public class CalenderFragment extends Fragment {
                 Calendar eDate = Calendar.getInstance();
                 sDate.setTime(startDate);
                 eDate.setTime(endDate);
-                while (sDate.before(eDate)) {
+                while ( (sDate.compareTo(eDate)==-1) || (sDate.compareTo(eDate)==0) ) {
                     LocalDate localDate = new LocalDate(sDate.getTime());
                     days.add(localDate);
-                    sDate.add(Calendar.DAY_OF_MONTH, 1);
+                    sDate.add(Calendar.DAY_OF_MONTH,1);
                 }
 
             }while (resultSet.moveToNext());
