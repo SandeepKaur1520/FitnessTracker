@@ -57,9 +57,9 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
                     case R.id.llHome:
                         onClickHome();
                         return true;
-                    case R.id.llExercise:
-                        onClickExercise();
-                        return true;
+//                    case R.id.llExercise:
+//                        onClickExercise();
+//                        return true;
                     case R.id.llActivity:
                         onClickActivity();
                         return true;
@@ -206,7 +206,6 @@ public class GymTrainer_Dashboard extends AppCompatActivity implements  SensorEv
         switch (requestCode) {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
 
                 }else{
                     Toast.makeText(getApplicationContext(), "Permission not granted!", Toast.LENGTH_SHORT).show();

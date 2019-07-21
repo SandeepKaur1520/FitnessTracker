@@ -105,6 +105,7 @@ public class RunFragment extends Fragment implements OnMapReadyCallback, Locatio
                 intent.putExtra("tTime", sec);
                 intent.putExtra("speed", tvAvgTime.getText().toString());
                 intent.putExtra("cal", calories + "");
+                intent.putExtra("email",email);
                 startActivity(intent);
                 break;
         }

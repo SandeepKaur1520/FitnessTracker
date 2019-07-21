@@ -54,12 +54,19 @@ public class GymHomepageFragment extends Fragment {
         }
         stepDisplay= view.findViewById(R.id.StepDisplay);
         stepDisplay.setText(stepValue);
-        calValue="1000";
+        calValue="0";
         TextView sleepAch =view.findViewById(R.id.sleepAchieve);
         TextView waterAch =view.findViewById(R.id.waterAchieve);
         TextView stepAch =view.findViewById(R.id.stepsAchieve);
         TextView calAch =view.findViewById(R.id.caloriesAchieve);
+        TextView calDisplay = view.findViewById(R.id.caloriesDisplay);
 
+
+        calValue = db.getCalories(email);
+        if(calValue==null){
+            calValue="0";
+        }
+        calDisplay.setText(calValue);
         String goalsList[] = db.getDailyGoals(email);
         if(goalsList[0]=="Nothing"){
             stepAch.setText("of 1000");
@@ -76,6 +83,7 @@ public class GymHomepageFragment extends Fragment {
             waterAch.setText("Glass of "+waterAcheive);
             sleepAch.setText("Hrs of "+sleepAcheive);
         }
+
         LinearLayout llCalories = view.findViewById(R.id.llCalories);
         llCalories.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,13 +124,19 @@ public class GymHomepageFragment extends Fragment {
         final TextView waterDisplay = view.findViewById(R.id.waterDisplay);
         Button plusBtn =view.findViewById(R.id.waterPlus);
         Button minusBtn =view.findViewById(R.id.waterMinus);
+        String water = db.getWaterCompleted(email);
+        waterDisplay.setText(water);
+        if(water.isEmpty())
+            waterCounter = Integer.parseInt(water);
+        else
+            waterCounter = 0;
 
-        waterDisplay.setText(String.valueOf(waterCounter));
         plusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 waterCounter =waterCounter+1;
                 waterDisplay.setText(String.valueOf(waterCounter));
+                db.updateWaterCompleted(email,String.valueOf(waterCounter));
             }
         });
 
@@ -131,9 +145,13 @@ public class GymHomepageFragment extends Fragment {
             public void onClick(View v) {
                 if(waterCounter==0){
                     Toast.makeText(getActivity(),"You can't reduce Glass more",Toast.LENGTH_LONG).show();
+                    db.updateWaterCompleted(email,String.valueOf(waterCounter));
+
                 }else {
                     waterCounter = waterCounter - 1;
                     waterDisplay.setText(String.valueOf(waterCounter));
+                    db.updateWaterCompleted(email,String.valueOf(waterCounter));
+
                 }
             }
         });

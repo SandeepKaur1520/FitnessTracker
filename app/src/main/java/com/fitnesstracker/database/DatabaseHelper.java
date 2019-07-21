@@ -55,9 +55,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 "  `SrNo` INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "  `email` varchar(100) NOT NULL,\n" +
                 "  `Steps` varchar(100),\n"+
+                "  `StepsCompleted` varchar(100),\n"+
                 "  `Calories` varchar(100),\n"+
+                "  `CaloriesCompleted` varchar(100),\n"+
                 "  `Water` varchar(100),\n"+
-                "  `Sleep` varchar(100)\n"+
+                "  `WaterCompleted` varchar(100),\n"+
+                "  `Sleep` varchar(100),\n"+
+                "  `SleepCompleted` varchar(100)\n"+
                 ");";
 
         /**This table stores initial info about user's periods*/
@@ -68,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 //                "  `CycleLength` varchar(100),\n"+
 //                "  `LastStartDate` varchar(100)\n"+
 //                ");";
+
 
 
 
@@ -257,14 +262,19 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             ContentValues values = new ContentValues();
             values.put("BodyActiveness",bodyActiveness);
             int i = db.update("GymInfo",values,"email = ?",new String[] {email});
+
             Log.e("Update :",String.valueOf(i));
 
             ContentValues value =new ContentValues();
              value.put("email",email);
-              value.put("Steps","1000");
+             value.put("Steps","1000");
+             value.put("StepsCompleted","0");
              value.put("Calories","1000");
+             value.put("CaloriesCompleted","0");
              value.put("Water","20");
+             value.put("WaterCompleted","0");
              value.put("Sleep","24");
+             value.put("SleepCompleted","0");
 
              double j =db.insert("DailyGoals",null,value);
 
@@ -578,5 +588,53 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         int i=db.update("PeriodInfo",values,"LastStartDate = ? and email = ?",new String[] {nearestStartDate,email});
         Log.e("Update End Date:",String.valueOf(i));
             return true;
+    }
+
+    public Boolean updateCalories(String email, String calories) {
+
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("CaloriesCompleted",calories);
+            int i=db.update("DailyGoals",values,"email = ?",new String[] {email});
+
+            return true;
+        }
+
+    public String getCalories(String email) {
+            String cal=null;
+            String x = '"'+email+'"';
+            SQLiteDatabase db = getReadableDatabase();
+            String query ="Select CaloriesCompleted from DailyGoals where email = "+x+";";
+            Cursor resultSet = db.rawQuery(query,null);
+            if (resultSet.moveToFirst()){
+                cal = resultSet.getString(0);
+            }
+
+
+
+
+            return  cal;
+    }
+
+    public void updateWaterCompleted(String email, String water) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("WaterCompleted",water);
+        Log.e("WaterDatabase",water);
+        int i=db.update("DailyGoals",values,"email = ?",new String[] {email});
+        Log.e("Insert I ",""+i);
+
+    }
+
+    public String getWaterCompleted(String email) {
+        String cal=null;
+        String x = '"'+email+'"';
+        SQLiteDatabase db = getReadableDatabase();
+        String query ="Select WaterCompleted from DailyGoals where email = "+x+";";
+        Cursor resultSet = db.rawQuery(query,null);
+        if (resultSet.moveToFirst()){
+            cal = resultSet.getString(0);
+        }
+        return  cal;
     }
 }
