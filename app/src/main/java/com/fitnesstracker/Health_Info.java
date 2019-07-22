@@ -224,7 +224,6 @@ public class Health_Info extends AppCompatActivity implements DatePickerDialog.O
                 if(isWeight&&isDOB&&isHeight&&isDOBValid) {
                     boolean status = db.updateHealthInfo(email, height, weight, date);
                     if (status) {
-                        Toast.makeText(Health_Info.this, "Your Data Saved", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Health_Info.this, Selected_Field.class);
                         intent.putExtra("email", email);
                         startActivity(intent);

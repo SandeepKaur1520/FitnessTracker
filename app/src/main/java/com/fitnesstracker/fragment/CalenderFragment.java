@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
@@ -53,6 +54,9 @@ public class CalenderFragment extends Fragment {
     DatabaseHelper db;
     static Boolean isStartSelected = false;
     static Date bufferPressedDate;
+    Button buttonOK , buttonClear ;
+    Dialog dialogMood ;
+
 
 
     @Override
@@ -180,6 +184,74 @@ public class CalenderFragment extends Fragment {
                         dialogMood.setContentView(R.layout.dialog_mood);
                         dialogMood.setCancelable(true);
                         dialog.dismiss();
+                        final ToggleButton toggleButtonAngry = dialogMood.findViewById(R.id.toggle_angryBtn);
+                        final ToggleButton toggleButtonBored = dialogMood.findViewById(R.id.toggle_boredBtn);
+                        final ToggleButton toggleButtonCrying = dialogMood.findViewById(R.id.toggle_cryingBtn);
+                        final ToggleButton toggleButtonCute = dialogMood.findViewById(R.id.toggle_cuteBtn);
+                        final ToggleButton toggleButtonDazed = dialogMood.findViewById(R.id.toggle_dazedBtn);
+                        final ToggleButton toggleButtonExcited = dialogMood.findViewById(R.id.toggle_excitedBtn);
+                        final ToggleButton toggleButtonExhausted = dialogMood.findViewById(R.id.toggle_exhustedBtn);
+                        final ToggleButton toggleButtonFrustrated = dialogMood.findViewById(R.id.toggle_frustratedBtn);
+                        final ToggleButton toggleButtonHappy = dialogMood.findViewById(R.id.toggle_happyBtn);
+                        final ToggleButton toggleButtonIll = dialogMood.findViewById(R.id.toggle_illBtn);
+                        final ToggleButton toggleButtonIndecisive = dialogMood.findViewById(R.id.toggle_indecisiveBtn);
+                        final ToggleButton toggleButtonInLove = dialogMood.findViewById(R.id.toggle_inloveBtn);
+                        final ToggleButton toggleButtonLonely = dialogMood.findViewById(R.id.toggle_lonelyBtn);
+                        final ToggleButton toggleButtonStressed = dialogMood.findViewById(R.id.toggle_stressedBtn);
+                        final ToggleButton toggleButtonSuperHappy = dialogMood.findViewById(R.id.toggle_superHappyBtn);
+                        final ToggleButton toggleButtonSuperTormented = dialogMood.findViewById(R.id.toggle_tormentedBtn);
+                        final ToggleButton toggleButtonUnhappy = dialogMood.findViewById(R.id.toggle_unhappyBtn);
+                        final ToggleButton toggleButtonWorried = dialogMood.findViewById(R.id.toggle_worriedBtn);
+                        buttonClear = dialogMood.findViewById(R.id.btnClear);
+                        buttonOK = dialogMood.findViewById(R.id.btnOk);
+                        buttonOK.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialogMood.dismiss();
+                            }
+                        });
+                        buttonClear.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                toggleButtonAngry.setChecked(false);
+                                toggleButtonAngry.setSelected(false);
+                                toggleButtonBored.setChecked(false);
+                                toggleButtonBored.setSelected(false);
+                                toggleButtonCrying.setChecked(false);
+                                toggleButtonCrying.setChecked(false);
+                                toggleButtonCute.setChecked(false);
+                                toggleButtonCute.setSelected(false);
+                                toggleButtonDazed.setChecked(false);
+                                toggleButtonDazed.setSelected(false);
+                                toggleButtonExcited.setChecked(false);
+                                toggleButtonExcited.setSelected(false);
+                                toggleButtonExhausted.setChecked(false);
+                                toggleButtonExhausted.setSelected(false);
+                                toggleButtonFrustrated.setChecked(false);
+                                toggleButtonFrustrated.setSelected(false);
+                                toggleButtonHappy.setChecked(false);
+                                toggleButtonHappy.setSelected(false);
+                                toggleButtonIll.setChecked(false);
+                                toggleButtonIll.setSelected(false);
+                                toggleButtonIndecisive.setChecked(false);
+                                toggleButtonIndecisive.setSelected(false);
+                                toggleButtonInLove.setChecked(false);
+                                toggleButtonInLove.setSelected(false);
+                                toggleButtonLonely.setChecked(false);
+                                toggleButtonLonely.setSelected(false);
+                                toggleButtonStressed.setChecked(false);
+                                toggleButtonStressed.setSelected(false);
+                                toggleButtonSuperHappy.setChecked(false);
+                                toggleButtonSuperHappy.setSelected(false);
+                                toggleButtonSuperTormented.setChecked(false);
+                                toggleButtonSuperTormented.setSelected(false);
+                                toggleButtonUnhappy.setChecked(false);
+                                toggleButtonUnhappy.setSelected(false);
+                                toggleButtonWorried.setChecked(false);
+                                toggleButtonWorried.setSelected(false);
+                            }
+
+                        });
                         dialogMood.show();
                     }
                 });

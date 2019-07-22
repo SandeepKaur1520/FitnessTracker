@@ -249,7 +249,6 @@ public class Personal_info extends AppCompatActivity {
                         Toast.makeText(Personal_info.this, "Email Already Exists", Toast.LENGTH_LONG).show();
                     }
                     if (status && !EmailAldreadyExist) {
-                        Toast.makeText(Personal_info.this, "Data Saved", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(Personal_info.this, Health_Info.class);
                         intent.putExtra("email", eMail);
                         startActivity(intent);

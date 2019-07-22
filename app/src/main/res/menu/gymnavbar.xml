@@ -21,7 +21,7 @@
         app:showAsAction="always"/>
     <item
         android:id="@+id/llProfile"
-        android:icon="@mipmap/google"
+        android:icon="@mipmap/gymboyprofile"
         android:title="Profile"
         android:enabled="true"
         app:showAsAction="always"/>

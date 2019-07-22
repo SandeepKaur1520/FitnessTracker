@@ -484,6 +484,7 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true">
         <Button
+            android:id="@+id/btnClear"
             android:layout_width="wrap_content"
             android:text="Clear"
             android:textStyle="bold"
@@ -492,6 +493,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btnOk"
             android:layout_width="wrap_content"
             android:text="Ok"
             android:textColor="@color/white"

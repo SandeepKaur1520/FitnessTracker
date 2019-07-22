@@ -133,7 +133,6 @@ public class Daily_Goals extends AppCompatActivity {
             public void onClick(View v) {
                 Boolean status = db.insertDailyGoals(email,sleep,water,calories,steps);
                 if(status){
-                   Toast.makeText(Daily_Goals.this,"Your data is Saved ",Toast.LENGTH_LONG).show();
                    finish();
                 }
             }

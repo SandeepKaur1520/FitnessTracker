@@ -83,11 +83,11 @@ public class Login_Screen extends AppCompatActivity {
             dots[i] = new TextView(this);
             dots[i].setText(Html.fromHtml("&#8226"));
             dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            dots[i].setTextColor(getResources().getColor(R.color.colorAccent));
             mdots_layout.addView(dots[i]);
         }
         if(dots.length>0){
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimary));
+            dots[position].setTextColor(getResources().getColor(R.color.coloAccentlight));
         }
     }
 

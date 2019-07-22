@@ -102,12 +102,10 @@ public class Selected_Field extends AppCompatActivity {
                     if (status) {
 
                         if (flag[0] == 1) {
-                            Toast.makeText(Selected_Field.this, "Gym Data Saved", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(Selected_Field.this, BodyInfo.class);
                             intent.putExtra("email", email);
                             startActivity(intent);
                         } else if (flag[0] == 2) {
-                            Toast.makeText(Selected_Field.this, "Period Data Saved", Toast.LENGTH_LONG).show();
                             Intent inte = new Intent(Selected_Field.this, Period_info.class);
                             inte.putExtra("email", email);
                             startActivity(inte);

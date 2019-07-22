@@ -43,7 +43,7 @@ public class BodyActivity extends AppCompatActivity {
                     Intent intent = new Intent(BodyActivity.this, GymTrainer_Dashboard.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
-                    Toast.makeText(BodyActivity.this,"Your Data Saved",Toast.LENGTH_LONG).show();
+
 
                 }
                 else {

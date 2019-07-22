@@ -77,7 +77,6 @@ public class BodyInfo extends AppCompatActivity {
                 if(skinnyArms||weakChest||thinLegs||beerBelly) {
                     Boolean status = db.updateBodyinfo(email,skinnyArms,weakChest,beerBelly,thinLegs);
                     if(status) {
-                        Toast.makeText(BodyInfo.this,"Your Data Saved",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(BodyInfo.this, BodyActivity.class);
                         intent.putExtra("email",email);
                         startActivity(intent);
