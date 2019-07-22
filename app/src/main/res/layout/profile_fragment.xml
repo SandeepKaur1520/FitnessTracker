@@ -8,12 +8,12 @@ android:orientation="vertical">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/gym"
         android:layout_width="421dp"
         android:layout_height="252dp"
         android:layout_gravity="center"
-        android:background="@mipmap/profilebackground"
-        android:src="@mipmap/profilepic" />
+        android:background="@mipmap/profilepicture"
+        android:src="@mipmap/gymprofilepic" />
 
 <ScrollView
     android:layout_width="match_parent"
@@ -37,7 +37,7 @@ android:orientation="vertical">
                 android:text="Name :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/etNameGym"
@@ -61,7 +61,7 @@ android:orientation="vertical">
                 android:text="Gender :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/genderETGym"
@@ -71,7 +71,7 @@ android:orientation="vertical">
                 android:padding="10dp"
                 android:layout_gravity="left"
                 android:entries="@array/Gender"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="#fff"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@ android:orientation="vertical">
                 android:text="Date of Birth :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/etDOBGym"
@@ -111,7 +111,7 @@ android:orientation="vertical">
                 android:text="Email :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/etEMailGym"
@@ -135,7 +135,7 @@ android:orientation="vertical">
                 android:text="Height :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/etHeightGym"
@@ -159,7 +159,7 @@ android:orientation="vertical">
                 android:text="Weight :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/etWeigthGym"
@@ -183,7 +183,7 @@ android:orientation="vertical">
                 android:text="Password :"
                 android:textSize="16dp"
                 android:padding="10dp"
-                android:textColor="#000"
+                android:textColor="#1492CA"
                 android:textStyle="bold"/>
             <EditText
                 android:id="@+id/passwordETGym"
@@ -195,17 +195,19 @@ android:orientation="vertical">
                 android:backgroundTint="#fff"
                 android:inputType="textPassword"/>
         </LinearLayout>
+
         <Button
             android:id="@+id/save"
-            android:layout_width="wrap_content"
+            android:layout_width="244dp"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:textStyle="bold"
-            android:background="@drawable/signupbutton"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/signupbutton"
+            android:text="Save"
+            android:textAllCaps="false"
             android:textColor="@color/whiteText"
-            android:textAllCaps="false"/>
+            android:textStyle="bold"
+            android:visibility="gone"/>
     </LinearLayout>
 </ScrollView>
 </LinearLayout>

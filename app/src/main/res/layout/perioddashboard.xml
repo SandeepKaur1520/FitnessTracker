@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    tools:context=".PeriodDashboard"
-    android:background="@mipmap/background">
+    tools:context=".PeriodDashboard">
 
     <android.support.design.widget.BottomNavigationView
           android:id="@+id/periodNavigation"

@@ -43,7 +43,8 @@
                     android:layout_height="wrap_content"
                     android:text="TIME"
                     android:textColor="#000"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tvTotalTime"
@@ -51,7 +52,8 @@
                     android:layout_height="wrap_content"
                     android:text="01:02:22"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
 
             </LinearLayout>
@@ -75,14 +77,16 @@
                     android:layout_height="wrap_content"
                     android:text="0.0"
                     android:textColor="#000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Avg MIN/MI"
                 android:textColor="#000"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                    android:textStyle="bold"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -97,7 +101,8 @@
                     android:text="Running"
                     android:textAllCaps="true"
                     android:textColor="#000"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -128,12 +133,12 @@
 
     <ImageView
         android:id="@+id/imvCurrent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:layout_marginTop="110dp"
-        android:padding="10dp"
-        android:src="@mipmap/logo" />
+        android:padding="50dp"
+        android:background="@drawable/ic_my_location_black_24dp" />
 
 
 </RelativeLayout>

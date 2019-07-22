@@ -28,20 +28,20 @@
         <TextView
             android:id="@+id/tvselectField"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="60dp"
             android:layout_marginTop="80sp"
-            android:background="@mipmap/whitebackground"
+            android:background="#80FFFFFF"
             android:gravity="center"
             android:text="Please select your app field"
             android:textColor="#065B4F"
-            android:textSize="20sp"
+            android:textSize="25dp"
             android:textStyle="bold|italic" />
 
         <RadioGroup
             android:id="@+id/RGymPeriod"
             android:layout_width="match_parent"
             android:layout_height="57dp"
-            android:background="@mipmap/whitebackground"
+            android:background="#80FFFFFF"
             android:orientation="horizontal">
 
             <RadioButton
@@ -74,42 +74,44 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="230dp"
-                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp"
-                android:background="@mipmap/whitebackground"
+                android:background="#80FFFFFF"
                 android:padding="10dp"
                 android:text="   Gym Trainer       "
                 android:textAlignment="center"
                 android:textColor="#065B4F"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/RGgym"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                android:background="#80FFFFFF">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
                 <RadioButton
                     android:id="@+id/rbtnStayFit"
-                    android:layout_width="231dp"
-                    android:layout_height="35dp"
-                    android:background="@mipmap/whitebackground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
                     android:buttonTint="@drawable/radiobtncolor"
                     android:padding="5dp"
                     android:text="  Stay Fit "
                     android:textColor="#065B4F"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
                 <RadioButton
                     android:id="@+id/rbtnWeightLoss"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="37dp"
-                    android:background="@mipmap/whitebackground"
                     android:buttonTint="@drawable/radiobtncolor"
                     android:padding="5dp"
                     android:text="  Weight Loss"
@@ -118,14 +120,14 @@
 
                 <RadioButton
                     android:id="@+id/rbtnWeightGain"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="37dp"
-                    android:background="@mipmap/whitebackground"
                     android:buttonTint="@drawable/radiobtncolor"
                     android:padding="5dp"
                     android:text="  Weight Gain "
                     android:textColor="#065B4F"
                     android:textSize="20sp" />
+                </LinearLayout>
             </RadioGroup>
         </LinearLayout>
 
@@ -137,31 +139,35 @@
 
             <TextView
                 android:id="@+id/switch2Btn"
-                android:layout_width="233dp"
-                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@mipmap/whitebackground"
+                android:background="#80FFFFFF"
                 android:padding="5dp"
                 android:text="   Period Tracker     "
                 android:textAlignment="center"
                 android:textColor="#D10A4E"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/RGperiod"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                android:background="#80FFFFFF" >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal">
                 <RadioButton
                     android:id="@+id/rbtnTryingToConceive"
                     android:layout_width="233dp"
                     android:layout_height="38dp"
-                    android:background="@mipmap/whitebackground"
                     android:buttonTint="@drawable/radiobtn2color"
                     android:text="  Trying to Conceive "
                     android:textColor="#D10A4E"
@@ -171,11 +177,11 @@
                     android:id="@+id/rbtnRegularTracker"
                     android:layout_width="match_parent"
                     android:layout_height="37dp"
-                    android:background="@mipmap/whitebackground"
                     android:buttonTint="@drawable/radiobtn2color"
                     android:text="  Regular Tracker"
                     android:textColor="#D10A4E"
                     android:textSize="20sp" />
+                </LinearLayout>
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>

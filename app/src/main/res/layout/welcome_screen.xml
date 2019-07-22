@@ -7,13 +7,14 @@
     tools:context=".Welcome_screenActivity"
     android:orientation="vertical"
     android:background="@mipmap/background">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:background="@mipmap/logo"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
+        android:layout_marginTop="295dp"
+        android:background="@mipmap/logo" />
 
 
 </RelativeLayout>

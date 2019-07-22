@@ -32,7 +32,6 @@ public class BodyActivity extends AppCompatActivity {
                 } else if (checkedId == R.id.rbtnNewOne) {
                     BodyActiveness = "New One";
                 }
-
             }
         });
         nextBtn.setOnClickListener(new View.OnClickListener() {

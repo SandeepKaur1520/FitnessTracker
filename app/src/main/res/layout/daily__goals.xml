@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Daily_Goals"
-    android:background="@mipmap/backgroundimage">
+    android:background="@mipmap/background03">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,9 +22,9 @@
             android:text="Daily Goals"
             android:textSize="23dp"
             android:textStyle="bold"
-            android:textColor="#030303"
+            android:textColor="#FFFEFE"
             android:padding="10dp"
-            android:background="#C48519"
+            android:background="#C74B74"
             android:textAlignment="center"/>
         <TextView
             android:id="@+id/tvStepGoals"
@@ -35,7 +35,8 @@
             android:layout_marginTop="25dp"
             android:textSize="26dp"
             android:textStyle="bold"
-            android:textColor="#E0326D"/>
+            android:textColor="#E0326D"
+            android:layout_marginLeft="25dp"/>
 
            <SeekBar
                android:id="@+id/seekStepGoals"
@@ -43,7 +44,8 @@
                android:layout_height="wrap_content"
                android:layout_weight="1"
                android:min="10"
-               android:max="50000"/>
+               android:max="50000"
+               android:layout_marginLeft="15dp"/>
            <TextView
                android:id="@+id/tvCalories"
                android:layout_width="match_parent"
@@ -53,7 +55,8 @@
                android:layout_marginTop="25dp"
                android:textSize="26dp"
                android:textStyle="bold"
-               android:textColor="#E0326D"/>
+               android:textColor="#E0326D"
+               android:layout_marginLeft="15dp"/>
 
            <SeekBar
                 android:id="@+id/seekCalories"
@@ -61,7 +64,8 @@
                android:layout_weight="1"
                android:min="10"
                android:max="50000"
-               android:layout_height="wrap_content" />
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="15dp"/>
            <TextView
                android:id="@+id/tvWater"
                android:layout_width="match_parent"
@@ -71,7 +75,8 @@
                android:layout_marginTop="25dp"
                android:textSize="26dp"
                android:textStyle="bold"
-               android:textColor="#E0326D" />
+               android:textColor="#E0326D"
+               android:layout_marginLeft="15dp"/>
 
            <SeekBar
                 android:id="@+id/seekWater"
@@ -79,7 +84,8 @@
                android:layout_height="wrap_content"
                android:layout_weight="1"
                android:max="30"
-               android:min="0" />
+               android:min="0"
+               android:layout_marginLeft="15dp"/>
            <TextView
                android:id="@+id/tvSleep"
                android:layout_width="match_parent"
@@ -89,7 +95,8 @@
                android:layout_weight="1"
                android:textSize="26dp"
                android:textStyle="bold"
-               android:textColor="#E0326D" />
+               android:textColor="#E0326D"
+               android:layout_marginLeft="15dp"/>
 
            <SeekBar
                 android:id="@+id/seekSleep"
@@ -97,10 +104,11 @@
                android:max="24"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:layout_weight="1" />
+               android:layout_weight="1"
+               android:layout_marginLeft="15dp"/>
            <Button
                android:id="@+id/setGoalsBtn"
-               android:layout_width="wrap_content"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_gravity="center_horizontal"
                android:text="Set Goals"
@@ -108,7 +116,9 @@
                android:textAlignment="center"
                android:textColor="@color/whiteText"
                android:textStyle="bold|italic"
-               android:background="@color/colorAccent"/>
+               android:background="@color/colorAccent"
+               android:layout_marginLeft="40dp"
+               android:layout_marginRight="40dp"/>
        </LinearLayout>
     </ScrollView>
 

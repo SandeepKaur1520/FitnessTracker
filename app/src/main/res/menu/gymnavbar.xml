@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/llHome"
-        android:icon="@mipmap/calendericon"
+        android:icon="@mipmap/homeicongym"
         android:title="Home"
-
         android:enabled="true"
         app:showAsAction="always"/>
     <!--<item-->
@@ -16,13 +15,13 @@
         <!--app:showAsAction="always"/>-->
     <item
         android:id="@+id/llActivity"
-        android:icon="@mipmap/plusicon"
+        android:icon="@mipmap/runniggym"
         android:title="Activity"
         android:enabled="true"
         app:showAsAction="always"/>
     <item
         android:id="@+id/llProfile"
-        android:icon="@mipmap/meprofilegirl"
+        android:icon="@mipmap/google"
         android:title="Profile"
         android:enabled="true"
         app:showAsAction="always"/>

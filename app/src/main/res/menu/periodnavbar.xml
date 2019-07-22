@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/llCalender"
-        android:icon="@mipmap/calendericon"
+        android:icon="@mipmap/calendericonwhite"
         android:enabled="true"
         android:title="Calender"
         app:showAsAction="never"/>
     <item
         android:id="@+id/llChart"
-        android:icon="@mipmap/charticon"
+        android:icon="@mipmap/chartfinal"
         android:title="Chart"
         android:enabled="true"
         app:showAsAction="never"/>
     <item
         android:id="@+id/llMe"
-        android:icon="@mipmap/meiconwhite"
+        android:icon="@mipmap/girlprofilefinal"
         android:title="Me"
         android:enabled="true"
         app:showAsAction="never"></item>

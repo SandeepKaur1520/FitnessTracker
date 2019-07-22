@@ -15,7 +15,7 @@
         android:fontFamily="cursive"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:background="#0E439C"
+        android:background="#C74B74"
         android:padding="20dp" />
 
     <ScrollView

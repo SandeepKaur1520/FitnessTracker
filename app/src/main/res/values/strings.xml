@@ -18,9 +18,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string-array name="Gender">
-        <item>Male
-
-        </item>
+        <item>Male</item>
         <item>Female</item>
 
     </string-array>
